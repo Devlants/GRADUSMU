@@ -15,4 +15,5 @@ class User(AbstractUser):
     #전공분류
     dept_type = models.CharField(max_length = 50,null=False,default = '')
     #부전공/다전공
+    second_universe = models.CharField(max_length = 50, null = False,default = "")
     second_dept = models.CharField(max_length = 50,null=False)
