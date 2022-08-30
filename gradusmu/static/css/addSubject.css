@@ -1,0 +1,133 @@
+body {
+    font-family: 'Heebo', sans-serif;
+    font-weight: bold;
+
+}
+
+#devlant_img {
+    position: absolute;
+    width: min-content;
+}
+
+header {
+    width: 100vw;
+    height: 15vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+#logo_div{
+    width: inherit;
+    height: 60px;
+    object-fit: contain;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#logo_div > a{
+    width: inherit;
+    height: inherit;
+}
+
+#login_logo_img{
+    width: inherit;
+    height: inherit;
+    object-fit: contain;
+}
+#addSubject_logout_btn{
+    position: absolute;
+    right:  0px;
+    bottom: 5px;
+    font-weight: 400;
+    background-color: #5B4FE9;
+    color: white;
+    border: none;
+    border-radius: 10%;
+}
+
+main{
+    width: 100vw;
+    height: 70vh;
+    background-color: #D9D9D9;
+    border-radius: 10px;
+}
+
+#addSubject_user_name{
+    font-size: 1.5em;
+    padding-top: 2vh;
+}
+#select_div{
+    padding: 2vh;
+}
+#center_area{
+    border: 1px solid black;
+    height: 50vh;
+    background-color: white;
+    width: 60vw;
+    position: relative;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    overflow: auto;
+    white-space:nowrap;
+}
+
+#title_bar{
+    background-color: #5B4FE9;
+    color: white;
+    width: inherit;
+    font-size: 1rem;
+    margin: 0;
+}
+#title_bar > .col{
+    display: flex;
+    justify-content: center;
+    
+}
+
+#main_area{
+    width: inherit;
+    height: inherit;
+    padding: 0;
+}
+#main_area .row{
+    width: inherit;
+    margin: 0;
+    border-bottom: 1px solid black;
+    font-weight: 500;
+    font-size: 1rem;
+}
+#main_area .row .col{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.mainarea_btn{
+    width: fit-content;
+    height: min-content;
+    border-radius: 20px;
+    color: white;
+    border: none;
+    font-size: 0.8rem;
+}
+
+footer{
+    height: 15vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+#return_btn{
+    background-color:#B472E8 ;
+    color: white;
+    border-radius: 20px;
+    border: none;
+    font-weight: bold;
+    font-size: 1.3em;
+    padding: 0px 20px 0px 20px;
+}

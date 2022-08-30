@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>정보수정 페이지</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/53a8c415f1.js" crossorigin="anonymous"></script>
+    <link href="../css/inform.css" rel="stylesheet" />
+    <script src="https://code.jquery.com/jquery-3.6.0.slim.js" integrity="sha256-HwWONEZrpuoh951cQD1ov2HUK5zA5DwJ1DNUXaM6FsY=" crossorigin="anonymous"></script>
+</head>
+<body>
+    <body>
+        <div class="header">
+            <image src="../img/gradusmu.png" alt="image"></image>
+        </div>
+
+        <div class="wrapper">
+            <form id ="login_form">
+                <div class="name"> 이름
+                    <input id="name" type="text" placeholder="이름을 입력해 주세요.">
+                    <div id="nameError" class="error"></div>
+                </div>
+
+                <div class="email"> Email
+                    <input id="email" type="text" placeholder="이메일을 입력해 주세요.">
+                    <div id="emailError" class="error"></div>
+                </div>
+
+                <hr>
+
+                <div class="classInform">
+                    <div class="grade"> 학년
+                        <select id="grade">
+                            <option selected disabled>선택</option>
+                            <option>1학년</option>
+                            <option>2학년</option>
+                            <option>3학년</option>
+                            <option>4학년</option>
+                        </select>
+                    </div>
+
+                    <div class="classNum"> 학번
+                        <input id="classNum" type="text" placeholder="예) 20학번 - 20">
+                    </div>
+
+                    <div class="classDepart"> 대학
+                        <select id="classDepart" onchange="categoryChange(this)">
+                            <option selected disabled> 대학 </option>
+                            <option value = "a">인문사회과학대학</option>
+                            <option value = "b">사범대학</option>
+                            <option value = "c">경영경제대학</option>
+                            <option value = "d">융합공과대학</option>
+                            <option value = "e">문화예술대학</option>
+                        </select>
+                    </div>
+
+                    <div class="classMajor"> 학과
+                        <select id="classMajor">
+                            <option selected disabled> 학부/학과 </option>
+                        </select>
+                    </div>
+                </div>
+                <div id="classInformError" class="error"></div>
+
+                <div class="line">
+                    <hr>
+                </div>
+                <div class="UserId"> * 아이디 <br>
+                    <input id="UserId" type="text" placeholder="Id를 입력해 주세요.">
+                    <div id="UserIdError" class="error"></div>
+                </div>
+
+                <div class="UserIdCheck">
+                    <button id="UserIdCheckButton" disabled onclick="UserIdCheckCheck()">수정하기</button>
+                </div>
+
+                <div class="password"> * 비밀번호 <br>
+                    <input id="password" type="password" placeholder="비밀번호를 입력해 주세요.">
+                    <div id="passwordError" class="error"></div>
+                </div>
+                <div class="passwordCheck">
+                    <input id="passwordCheck" type="password" placeholder="비밀번호를 다시 입력해 주세요.">
+                    <div id="passwordCheckError" class="error"></div>
+                </div>
+
+                <div class="pwCheck">
+                    <button id="pwCheckButton" disabled onclick="pwCheckCheck()">수정하기</button>
+                </div>
+
+                <hr>
+                
+                <div class="select"> 전공분류
+                    <input type="radio" id="select" name="MajorType" checked="checked"><label for="select">전공심화</label>
+                    <input type="radio" id="select2" name="MajorType"><label for="select2">복수전공</label>
+                    <input type="radio" id="select3" name="MajorType"><label for="select3">부전공</label>
+                </div>
+
+                <div class="plusMajor">
+                    <div class="classDepart"> 대학
+                        <select id="plus_classDepart" onchange="categoryChange_plus(this)">
+                            <option selected disabled> 선택 </option>
+                            <option value = "a">인문사회과학대학</option>
+                            <option value = "b">사범대학</option>
+                            <option value = "c">경영경제대학</option>
+                            <option value = "d">융합공과대학</option>
+                            <option value = "e">문화예술대학</option>
+                        </select>
+                    </div>
+
+                    <div class="classMajor"> 학과
+                        <select id="plus_classMajor">
+                            <option selected disabled>선택</option>
+                        </select>
+                    </div>  
+                </div>
+            </form>
+        </div>
+        <div class="warp">
+            
+            <p>상기의 정보들을 바탕으로 수정하시겠습니까?</p>
+
+            <div class="login_Submit">
+                <button id="login_Submit" onclick="signUpCheck()">수정하기</button>
+            </div>
+        </div>
+    <script src="register.js"></script>
+</body>
+</html>

@@ -1,0 +1,299 @@
+html, body{
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.mainBody{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    margin: 0 auto;
+}
+
+.profileBody{
+    width: 100%;
+    height: 100%;
+}
+
+#mainImg{
+    width: 400px;
+    height: 50px;
+    margin-top: 30px;
+}
+
+.profileContentBody{
+    width: 100%;
+}
+
+.mainImg img{
+    width: 500px;
+}
+
+.logoutBtn{
+    width: 90%;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.logoutBtn button{
+    border-radius: 10px;
+    border: 0;
+    background-color: #5B4FE9;
+    color: white;
+    font-size: 1rem;
+    font-weight: bolder;
+    width: 90px;
+    height: 28px;
+    cursor: pointer;
+}
+
+.profileBody{
+    background-color: #d9d9d989;
+    width: 80%;
+    height: auto;
+    margin-top: 15px;
+    padding: 70px 100px;
+    border-radius: 10px;
+}
+
+.profileNotName{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.profileNotNameWrap{
+    display: flex;
+
+}
+.profileName{
+    font-size: 1.4rem;
+    display: flex;
+    flex-direction: row;
+    font-weight: bolder;
+}
+
+.profileDepartmentWrap{
+    display: flex;
+    flex-direction: row;
+}
+
+#profileDepartment{
+    color: #801CAF;
+}
+
+.profileImg{
+    margin-top: 10px;
+    display: flex;
+    flex-direction: column;
+}
+
+.profileImg img{
+    width: 150px;
+}
+
+.profileImg button{
+    background-color: white;
+    border: 0;
+    font-size: 0.9rem;
+    font-weight: 500;
+    width: 150px;
+    margin-top: 10px;
+    cursor: pointer;
+}
+
+.profileContentWrap{
+    margin: 10px 0 0 30px;
+}
+
+.profileContentWrap button{
+    background-color: white;
+    border: 1px solid black;
+    border-radius: 5px;
+    padding: 3px 6px;
+    font-size: 0.9rem;
+    cursor: pointer;
+}
+
+.profileContent{
+    margin-top: 7px;
+    line-height: 25px;
+}
+
+.profileGraph{
+    padding: 0px 15px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+}
+
+.majorScore{
+    position: absolute;
+    font-weight: 600;
+    color: #801CAF;
+    width: 100%;
+    left: 0px;
+    top: 0px;
+}
+
+.cultureScore{
+    position: absolute;
+    font-weight: 600;
+    color: #EF7E15;
+    left: 170px;
+    top: 195px;
+    width: 100%;
+}
+
+.pie-chart{
+    display:inline-block;
+    position:relative;
+    width: 200px;
+    height: 200px;
+    background: conic-gradient(#FFC700 0% 30%, #2BCE1C 30% 100%);
+    border-radius: 50%;
+}
+
+.center{  
+    position:absolute;
+    width: 100px; 
+    height: 100px;
+    background :#fff;
+    border-radius: 50%;
+    top: 50px;
+    left: 50px;
+    display: flex;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    font-weight: 800;
+}
+
+.detailScoreBtn{
+    background-color: #9038BA;
+    width: 80px;
+    height: 30px;
+    font-size: 1rem;
+    color: white;
+    border: 0;
+    border-radius: 10px;
+    margin-top: 10px;
+    cursor: pointer;
+}
+
+.selecBasicInformation{
+    margin-top: 40px;
+}
+
+.selecBasicInformation select{
+    width: 70px;
+    height: 25px;
+    border: 2px solid black;
+    text-align: center;
+    font-size: 1rem;
+    margin-right: 30px;
+}
+
+#select3{
+    width: 105px;
+}
+
+.subjectTable{
+    margin-top: 15px;
+    font-size: 1.2rem;
+    width: 100%;
+}
+
+.subjectTable table{
+    text-align: center;
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.subjectTable thead{
+    background-color: #5B4FE9;
+    color: white;
+    text-align: center;
+    margin-left: 0;
+}
+
+.subjectTable td{
+    padding: 5px 50px;
+}
+
+.tbodyTr{
+    background-color: white;
+    border: 1px solid black;
+}
+
+.deleteSubjectBtn{
+    width: 70px;
+    height: 25px;
+    background-color: #B93D16;
+    border: 0;
+    border-radius: 10px;
+    color: white;
+    font-size: 0.9rem;
+    cursor: pointer;
+}
+
+.detailSubjectBtn{
+    width: 70px;
+    height: 25px;
+    background-color: #000000;
+    border: 0;
+    border-radius: 10px;
+    color: white;
+    font-size: 0.9rem;
+    cursor: pointer;
+}
+
+.addSubjectBtn{
+    margin-top: 15px;
+    padding-bottom: 30px;
+}
+
+.addSubjectBtn button{
+    background-color: #B472E8;
+    border: 0;
+    width: 120px;
+    height: 40px;
+    font-size: 1.4rem;
+    color: white;
+    font-weight: bold;
+    border-radius: 30px;
+    cursor: pointer;
+}
+
+@media(max-width: 1380px){
+    .subjectTable td{
+        padding: 5px 40px;
+    }
+}
+
+@media(max-width: 1230px){
+    .subjectTable td{
+        padding: 5px 30px;
+    }
+}
+
+@media(max-width: 1080px){
+    .subjectTable td{
+        padding: 5px 20px;
+    }
+}
+
+@media(max-width: 930px){
+    .subjectTable td{
+        padding: 5px 10px;
+    }
+    .subjectTable{
+        font-size: 1rem;
+    }
+}
