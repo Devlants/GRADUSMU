@@ -2,6 +2,7 @@ from django.db import models
 
 
 # J 이수학점 MODEL
+
 class GraduationCiteria(models.Model):
     underGra = models.CharField(max_length=50)  #학부
     major = models.CharField(max_length=50)     #학과
@@ -23,13 +24,25 @@ class GraduationCiteria(models.Model):
     total = models.IntegerField(null=False)
 
 
-class EssentialLiberalArtsSortation(models.Model):
-    name = models.CharField(max_length = 50,null=True)
+
 
 class EssentialLiberalArts(models.Model):
+    field = models.CharField(max_length=50, null=True)
     name = models.CharField(max_length=50,null=True)
-    sort = models.ForeignKey(EssentialLiberalArtsSortation, on_delete=models.CASCADE)
+    year = models.IntegerField(max_length=50, null=True)
 
+class CoreLiberalArtsSortation(models.Model):
+    name = models.CharField(max_length=50, null=True)
+
+class  CoreLiberalArts(models.Model):
+    sort = models.CharField(max_length=50, null=True)
+    name = models.CharField(max_length=50, null=True)
+    year = models.IntegerField(max_length=50, null=True)
+
+
+class BalancedCurtureNot(models.Model):
+    major = models.CharField(max_length=50, null=True)
+    field = models.CharField(max_length=50, null=True)
 
 class BalancedCultureSortation(models.Model):
     name = models.CharField(max_length = 50, null=True)
@@ -37,9 +50,9 @@ class BalancedCultureSortation(models.Model):
 
 
 class BalancedCulture(models.Model):
+    sort = models.CharField(max_length = 50, null=True)
     name = models.CharField(max_length = 50, null=True)
-    sort = models.ForeignKey(BalancedCultureSortation, on_delete=models.CASCADE)
-
+    year = models.IntegerField(max_length=50, null=True)
 #과목 모델
 class subjects(models.Model):
     serialNumber = models.CharField(max_length=100,null=False) #학수번호
