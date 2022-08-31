@@ -132,9 +132,50 @@ def find_pwd_change_pwd(request):
         "is_changed" : is_changed,
     }
     return JsonResponse(context)
+#프로필 사진 바꾸기
+# @csrf_exempt
+# def profile_img(request):
+    
+#     if request.method == "POST":
+        
+#         user = User.objects.get(id = "3")
+#         try:
+#             user.image = request.FILES['']
+#             user.save()
+#             is_changed = True
+#         except :
+#             is_changed = False
+#         context = {
+#             "is_changed" : is_changed,
+#         }
+#         return JsonResponse(context)
+    
 # 개인정보 수정
 def profile(request):
-    return render(request, "inform.html")
+    if request.method == 'POST':
+        try:
+            user = User.objects.get(id = request.user.id)
+            user.password=request.POST['password']
+            user.email=request.POST['email']
+            user.name = request.POST['name']
+            user.grade = int(request.POST['grade'])
+            user.student_num = request.POST['student_num']
+            user.universe = request.POST['universe']
+            user.dept = request.POST['dept']
+            user.dept_type = request.POST['dept_type']
+            if(user.dept_type != "전공심화"):
+                user.second_dept = request.POST['second_dept']
+                user.second_universe = request.POST['second_universe']                
+            else:
+                user.second_dept = ''
+                user.second_universe = ""
+            user.save()
+            request.user = user
+            return render(request,'index.html')
+        except Exception as e:
+            print(e)
+            return render(request, 'inform.html')
+    return render(request,'inform.html')
 
 # 로그아웃
 def logout():

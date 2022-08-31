@@ -17,3 +17,4 @@ class User(AbstractUser):
     #부전공/다전공
     second_universe = models.CharField(max_length = 50, null = False,default = "")
     second_dept = models.CharField(max_length = 50,null=False)
+    image = models.ImageField(upload_to="image",default = "/static/img/person.png")

@@ -1,6 +1,7 @@
 {% load static %}
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -10,6 +11,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://code.jquery.com/jquery-latest.js"></script>
 </head>
+
 <body>
     <div class="mainBody">
         <div class="mainImg">
@@ -27,11 +29,14 @@
                 <div class="profileNotName">
                     <div class="profileNotNameWrap">
                         <div class="profileImg">
-                            <img src="{% static 'img/person.png' %}" />
+                            <img src={{request.user.image.url}} />
+                            
                             <button type="button" class="editProfileImgBtn">프로필 사진 편집</button>
+                            
                         </div>
                         <div class="profileContentWrap">
-                            <button type="button" class="editProfileContentBtn" onclick="location.href = '{% url 'profile' %}'">수정하기</button>
+                            <button type="button" class="editProfileContentBtn"
+                                onclick="location.href = '{% url 'settings' %}'">수정하기</button>
                             <div class="profileContent">
                                 <div>입학 : 20{{user.student_num}}</div>
                                 <div>학년 : {{user.grade}}</div>
@@ -133,4 +138,5 @@
         </div>
     </div>
 </body>
+
 </html>
