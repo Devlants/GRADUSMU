@@ -15,7 +15,8 @@ def point():
 
 #수강한 과목 가져오기
 #상위항목, 하위항목별로 구분 가능해야됨
-def complete():
+def complete(request):
+
     return
 
 #과목 상세
