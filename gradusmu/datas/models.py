@@ -1,4 +1,6 @@
+import switch as switch
 from django.db import models
+import json
 
 
 # J 이수학점 MODEL
@@ -24,12 +26,57 @@ class GraduationCiteria(models.Model):
     total = models.IntegerField(null=False)
 
 
+class subjects(models.Model):
+    serialNumber = models.CharField(max_length=100,null=False) #학수번호
+    semester = models.IntegerField() #학기
+    distribution = models.IntegerField(null=False) # 분반
+    name = models.CharField(max_length=100,null=False) # 과목이름
+    grade = models.IntegerField(null=False) #학년
+    prof = models.CharField(max_length=100,null=False) # 교수님
+    dept = models.CharField(max_length=100,null=False) # 개설학과
+    time = models.CharField(max_length=100,null=False) # 강의 시간
+    room = models.CharField(max_length=100,null=False) # 강의실
+    type = models.CharField(max_length=100,null=False) # 구분
+    point = models.IntegerField(null=False) # 학점
+    year = models.CharField(max_length=10,null=False) # 개설연도
 
 
 class EssentialLiberalArts(models.Model):
-    field = models.CharField(max_length=50, null=True)
+    sort = models.CharField(max_length=50, null=True)
     name = models.CharField(max_length=50,null=True)
     year = models.IntegerField(max_length=50, null=True)
+
+    def getEss(request):
+        forCount = EssentialLiberalArts.object.all
+        subject = subjects.object.all
+        ess={}
+        ess["사고와표현"] = []
+        ess["EnglishFoundations"] = []
+        ess["기초수학"] = []
+        ess["컴퓨팅사고와데이터의이해"] = []
+        ess["알고리즘과게임콘텐츠"]=[]
+
+        for i in range(subject.count()):
+            for j in range(forCount.count()):
+                if subject[i].name == forCount[j].name:
+                    ess[forCount[j].sort].append({
+                        "core": forCount[j].sort,
+                        "serialNumber": subject[i].serialNumber,
+                        "semester": subject[i].semester,
+                        "distribution": subject[i].distribution,
+                        "name": subject[i].name,
+                        "grade": subject[i].grade,
+                        "prof": subject[i].prof,
+                        "dept": subject[i].dept,
+                        "time": subject[i].time,
+                        "room": subject[i].room,
+                        "type": subject[i].type,
+                        "point": subject[i].point,
+                        "year": subject[i].year,
+                        "years": forCount[j].year
+                    })
+        context = {"ess": ess}
+        return()
 
 class CoreLiberalArtsSortation(models.Model):
     name = models.CharField(max_length=50, null=True)
@@ -38,6 +85,38 @@ class  CoreLiberalArts(models.Model):
     sort = models.CharField(max_length=50, null=True)
     name = models.CharField(max_length=50, null=True)
     year = models.IntegerField(max_length=50, null=True)
+
+    def getCore(request):
+        forCount = CoreLiberalArts.object.all
+        subject = subjects.object.all
+        core={}
+        core["창의적문제해결역량"] = []
+        core["융복합역량"] = []
+        core["다양성존중역량"] = []
+        core["윤리실천역량"] = []
+        for i in range(subject.count()):
+            for j in range(forCount.count()):
+                if subject[i].name == forCount[j].name:
+                    core[forCount[j].sort].append({
+                        "core": forCount[j].sort,
+                        "serialNumber": subject[i].serialNumber,
+                        "semester": subject[i].semester,
+                        "distribution": subject[i].distribution,
+                        "name": subject[i].name,
+                        "grade": subject[i].grade,
+                        "prof": subject[i].prof,
+                        "dept": subject[i].dept,
+                        "time": subject[i].time,
+                        "room": subject[i].room,
+                        "type": subject[i].type,
+                        "point": subject[i].point,
+                        "year": subject[i].year,
+                        "years": forCount[j].year
+                    })
+        context = {"core": core}
+        return (request, ,context)
+
+
 
 
 class BalancedCurtureNot(models.Model):
@@ -53,20 +132,40 @@ class BalancedCulture(models.Model):
     sort = models.CharField(max_length = 50, null=True)
     name = models.CharField(max_length = 50, null=True)
     year = models.IntegerField(max_length=50, null=True)
+
+    def getBal(request):
+        forCount = BalancedCulture.object.all
+        subject = subjects.object.all
+        bal={}
+        bal["인문"] = []
+        bal["사회"] = []
+        bal["자연"] = []
+        bal["공학"] = []
+        bal["예술"] = []
+        for i in range(subject.count()):
+            for j in range(forCount.count()):
+                if subject[i].name == forCount[j].name:
+                    bal[forCount[j].sort].append({
+                        "bal": forCount[j].sort,
+                        "serialNumber": subject[i].serialNumber,
+                        "semester": subject[i].semester,
+                        "distribution": subject[i].distribution,
+                        "name": subject[i].name,
+                        "grade": subject[i].grade,
+                        "prof": subject[i].prof,
+                        "dept": subject[i].dept,
+                        "time": subject[i].time,
+                        "room": subject[i].room,
+                        "type": subject[i].type,
+                        "point": subject[i].point,
+                        "year": subject[i].year,
+                        "years": forCount[j].year
+                    })
+        context = {"bal": bal}
+        return ()
 #과목 모델
-class subjects(models.Model):
-    serialNumber = models.CharField(max_length=100,null=False) #학수번호
-    semester = models.IntegerField() #학기
-    distribution = models.IntegerField(null=False) # 분반
-    name = models.CharField(max_length=100,null=False) # 과목이름
-    grade = models.IntegerField(null=False) #학년
-    prof = models.CharField(max_length=100,null=False) # 교수님
-    dept = models.CharField(max_length=100,null=False) # 개설학과
-    time = models.CharField(max_length=100,null=False) # 강의 시간
-    room = models.CharField(max_length=100,null=False) # 강의실
-    type = models.CharField(max_length=100,null=False) # 구분
-    point = models.IntegerField(null=False) # 학점
-    year = models.CharField(max_length=10,null=False) # 개설연도
+
+
 
 
 
