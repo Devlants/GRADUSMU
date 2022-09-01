@@ -1,12 +1,9 @@
-from django.shortcuts import render
-
-# home
-def home():
-    return 
-
-# 개인정보 가져오기
-def inform():
-    return
+from django.shortcuts import render, redirect
+from .models import subjects
+from accounts.models import User
+from django.views.decorators.csrf import csrf_exempt
+import json
+from django.http import JsonResponse
 
 # 학점 가져오기
 # 총학점, 전공학점, 교양학점
@@ -27,5 +24,19 @@ def point_detail():
     return
 
 #과목 추가
-def put_subject():
-    return
+@csrf_exempt
+def add_subject(request):
+    if request.method == "POST":
+        try:
+            data = json.loads(request.body)
+            
+            user = User.objects.get(id = data['user_id'])
+            user.sign_up.add(subjects.objects.get(id = data["subject_id"]))
+            is_added = True
+        except:
+            is_added = False
+        context = {
+            "is_added" : is_added,
+        }
+        return JsonResponse(context)
+    return render(request, "addSubject.html")
