@@ -8,7 +8,7 @@ datas_patterns = [
     path("subject_detail/",views.subject_detail,name = "subject_detail"),
     path("score_detail/",views.score_detail,name = "score_detail"),
     path("score_graph_detail/",views.score_graph_detail,name = "scoreGraphDetail"),
-
+    path("balanced_culture/",views.balanced_search_subject,name = "balanced_culture")
 ]
 
 urlpatterns = [

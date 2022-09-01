@@ -4,11 +4,8 @@ from accounts.models import User
 from django.views.decorators.csrf import csrf_exempt
 import json
 from django.http import JsonResponse
+import datetime
 
-# 학점 가져오기
-# 총학점, 전공학점, 교양학점
-def point():
-    return
 #들은 과목 
 def signed_search_subject(request):
     request = json.loads(request.body)
@@ -176,4 +173,36 @@ def delete_subject(request):
     else:
         
         return render(request, "addSubject.html")
-    return 
+# 균교 영역별 
+def balanced_search_subject(request):
+    request = json.loads(request.body)
+    
+    user = User.objects.get(id = request['user_id'])
+    signed = list(user.sign_up.values_list('id',flat=True))
+    currentDateTime = datetime.datetime.now()
+    date = currentDateTime.date()
+    year = date.strftime("%Y")
+    datas = BalancedCulture.getBal()
+    context = {}
+    i=0
+    for data in datas[request['dept_type']].filter(id__in = signed):
+        context[i] = {
+            "id" : data.id,
+            "name" : data.name,
+            "serial_num" : data.serialNumber+"-"+str(data.distribution),
+            "prof" : data.prof,
+            "point" : data.point,
+            "signed" : True
+        }
+        i+=1
+    for data in datas[request['dept_type']].filter(year = year).exclude(id__in = signed):
+        context[i] = {
+            "id" : data.id,
+            "name" : data.name,
+            "serial_num" : data.serialNumber+"-"+str(data.distribution),
+            "prof" : data.prof,
+            "point" : data.point,
+            "signed" : False
+        }
+        i+=1    
+    return JsonResponse(context)
