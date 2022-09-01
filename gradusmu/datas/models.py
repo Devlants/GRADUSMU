@@ -49,15 +49,17 @@ class EssentialLiberalArts(models.Model):
     def getEss(request):
         forCount = EssentialLiberalArts.object.all
         subject = subjects.object.all
-        core={}
-        core["사고와표현"] = []
-        core[""] = []
-        core["다양성존중역량"] = []
-        core["윤리실천역량"] = []
+        ess={}
+        ess["사고와표현"] = []
+        ess["EnglishFoundations"] = []
+        ess["기초수학"] = []
+        ess["컴퓨팅사고와데이터의이해"] = []
+        ess["알고리즘과게임콘텐츠"]=[]
+
         for i in range(subject.count()):
             for j in range(forCount.count()):
                 if subject[i].name == forCount[j].name:
-                    core[forCount[j].sort].append({
+                    ess[forCount[j].sort].append({
                         "core": forCount[j].sort,
                         "serialNumber": subject[i].serialNumber,
                         "semester": subject[i].semester,
@@ -73,7 +75,8 @@ class EssentialLiberalArts(models.Model):
                         "year": subject[i].year,
                         "years": forCount[j].year
                     })
-        context = {"core": core}
+        context = {"ess": ess}
+        return()
 
 class CoreLiberalArtsSortation(models.Model):
     name = models.CharField(max_length=50, null=True)
