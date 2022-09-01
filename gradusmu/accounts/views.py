@@ -7,6 +7,7 @@ from django.views.decorators.csrf import csrf_exempt
 import json
 from django.core.mail import EmailMessage
 import random
+from django.db.models import Q
 
 #로그인
 def login(request):
@@ -51,7 +52,16 @@ def register(request):
 
 #홈
 def home(request):
-    return render(request,"index.html")
+    user = User.objects.get(id = request.user.id)
+    points = user.sign_up.values_list('point',flat = True)
+    major_point = user.sign_up.filter(Q(type = "1전심")|Q(type = "1전선")).values_list('point',flat = True)
+    culture_point = user.sign_up.filter(Q(type = "교선")|Q(type = "교필")).values_list('point',flat = True)
+    context = {
+        "total" : sum(points),
+        "major" : sum(major_point),
+        "culture" : sum(culture_point)
+    }
+    return render(request,"index.html",context)
 
 #아이디 중복 체크
 @csrf_exempt
@@ -133,22 +143,22 @@ def find_pwd_change_pwd(request):
     }
     return JsonResponse(context)
 #프로필 사진 바꾸기
-# @csrf_exempt
-# def profile_img(request):
+@csrf_exempt
+def profile_img(request):
     
-#     if request.method == "POST":
-        
-#         user = User.objects.get(id = "3")
-#         try:
-#             user.image = request.FILES['']
-#             user.save()
-#             is_changed = True
-#         except :
-#             is_changed = False
-#         context = {
-#             "is_changed" : is_changed,
-#         }
-#         return JsonResponse(context)
+    if request.method == "POST":
+
+        user = User.objects.get(id = request.POST['user_id'])
+        try:
+            user.image = request.FILES["image"]
+            user.save()
+            is_changed = True
+        except :
+            is_changed = False
+        context = {
+            "is_changed" : is_changed,
+        }
+        return JsonResponse(context)
     
 # 개인정보 수정
 def profile(request):

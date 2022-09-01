@@ -40,7 +40,7 @@
     </header>
     <main class="container">
         <div id="addSubject_user_name" class="container">
-
+            {{user.name}}({{user.dept}})
         </div>
 
         <div id="select_div" class="container">
@@ -72,7 +72,7 @@
 
     </main>
     <footer>
-        <button id="return_btn">돌아가기</button>
+        <button id="return_btn" onclick="location.href = '{% url 'home' %}'">돌아가기</button>
     </footer>
 
 

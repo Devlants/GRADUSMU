@@ -1,0 +1,191 @@
+html, body{
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.scoreDetailBody{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    margin: 0 auto;
+}
+
+.scoreDetailBody{
+    width: 100%;
+    height: 100%;
+}
+
+#mainImg{
+    width: 400px;
+    height: 50px;
+    margin-top: 30px;
+}
+
+.scoreDetailContent{
+    background-color: #d9d9d989;
+    width: 87%;
+    height: auto;
+    margin-top: 15px;
+    padding: 50px 30px;
+    border-radius: 10px;
+}
+
+.logoutBtn{
+    width: 90%;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.logoutBtn button{
+    border-radius: 10px;
+    border: 0;
+    background-color: #5B4FE9;
+    color: white;
+    font-size: 1rem;
+    font-weight: bolder;
+    width: 90px;
+    height: 28px;
+    cursor: pointer;
+}
+
+.userName{
+    font-size: 1.8rem;
+    display: flex;
+    flex-direction: row;
+    font-weight: bolder;
+}
+
+.userDepartmentWrap{
+    display: flex;
+    flex-direction: row;
+}
+
+#userDepartment{
+    color: #801CAF;
+}
+
+.totalScoreWrap, .majorScoreWrap, .deepMajorScoreWrap, .cultureScoreWrap, .basicCultureScoreWrap, .basicCultureScoreWrap, .balanceCultureScoreWrap, .essentialCultureScoreWrap, .bsmScoreWrap, .designScoreWrap, .majorBsmScoreWrap{
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    height: 65px;
+}
+
+.totalScoreWrap{
+    margin-top: 30px;
+}
+
+.totalScoreWrap h3, .majorScoreWrap h3, .deepMajorScoreWrap h3, .cultureScoreWrap h3, .basicCultureScoreWrap h3, .basicCultureScoreWrap h3, .balanceCultureScoreWrap h3, .essentialCultureScoreWrap h3, .bsmScoreWrap h3, .designScoreWrap h3, .majorBsmScoreWrap h3{
+    font-size: 1.4rem;
+    margin: auto 0;
+    text-align: left;
+    width: 10%;
+}
+
+.totalScoreGraphWrap, .majorScoreGraphWrap, .deepMajorScoreGraphWrap, .cultureScoreGraphWrap, .basicCultureScoreGraphWrap, .balanceCultureScoreGraphWrap, .essentialCultureScoreGraphWrap, .bsmScoreGraphWrap, .designScoreGraphWrap, .majorBsmScoreGraphWrap{
+    margin-left: 100px;
+    display: flex;
+    align-items: center;
+    width: 79%;
+    height: 35px;
+    margin: auto 0 auto 20px;
+    background-color: #D9D9D9;
+    font-weight: 600;
+    font-size: 0.8rem;
+    border-radius: 20px;
+}
+
+.totalScoreGraphWrap, .majorScoreGraphWrap, .deepMajorScoreGraphWrap, .bsmScoreGraphWrap, .cultureScoreGraphWrap, .basicCultureScoreGraphWrap, .designScoreGraphWrap, .majorBsmScoreGraphWrap{
+    cursor: pointer;
+} 
+
+.totalScoreGraph, .majorScoreGraph, .deepMajorScoreGraph, .cultureScoreGraph, .basicCultureScoreGraph, .balanceCultureScoreGraph, .essentialCultureScoreGraph, .bsmScoreGraph, .designScoreGraph, .majorBsmScoreGraph{
+    border-radius: 20px;
+    height: 35px;
+    padding: 0;
+    text-align: center;
+}
+
+#totalScoreFraction, #majorScoreFraction, #deepMajorScoreFraction, #cultureScoreFraction, #basicCultureScoreFraction, #balanceCultureScoreFraction, #essentialCultureScoreFraction, #bsmScoreFraction, #designScoreFraction, #majorBsmScoreFraction{
+    width: 11%;
+    font-size: 1.2rem;
+    margin: auto 0 auto 30px;
+}
+
+.totalScoreGraph{
+    width: 72%;  
+    background-color: #FF0000;
+}
+
+.majorScoreGraph{
+    width: 72%;  
+    background-color: #15F97E;
+}
+
+.deepMajorScoreGraph{
+    width: 72%;  
+    background-color: #2BCE1C;
+}
+
+.cultureScoreGraph{
+    width: 72%;  
+    background-color: #C60DF4;
+}
+
+.basicCultureScoreGraph{
+    width: 72%;  
+    background-color: #801CAF;
+}
+
+.balanceCultureScoreGraph{
+    width: 72%;  
+    background-color: #5C2874;
+}
+
+.essentialCultureScoreGraph{
+    width: 72%;  
+    background-color: #9667AC;
+}
+
+.bsmScoreGraph{
+    width: 72%;  
+    background-color: #FAFF00;
+}
+
+.designScoreGraph{
+    width: 72%;  
+    background-color: #2A19EB;
+}
+
+.majorBsmScoreGraph{
+    width: 72%;  
+    background-color: #49D5F3;
+}
+
+#engineeringCertification{
+    font-size: 1.4rem;
+    color: #FF0000;
+    margin-bottom: 0;
+}
+
+.informText{
+    display: flex;
+    justify-content: flex-end;
+    width: 90%;
+    padding-bottom: 20px;
+    font-size: 1.1rem;
+    font-weight: 500;
+    color: red;
+    line-height: 25px;
+    text-align: end;
+}
+
+@media(max-width: 1370px){
+    .totalScoreWrap, .majorScoreWrap, .deepMajorScoreWrap, .cultureScoreWrap, .basicCultureScoreWrap, .basicCultureScoreWrap, .balanceCultureScoreWrap, .essentialCultureScoreWrap, .bsmScoreWrap, .designScoreWrap, .majorBsmScoreWrap{
+        height: 70px;
+    }
+}
