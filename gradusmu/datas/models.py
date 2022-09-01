@@ -1,5 +1,6 @@
 import switch as switch
 from django.db import models
+import json
 
 
 # J 이수학점 MODEL
@@ -35,9 +36,13 @@ class subjects(models.Model):
     dept = models.CharField(max_length=100,null=False) # 개설학과
     time = models.CharField(max_length=100,null=False) # 강의 시간
     room = models.CharField(max_length=100,null=False) # 강의실
+    type = models.CharField(max_length=100,null=False) # 구분
+    point = models.IntegerField(null=False) # 학점
+    year = models.CharField(max_length=10,null=False) # 개설연도
+
 
 class EssentialLiberalArts(models.Model):
-    field = models.CharField(max_length=50, null=True)
+    sort = models.CharField(max_length=50, null=True)
     name = models.CharField(max_length=50,null=True)
     year = models.IntegerField(max_length=50, null=True)
 
@@ -70,9 +75,14 @@ class  CoreLiberalArts(models.Model):
                         "prof": subject[i].prof,
                         "dept": subject[i].dept,
                         "time": subject[i].time,
-                        "room": subject[i].room
+                        "room": subject[i].room,
+                        "type": subject[i].type,
+                        "point": subject[i].point,
+                        "year": subject[i].year,
+                        "years": forCount[j].year
                     })
-        return ()
+        context = {"core": core}
+        return (request, ,context)
 
 
 
@@ -113,14 +123,17 @@ class BalancedCulture(models.Model):
                         "prof": subject[i].prof,
                         "dept": subject[i].dept,
                         "time": subject[i].time,
-                        "room": subject[i].room
+                        "room": subject[i].room,
+                        "type": subject[i].type,
+                        "point": subject[i].point,
+                        "year": subject[i].year,
+                        "years": forCount[j].year
                     })
+        context = {"bal": bal}
         return ()
 #과목 모델
 
-    type = models.CharField(max_length=100,null=False) # 구분
-    point = models.IntegerField(null=False) # 학점
-    year = models.CharField(max_length=10,null=False) # 개설연도
+
 
 
 
