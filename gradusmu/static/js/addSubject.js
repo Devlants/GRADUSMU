@@ -17,11 +17,7 @@ var arr=['소프트웨어공학','HAEA0008-1','한혁수','3(설계)','상세정
 var keysets = Object.keys(obj);
 
 $(document).ready(function(){
-
-    var $name = test.name;
-    var $department = test.department;
-    document.getElementById('addSubject_user_name').append($name+'('+$department+')');
-
+    
     var select_parent = $('#select-parent');
 
     keysets.forEach(function(item) {

@@ -13,12 +13,13 @@
 </head>
 
 <body>
+    <img id="devlant_img" src="{% static 'img/devlant.png' %}" alt="">
     <div class="mainBody">
         <div class="mainImg">
             <img id="mainImg" src="{% static 'img/gradusmu.png' %}" />
         </div>
         <div class="logoutBtn">
-            <button type="button" class="loginBtn">LOGOUT</button>
+            <button type="button" class="loginBtn" onclick = "location.href = '{%url 'logout' %}'">LOGOUT</button>
         </div>
         <div class="profileBody">
             <div class="profileContentBody">
@@ -47,12 +48,12 @@
                         </div>
                     </div>
                     <div class="profileGraph">
-                        <div class="majorScore">전공 51</div>
-                        <div class="cultureScore">교양 35</div>
+                        <div class="majorScore">전공 {{major}}</div>
+                        <div class="cultureScore">교양 {{culture}}</div>
                         <div class="pie-chart">
-                            <span class="center">취득학점<br>86</span>
+                            <span class="center">취득학점<br>{{total}}</span>
                         </div>
-                        <button type="button" class="detailScoreBtn">학점상세</button>
+                        <button type="button" class="detailScoreBtn" onclick = "location.href = '{% url 'score_detail' %}'">학점상세</button>
                     </div>
                 </div>
             </div>
@@ -134,7 +135,7 @@
             </div>
         </div>
         <div class="addSubjectBtn">
-            <button type="button"onclick="location.href = '{% url 'add_subject' %}'">과목 추가</button>
+            <button type="button" onclick="location.href = '{% url 'add_subject' %}'">과목 추가</button>
         </div>
     </div>
 </body>

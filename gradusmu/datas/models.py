@@ -114,7 +114,7 @@ class  CoreLiberalArts(models.Model):
                         "years": forCount[j].year
                     })
         context = {"core": core}
-        return (request, ,context)
+        return (request, context)
 
 
 
@@ -133,36 +133,22 @@ class BalancedCulture(models.Model):
     name = models.CharField(max_length = 50, null=True)
     year = models.IntegerField(max_length=50, null=True)
 
-    def getBal(request):
-        forCount = BalancedCulture.object.all
-        subject = subjects.object.all
+    def getBal():
+        forCount={}
+        forCount['인문'] = BalancedCulture.objects.filter(name = "인문").values_list('sort',flat = True)
+        forCount['사회'] = BalancedCulture.objects.filter(name = "사회").values_list('sort',flat = True)
+        forCount['자연'] = BalancedCulture.objects.filter(name = "자연").values_list('sort',flat = True)
+        forCount['공학'] = BalancedCulture.objects.filter(name = "공학").values_list('sort',flat = True)
+        forCount['예술'] = BalancedCulture.objects.filter(name = "예술").values_list('sort',flat = True)
+
         bal={}
-        bal["인문"] = []
-        bal["사회"] = []
-        bal["자연"] = []
-        bal["공학"] = []
-        bal["예술"] = []
-        for i in range(subject.count()):
-            for j in range(forCount.count()):
-                if subject[i].name == forCount[j].name:
-                    bal[forCount[j].sort].append({
-                        "bal": forCount[j].sort,
-                        "serialNumber": subject[i].serialNumber,
-                        "semester": subject[i].semester,
-                        "distribution": subject[i].distribution,
-                        "name": subject[i].name,
-                        "grade": subject[i].grade,
-                        "prof": subject[i].prof,
-                        "dept": subject[i].dept,
-                        "time": subject[i].time,
-                        "room": subject[i].room,
-                        "type": subject[i].type,
-                        "point": subject[i].point,
-                        "year": subject[i].year,
-                        "years": forCount[j].year
-                    })
-        context = {"bal": bal}
-        return ()
+        bal["인문"] = subjects.objects.filter(name__in = forCount["인문"])
+        bal["사회"] = subjects.objects.filter(name__in = forCount["사회"])
+        bal["자연"] = subjects.objects.filter(name__in = forCount["자연"])
+        bal["공학"] = subjects.objects.filter(name__in = forCount["공학"])
+        bal["예술"] = subjects.objects.filter(name__in = forCount["예술"])
+
+        return (bal)
 #과목 모델
 
 
