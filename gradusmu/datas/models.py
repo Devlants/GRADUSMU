@@ -94,11 +94,11 @@ class  CoreLiberalArts(models.Model):
 
     def getCore():
         forCount={}
-        forCount['창의적문제해결역량'] = CoreLiberalArts.objects.filter(name = "창의적문제해결역량").values_list('sort',flat = True)
-        forCount['융복합역량'] = CoreLiberalArts.objects.filter(name = "융복합역량").values_list('sort',flat = True)
-        forCount['다양성존중역량'] = CoreLiberalArts.objects.filter(name = "다양성존중역량").values_list('sort',flat = True)
-        forCount['윤리실천역량'] = CoreLiberalArts.objects.filter(name = "윤리실천역량").values_list('sort',flat = True)
-
+        forCount['창의적문제해결역량'] = CoreLiberalArts.objects.filter(sort = "창의적문제해결역량").values_list('name',flat = True)
+        forCount['융복합역량'] = CoreLiberalArts.objects.filter(sort = "융복합역량").values_list('name',flat = True)
+        forCount['다양성존중역량'] = CoreLiberalArts.objects.filter(sort = "다양성존중역량").values_list('name',flat = True)
+        forCount['윤리실천역량'] = CoreLiberalArts.objects.filter(sort = "윤리실천역량").values_list('name',flat = True)
+        print(forCount)
         core={}
         core["창의적문제해결역량"] = subjects.objects.filter(name__in = forCount["창의적문제해결역량"])
         core["융복합역량"] = subjects.objects.filter(name__in = forCount["융복합역량"])
