@@ -45,7 +45,7 @@ def signed_search_subject(request):
         context = {}
         i=0
         for key in list(datas.keys()):
-            for data in datas[key].exclude(id__in = signed):
+            for data in datas[key].filter(id__in = signed):
                 context[i] = {
                     "id" : data.id,
                     "name" : data.name,
@@ -100,7 +100,7 @@ def unsigned_search_subject(request):
         dept_type = "균교"
     year = "20"+request['year'][:2]
     semester = request['year'][5]
-    if dept_type == "균교":
+    if dept_type == "균교" :
         datas = BalancedCulture.getBal()
         context = {}
         i=0
@@ -260,7 +260,7 @@ def balanced_search_subject(request):
         i+=1    
     return JsonResponse(context)
 
-
+#기초교양 영역별
 def core_search_subject(request):
     request = json.loads(request.body)
 
