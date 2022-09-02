@@ -1,0 +1,30 @@
+body {
+    font-family: 'Heebo', sans-serif;
+    font-weight:400;
+}
+.modal-header{
+    border: none;
+    font-size: 30px;
+    display: flex;
+    justify-content: center;
+    position: relative;
+}
+.btn-close{
+    position: absolute;
+    margin: 0;
+    right: 1em;
+}
+#subjectDetail_title{
+    font-weight: bold;
+}
+
+.modal-dialog.modal-80size {
+    width: 80%;
+    height: 80%;
+    padding: 0;
+  }
+  
+  .modal-content.modal-80size {
+    height: auto;
+    min-height: 80%;
+  }
