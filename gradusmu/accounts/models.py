@@ -57,32 +57,32 @@ class User(AbstractUser):
         datas = BalancedCulture.getBal()
         result = sum(datas["인문"].filter(id__in = signed).values_list('point',flat=True))
 
-        return result
+        return result>=3
     def balanced_culture_points_social(self):
 
         signed = list(self.sign_up.values_list('id',flat=True))
         datas = BalancedCulture.getBal()
         result = sum(datas["사회"].filter(id__in = signed).values_list('point',flat=True))
 
-        return result
+        return result>=3
     def balanced_culture_points_nature(self):
 
         signed = list(self.sign_up.values_list('id',flat=True))
         datas = BalancedCulture.getBal()
         result = sum(datas["자연"].filter(id__in = signed).values_list('point',flat=True))
 
-        return result
+        return result>=3
     def balanced_culture_points_enginnering(self):
 
         signed = list(self.sign_up.values_list('id',flat=True))
         datas = BalancedCulture.getBal()
         result = sum(datas["공학"].filter(id__in = signed).values_list('point',flat=True))
 
-        return result
+        return result>=3
     def balanced_culture_points_art(self):
 
         signed = list(self.sign_up.values_list('id',flat=True))
         datas = BalancedCulture.getBal()
         result = sum(datas["예술"].filter(id__in = signed).values_list('point',flat=True))
 
-        return result
+        return result>=3

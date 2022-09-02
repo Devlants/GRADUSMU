@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from .models import subjects, BalancedCulture
+from .models import subjects, BalancedCulture, CoreLiberalArts, EssentialLiberalArts, GraduationCiteria
 from accounts.models import User
 from django.views.decorators.csrf import csrf_exempt
 import json
@@ -31,6 +31,33 @@ def signed_search_subject(request):
         i=0
         for key in list(datas.keys()):
             for data in datas[key].filter(id__in = signed):
+                context[i] = {
+                    "id" : data.id,
+                    "name" : data.name,
+                    "serial_num" : data.serialNumber+"-"+str(data.distribution),
+                    "prof" : data.prof,
+                    "point" : data.point,
+                    "sort" : key
+                }
+                i+=1
+    elif dept_type == "교필":
+        datas = CoreLiberalArts.getCore()
+        context = {}
+        i=0
+        for key in list(datas.keys()):
+            for data in datas[key].exclude(id__in = signed):
+                context[i] = {
+                    "id" : data.id,
+                    "name" : data.name,
+                    "serial_num" : data.serialNumber+"-"+str(data.distribution),
+                    "prof" : data.prof,
+                    "point" : data.point,
+                    "sort" : key
+                }
+                i+=1
+        datas = EssentialLiberalArts.getEss()
+        for key in list(datas.keys()):
+            for data in datas[key].exclude(id__in = signed):
                 context[i] = {
                     "id" : data.id,
                     "name" : data.name,
@@ -88,8 +115,34 @@ def unsigned_search_subject(request):
                     "sort" : key
                 }
                 i+=1
-
-    else:
+    elif dept_type == "교필":
+        datas = CoreLiberalArts.getCore()
+        context = {}
+        i=0
+        for key in list(datas.keys()):
+            for data in datas[key].exclude(id__in = signed):
+                context[i] = {
+                    "id" : data.id,
+                    "name" : data.name,
+                    "serial_num" : data.serialNumber+"-"+str(data.distribution),
+                    "prof" : data.prof,
+                    "point" : data.point,
+                    "sort" : key
+                }
+                i+=1
+        datas = EssentialLiberalArts.getEss()
+        for key in list(datas.keys()):
+            for data in datas[key].exclude(id__in = signed):
+                context[i] = {
+                    "id" : data.id,
+                    "name" : data.name,
+                    "serial_num" : data.serialNumber+"-"+str(data.distribution),
+                    "prof" : data.prof,
+                    "point" : data.point,
+                    "sort" : key
+                }
+                i+=1
+    else :
         datas = subjects.objects.filter(type = dept_type,year = year, semester = int(semester)).exclude(id__in = signed)
         context={}
         for i in range(len(datas)):
@@ -206,3 +259,76 @@ def balanced_search_subject(request):
         }
         i+=1    
     return JsonResponse(context)
+
+
+def core_search_subject(request):
+    request = json.loads(request.body)
+
+    user = User.objects.get(id=request['user_id'])
+    signed = list(user.sign_up.values_list('id', flat=True))
+    currentDateTime = datetime.datetime.now()
+    date = currentDateTime.date()
+    year = date.strftime("%Y")
+    datas = CoreLiberalArts.getCore()
+    context = {}
+    i = 0
+    for data in datas[request['dept_type']].filter(id__in=signed):
+        context[i] = {
+            "id": data.id,
+            "name": data.name,
+            "serial_num": data.serialNumber + "-" + str(data.distribution),
+            "prof": data.prof,
+            "point": data.point,
+            "signed": True
+        }
+        i += 1
+    for data in datas[request['dept_type']].filter(year=year).exclude(id__in=signed):
+        context[i] = {
+            "id": data.id,
+            "name": data.name,
+            "serial_num": data.serialNumber + "-" + str(data.distribution),
+            "prof": data.prof,
+            "point": data.point,
+            "signed": False
+        }
+        i += 1
+    return JsonResponse(context)
+
+def ess_search_subject(request):
+    request = json.loads(request.body)
+
+    user = User.objects.get(id=request['user_id'])
+    signed = list(user.sign_up.values_list('id', flat=True))
+    currentDateTime = datetime.datetime.now()
+    date = currentDateTime.date()
+    year = date.strftime("%Y")
+    datas = EssentialLiberalArts.getEss()
+    context = {}
+    i = 0
+    for data in datas[request['dept_type']].filter(id__in=signed):
+        context[i] = {
+            "id": data.id,
+            "name": data.name,
+            "serial_num": data.serialNumber + "-" + str(data.distribution),
+            "prof": data.prof,
+            "point": data.point,
+            "signed": True
+        }
+        i += 1
+    for data in datas[request['dept_type']].filter(year=year).exclude(id__in=signed):
+        context[i] = {
+            "id": data.id,
+            "name": data.name,
+            "serial_num": data.serialNumber + "-" + str(data.distribution),
+            "prof": data.prof,
+            "point": data.point,
+            "signed": False
+        }
+        i += 1
+    return JsonResponse(context)
+
+
+
+def sendData(request):
+    criteria = GraduationCiteria.object.all()
+    return render(request, '/templates/scoreDetail.html', {"criteria" : criteria})

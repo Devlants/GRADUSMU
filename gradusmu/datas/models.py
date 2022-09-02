@@ -25,6 +25,26 @@ class GraduationCiteria(models.Model):
     # 총 이수
     total = models.IntegerField(null=False)
 
+    def total(self):
+        return self.total
+
+    def deepMajor(self):
+        return self.deepMajor
+
+    def deepChoiceMajor(self):
+        return self.deepChoiceMajor
+
+    def manyMajor1(self):
+        return self.manyMajor1
+
+    def essMajor(self):
+        return self.essMajor
+
+    def subMajor(self):
+        return self.subMajor
+
+
+
 
 class subjects(models.Model):
     serialNumber = models.CharField(max_length=100,null=False) #학수번호
@@ -44,39 +64,25 @@ class subjects(models.Model):
 class EssentialLiberalArts(models.Model):
     sort = models.CharField(max_length=50, null=True)
     name = models.CharField(max_length=50,null=True)
-    year = models.IntegerField(max_length=50, null=True)
+    year = models.IntegerField(null=True)
 
-    def getEss(request):
-        forCount = EssentialLiberalArts.object.all
-        subject = subjects.object.all
+    def getEss():
+        forCount={}
+        forCount['사고와표현'] = EssentialLiberalArts.objects.filter(name = "사고와표현").values_list('sort',flat = True)
+        forCount['EnglishFoundations'] = EssentialLiberalArts.objects.filter(name = "EnglishFoundations").values_list('sort',flat = True)
+        forCount['기초수학'] = EssentialLiberalArts.objects.filter(name = "기초수학").values_list('sort',flat = True)
+        forCount['컴퓨팅사고와데이터의이해'] = EssentialLiberalArts.objects.filter(name = "컴퓨팅사고와데이터의이해").values_list('sort',flat = True)
+        forCount['알고리즘과게임콘텐츠'] = EssentialLiberalArts.objects.filter(name = "알고리즘과게임콘텐츠").values_list('sort',flat = True)
+
+
         ess={}
-        ess["사고와표현"] = []
-        ess["EnglishFoundations"] = []
-        ess["기초수학"] = []
-        ess["컴퓨팅사고와데이터의이해"] = []
-        ess["알고리즘과게임콘텐츠"]=[]
+        ess["사고와표현"] = subjects.objects.filter(name__in = forCount["사고와표현"])
+        ess["EnglishFoundations"] = subjects.objects.filter(name__in = forCount["EnglishFoundations"])
+        ess["기초수학"] = subjects.objects.filter(name__in = forCount["기초수학"])
+        ess["컴퓨팅사고와데이터의이해"] = subjects.objects.filter(name__in = forCount["컴퓨팅사고와데이터의이해"])
+        ess["알고리즘과게임콘텐츠"] = subjects.objects.filter(name__in = forCount["알고리즘과게임콘텐츠"])
 
-        for i in range(subject.count()):
-            for j in range(forCount.count()):
-                if subject[i].name == forCount[j].name:
-                    ess[forCount[j].sort].append({
-                        "core": forCount[j].sort,
-                        "serialNumber": subject[i].serialNumber,
-                        "semester": subject[i].semester,
-                        "distribution": subject[i].distribution,
-                        "name": subject[i].name,
-                        "grade": subject[i].grade,
-                        "prof": subject[i].prof,
-                        "dept": subject[i].dept,
-                        "time": subject[i].time,
-                        "room": subject[i].room,
-                        "type": subject[i].type,
-                        "point": subject[i].point,
-                        "year": subject[i].year,
-                        "years": forCount[j].year
-                    })
-        context = {"ess": ess}
-        return()
+        return (ess)
 
 class CoreLiberalArtsSortation(models.Model):
     name = models.CharField(max_length=50, null=True)
@@ -84,37 +90,22 @@ class CoreLiberalArtsSortation(models.Model):
 class  CoreLiberalArts(models.Model):
     sort = models.CharField(max_length=50, null=True)
     name = models.CharField(max_length=50, null=True)
-    year = models.IntegerField(max_length=50, null=True)
+    year = models.IntegerField(null=True)
 
-    def getCore(request):
-        forCount = CoreLiberalArts.object.all
-        subject = subjects.object.all
+    def getCore():
+        forCount={}
+        forCount['창의적문제해결역량'] = CoreLiberalArts.objects.filter(name = "창의적문제해결역량").values_list('sort',flat = True)
+        forCount['융복합역량'] = CoreLiberalArts.objects.filter(name = "융복합역량").values_list('sort',flat = True)
+        forCount['다양성존중역량'] = CoreLiberalArts.objects.filter(name = "다양성존중역량").values_list('sort',flat = True)
+        forCount['윤리실천역량'] = CoreLiberalArts.objects.filter(name = "윤리실천역량").values_list('sort',flat = True)
+
         core={}
-        core["창의적문제해결역량"] = []
-        core["융복합역량"] = []
-        core["다양성존중역량"] = []
-        core["윤리실천역량"] = []
-        for i in range(subject.count()):
-            for j in range(forCount.count()):
-                if subject[i].name == forCount[j].name:
-                    core[forCount[j].sort].append({
-                        "core": forCount[j].sort,
-                        "serialNumber": subject[i].serialNumber,
-                        "semester": subject[i].semester,
-                        "distribution": subject[i].distribution,
-                        "name": subject[i].name,
-                        "grade": subject[i].grade,
-                        "prof": subject[i].prof,
-                        "dept": subject[i].dept,
-                        "time": subject[i].time,
-                        "room": subject[i].room,
-                        "type": subject[i].type,
-                        "point": subject[i].point,
-                        "year": subject[i].year,
-                        "years": forCount[j].year
-                    })
-        context = {"core": core}
-        return (request, context)
+        core["창의적문제해결역량"] = subjects.objects.filter(name__in = forCount["창의적문제해결역량"])
+        core["융복합역량"] = subjects.objects.filter(name__in = forCount["융복합역량"])
+        core["다양성존중역량"] = subjects.objects.filter(name__in = forCount["다양성존중역량"])
+        core["윤리실천역량"] = subjects.objects.filter(name__in = forCount["윤리실천역량"])
+
+        return (core)
 
 
 
@@ -131,7 +122,7 @@ class BalancedCultureSortation(models.Model):
 class BalancedCulture(models.Model):
     sort = models.CharField(max_length = 50, null=True)
     name = models.CharField(max_length = 50, null=True)
-    year = models.IntegerField(max_length=50, null=True)
+    year = models.IntegerField(null=True)
 
     def getBal():
         forCount={}
