@@ -1,30 +1,62 @@
-body {
-    font-family: 'Heebo', sans-serif;
-    font-weight:400;
-}
-.modal-header{
-    border: none;
-    font-size: 30px;
-    display: flex;
-    justify-content: center;
-    position: relative;
-}
-.btn-close{
-    position: absolute;
-    margin: 0;
-    right: 1em;
-}
-#subjectDetail_title{
-    font-weight: bold;
+body{
+    font-size: 16px;
+    width: 100%;
+    height: 100%;
 }
 
-.modal-dialog.modal-80size {
-    width: 80%;
-    height: 80%;
-    padding: 0;
-  }
-  
-  .modal-content.modal-80size {
-    height: auto;
-    min-height: 80%;
-  }
+.modal-wrap{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    display: none;
+}
+
+.modal{
+    width: 700px;
+    height: 400px;
+    position: fixed;
+    background-color: white;
+    padding: 2rem;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.modal-header{
+    width: inherit;
+    height: 50px;
+    margin-bottom: 1rem;
+}
+
+.modal-header > .close-btn{
+    width: min-content;
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    border: none;
+    background-color: white;
+}
+
+.modal-body{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: inherit;
+}
+
+.modal-body > .row{
+    width: inherit;
+    display: flex;
+    justify-content: space-around;
+}
+
+.modal-body > .row > .col{
+    display: flex;
+    justify-content: flex-start;
+    flex: 1;
+}
