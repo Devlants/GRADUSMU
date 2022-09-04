@@ -92,6 +92,7 @@ DATABASES = {
         'PASSWORD' : '1q2w3e4r!', # Password
         'PORT': '3306', # 데이터베이스 포트
         'HOST' : "LAPTOP-M4DOUD89",
+       
         'OPTIONS':{
             'init_command' : "SET sql_mode='STRICT_TRANS_TABLES'"
         }

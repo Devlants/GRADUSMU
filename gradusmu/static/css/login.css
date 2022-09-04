@@ -1,6 +1,7 @@
 body {
     font-family: 'Heebo', sans-serif;
     font-weight: bold;
+    font-size: 16px;
 }
 
 #devlant_img {
@@ -9,76 +10,104 @@ body {
 }
 
 header {
-    width: 100vw;
+    width: 100%;
     height: 25vh;
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-.login_input {
+
+
+header > a > #login_logo_img{
     width: inherit;
     height: inherit;
     object-fit: contain;
 }
 
 main {
-    width: 100vw;
+    width: 100%;
     height: 50vh;
 }
-
-form {
-    width: inherit;
-    height: inherit;
+main > form{
     display: flex;
-    justify-content: space-between;
     flex-direction: column;
+    justify-content: space-between;
+    padding: 0 3rem 0 3rem;
+    height: inherit;
+    font-family: 'Heebo', sans-serif;
+}
+
+main > form > .input-group {
+    display: flex;
+    text-align: center;
+    flex: 1;
+}
+
+main > form > .input-group >.input-group-text{
+    flex:1;
+    font-size: 5rem;
+}
+
+main > form > .input-group > .login_input{
+    flex: 4;
+    height: 6rem;
+}
+
+main > form > .login_btn_wrap{
+    flex: 1;
+    display: flex;
+    justify-content: center;
     align-items: center;
 }
 
-.input-group {
+main > form > .login_btn_wrap > #login_btn{
     height: 120px;
-}
-
-.input-group>.form-control {
-    flex: 6;
-    border: black 3px solid;
-}
-
-.input-group>:not(:first-child):not(.dropdown-menu):not(.form-floating):not(.valid-tooltip):not(.valid-feedback):not(.invalid-tooltip):not(.invalid-feedback) {
-    border-radius: 0%;
-}
-
-#login_input_id,
-#login_input_pw {
-    border: none;
-    background-color: white;
-    flex: 1;
-    font-size: 5em;
-    text-align: center;
-    justify-content: center;
-}
-
-#login_btn {
-    background-color: #5B4FE9;
-    color: white;
     width: 600px;
-    height: 120px;
-    font-size: 5em;
-
+    background-color: #5B4FE9;
+    border: none;
+    border-radius: 25px;
+    font-size: 5rem;
+    color: white;
+    font-family: 'Heebo', sans-serif;
 }
 
-footer {
-    width: 100vw;
+footer{
     height: 25vh;
+    width: 100%;
     display: flex;
     justify-content: space-around;
     align-items: center;
-
 }
 
-.footer_btn {
-    font-size: 2em;
-    color: black;
+footer > div > a{
     text-decoration: none;
+    color: black;
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+@media(max-width: 760px){
+    main > form > .input-group >.input-group-text{
+        font-size: 3rem;
+    }
+    
+    main > form > .input-group > .login_input{
+        height: 4rem;
+    }
+
+    main > form > .login_btn_wrap > #login_btn{
+        font-size: 3rem;
+    }
+    header > a{
+        width: 80%;
+        height: inherit;
+        text-align: center;
+    }
+    
+    header > a > #login_logo_img{
+        width: inherit;
+        height: inherit;
+        object-fit: contain;
+    }
 }
