@@ -32,7 +32,7 @@ SECRET_KEY = get_secret("SECRET_KEY")
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -90,8 +90,9 @@ DATABASES = {
         'NAME' : 'gradu_smu', # DB Name
         'USER' : 'devlants', # DB User
         'PASSWORD' : '1q2w3e4r!', # Password
-        'HOST': '', # 생성한 데이터베이스 엔드포인트
         'PORT': '3306', # 데이터베이스 포트
+        'HOST' : "LAPTOP-M4DOUD89",
+       
         'OPTIONS':{
             'init_command' : "SET sql_mode='STRICT_TRANS_TABLES'"
         }
