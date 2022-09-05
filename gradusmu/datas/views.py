@@ -367,6 +367,6 @@ def sendBal(request):
         if user.dept == com.major:
             result = com.field
 
-    return render(request, '/templates/scoreDetail.html', {"bal": result})
+    return render(request, '/templates/scoreDetail.html', {"mybal": result})
 
 
