@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 
@@ -17,9 +18,8 @@
     <!-- jquery -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
-    <link rel="stylesheet" href="../css/subjectDetail.css">
-
-    <script src="../js/subjectDetail.js"></script>
+    <link rel="stylesheet" href="{% static 'css/subjectDetail.css' %}">
+    
     <title>Gradusmu</title>
 
 </head>
@@ -29,8 +29,9 @@
         상세보기
     </button>
     <div class="modal-wrap">
-        <div class="modal">
+        <div class="modal" id="modaltarget">
             <div class="modal-header">
+                <div class="modal-title"></div>
                 <button class="close-btn"><i class="fa-solid fa-xmark"></i></button>
             </div>
             <div class="modal-body">
@@ -58,7 +59,8 @@
             </div>
         </div>
     </div>
-
+    <script type = "text/javascript">var user_id = "{{user.id}}"</script>
+    <script src="{% static 'js/subjectDetail.js' %}"></script>
 </body>
 
 </html>

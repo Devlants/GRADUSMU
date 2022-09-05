@@ -32,11 +32,11 @@
             {% csrf_token %}
             <div class="input-group">
                 <span class="input-group-text" id="login_input_id">ID</span>
-                <input type="text" class="form-control login_input">
+                <input type="text" name = "username" class="form-control login_input">
             </div>
             <div class="input-group">
                 <span class="input-group-text" id="login_input_pw">PW</span>
-                <input type="text" class="form-control login_input">
+                <input type="password" name = "password" class="form-control login_input">
             </div>
             <div class="login_btn_wrap">
                 <input id="login_btn" type="submit" value="LOGIN">
