@@ -344,35 +344,98 @@ def sendData(request):
     return render(request, '/templates/scoreDetail.html', {"criteria" : criteria})
 
 
-
-
-def sendCore(request):
+def checkCore(request):
     core = CoreLiberalArts.object.all()
-    user = User.objects.get(id=request.user.id)
-
+    user = User.objects.get(id=request['user_id'])
+    signed = list(user.sign_up.values_list('id', flat=True))
+    datas = CoreLiberalArts.getCore()
+    key1, key2, key3, key4= False
+    for key in list(datas.keys()):
+        for data in datas[key].filter(id__in=signed):
+            if key == '창의적문제해결역량':
+                key1 = True
+            elif key == '융복합역량':
+                key2 = True
+            elif key == '다양성존중역량':
+                key3 = True
+            elif key == '윤리실천역량':
+                key4 = True
     context = {
-        'sort': core.sort,
-
-
+        'Creative': key1,
+        'Convergence': key2,
+        'Diversity': key3,
+        'Ethics': key4
     }
-    return render(request, '/templates/scoreDetail.html', {"core": context})
+    return render(request, '/templates/scoreDetail.html', {"checkEss": context})
 
-def sendEss(request):
+def checkESS(request):
     ess = EssentialLiberalArts.object.all()
-    return render(request, '/templates/scoreDetail.html', {"ess": ess})
+    user = User.objects.get(id=request['user_id'])
+    signed = list(user.sign_up.values_list('id', flat=True))
+    datas = EssentialLiberalArts.getEss()
+    key1, key2, key3, key4, key5 = False
+    for key in list(datas.keys()):
+        for data in datas[key].filter(id__in=signed):
+            if key == '사고와표현':
+                key1 = True
+            elif key == 'EnglishFoundations':
+                key2 = True
+            elif key == '기초수학':
+                key3 = True
+            elif key == '컴퓨팅사고와데이터의이해':
+                key4 = True
+            elif key == '알고리즘과게임콘텐츠':
+                key5 = True
+    context = {
+        'Think': key1,
+        'English': key2,
+        'Math': key3,
+        'Computing': key4,
+        'Algorithm': key5
+    }
+    return render(request, '/templates/scoreDetail.html', {"checkEss": context})
 
+def checkBal(request):
+    bal = BalancedCulture.object.all()
+    user = User.objects.get(id=request['user_id'])
+    signed = list(user.sign_up.values_list('id', flat=True))
+    datas = BalancedCulture.getBal()
+    key1, key2, key3, key4, key5 = False
+    for key in list(datas.keys()):
+        for data in datas[key].filter(id__in=signed):
+            if key == '인문':
+                key1 = True
+            elif key == '사회':
+                key2 = True
+            elif key == '자연':
+                key3 = True
+            elif key == '공학':
+                key4 = True
+            elif key == '예술':
+                key5 = True
+    context = {
+        'Liberal': key1,
+        'Society': key2,
+        'Natural': key3,
+        'Engineering': key4,
+        'Art': key5
+    }
+    return render(request, '/templates/scoreDetail.html', {"checkBal": context})
 
 
 ##
 def sendMyBal(request):
     bal = BalancedCulture.object.all()
-    user = User.objects.get(id=request.user.id)
+    user = User.objects.get(id=request['user_id'])
     compare = BalancedCurtureNot.object.all()
 
     for com in compare:
         if user.dept == com.major:
             result = com.field
 
-    return render(request, '/templates/scoreDetail.html', {"mybal": result})
+    return render(request, '/templates/scoreDetail.html', {"myBal": result})
+
+
+
 
 
