@@ -358,7 +358,8 @@ def sendEss(request):
 
 
 
-def sendBal(request):
+##
+def sendMyBal(request):
     bal = BalancedCulture.object.all()
     user = User.objects.get(id=request.user.id)
     compare = BalancedCurtureNot.object.all()
