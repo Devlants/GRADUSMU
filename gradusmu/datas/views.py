@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect
-from .models import subjects, BalancedCulture, CoreLiberalArts, EssentialLiberalArts, GraduationCiteria
+from .models import subjects, BalancedCulture, CoreLiberalArts, EssentialLiberalArts, GraduationCiteria, \
+    BalancedCurtureNot
 from accounts.models import User
 from django.views.decorators.csrf import csrf_exempt
 import json
@@ -57,7 +58,7 @@ def signed_search_subject(request):
                 i+=1
         datas = EssentialLiberalArts.getEss()
         for key in list(datas.keys()):
-            for data in datas[key].exclude(id__in = signed):
+            for data in datas[key].filter(id__in = signed):
                 context[i] = {
                     "id" : data.id,
                     "name" : data.name,
@@ -336,3 +337,36 @@ def ess_search_subject(request):
 def sendData(request):
     criteria = GraduationCiteria.object.all()
     return render(request, '/templates/scoreDetail.html', {"criteria" : criteria})
+
+
+
+
+def sendCore(request):
+    core = CoreLiberalArts.object.all()
+    user = User.objects.get(id=request.user.id)
+
+    context = {
+        'sort': core.sort,
+
+
+    }
+    return render(request, '/templates/scoreDetail.html', {"core": context})
+
+def sendEss(request):
+    ess = EssentialLiberalArts.object.all()
+    return render(request, '/templates/scoreDetail.html', {"ess": ess})
+
+
+
+def sendBal(request):
+    bal = BalancedCulture.object.all()
+    user = User.objects.get(id=request.user.id)
+    compare = BalancedCurtureNot.object.all()
+
+    for com in compare:
+        if user.dept == com.major:
+            result = com.field
+
+    return render(request, '/templates/scoreDetail.html', {"bal": result})
+
+
