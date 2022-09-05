@@ -18,7 +18,7 @@ class User(AbstractUser):
     #부전공/다전공
     second_universe = models.CharField(max_length = 50, null = False,default = "")
     second_dept = models.CharField(max_length = 50,null=False)
-    image = models.ImageField(upload_to="image",default = "/static/img/person.png")
+    image = models.ImageField(upload_to="",default = "/static/img/person.png")
     sign_up = models.ManyToManyField("datas.subjects")
 
     def total_points(self):
@@ -57,7 +57,7 @@ class User(AbstractUser):
         datas = BalancedCulture.getBal()
         result = sum(datas["인문"].filter(id__in = signed).values_list('point',flat=True))
 
-        return result>=3
+        return result
     def balanced_culture_points_social(self):
 
         signed = list(self.sign_up.values_list('id',flat=True))
@@ -71,18 +71,18 @@ class User(AbstractUser):
         datas = BalancedCulture.getBal()
         result = sum(datas["자연"].filter(id__in = signed).values_list('point',flat=True))
 
-        return result>=3
+        return result
     def balanced_culture_points_enginnering(self):
 
         signed = list(self.sign_up.values_list('id',flat=True))
         datas = BalancedCulture.getBal()
         result = sum(datas["공학"].filter(id__in = signed).values_list('point',flat=True))
 
-        return result>=3
+        return result
     def balanced_culture_points_art(self):
 
         signed = list(self.sign_up.values_list('id',flat=True))
         datas = BalancedCulture.getBal()
         result = sum(datas["예술"].filter(id__in = signed).values_list('point',flat=True))
 
-        return result>=3
+        return result
