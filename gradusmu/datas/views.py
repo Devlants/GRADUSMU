@@ -6,7 +6,8 @@ import json
 from django.http import JsonResponse
 import datetime
 
-#들은 과목 
+#들은 과목
+@csrf_exempt
 def signed_search_subject(request):
     request = json.loads(request.body)
     
@@ -82,7 +83,8 @@ def signed_search_subject(request):
         
     return JsonResponse(context)
 
-#안들은 과목 
+#안들은 과목
+@csrf_exempt
 def unsigned_search_subject(request):
     request = json.loads(request.body)
     
@@ -171,7 +173,7 @@ def subject_detail(request):
     context = {
             "id" : subject.id,
             "name" : subject.name,
-            "yaer" : subject.year + "년" + str(subject.semester) + "학기",
+            "year" : subject.year + "년" + str(subject.semester) + "학기",
             "type" : subject.type,
             "serial_num" : subject.serialNumber+"-"+str(subject.distribution),
             "prof" : subject.prof,
@@ -230,7 +232,8 @@ def delete_subject(request):
     else:
         
         return render(request, "addSubject.html")
-# 균교 영역별 
+# 균교 영역별
+@csrf_exempt 
 def balanced_search_subject(request):
     request = json.loads(request.body)
     
@@ -265,6 +268,7 @@ def balanced_search_subject(request):
     return JsonResponse(context)
 
 #기초교양 영역별
+@csrf_exempt
 def core_search_subject(request):
     request = json.loads(request.body)
 
@@ -298,6 +302,7 @@ def core_search_subject(request):
         i += 1
     return JsonResponse(context)
 
+@csrf_exempt
 def ess_search_subject(request):
     request = json.loads(request.body)
 
@@ -332,7 +337,7 @@ def ess_search_subject(request):
     return JsonResponse(context)
 
 
-
+@csrf_exempt
 def sendData(request):
     criteria = GraduationCiteria.object.all()
     return render(request, '/templates/scoreDetail.html', {"criteria" : criteria})
