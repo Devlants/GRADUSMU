@@ -157,8 +157,12 @@ def unsigned_search_subject(request):
     return JsonResponse(context)
 
 #과목 상세
+@csrf_exempt
 def subject_detail(request):
+    print(request.body)
     request = json.loads(request.body)
+    print(1)
+    print(request)
     user = User.objects.get(id = request['user_id'])
     signed = list(user.sign_up.values_list('id',flat=True))
 
