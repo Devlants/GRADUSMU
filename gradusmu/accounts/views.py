@@ -54,16 +54,19 @@ def register(request):
 
 #홈
 def home(request):
-    user = User.objects.get(id = request.user.id)
-    points = user.sign_up.values_list('point',flat = True)
-    major_point = user.sign_up.filter(Q(type = "1전심")|Q(type = "1전선")).values_list('point',flat = True)
-    culture_point = user.sign_up.filter(Q(type = "교선")|Q(type = "교필")).values_list('point',flat = True)
-    context = {
-        "total" : sum(points),
-        "major" : sum(major_point),
-        "culture" : sum(culture_point)
-    }
-    return render(request,"index.html",context)
+    if request.user.is_authenticated:
+        user = User.objects.get(id = request.user.id)
+        points = user.sign_up.values_list('point',flat = True)
+        major_point = user.sign_up.filter(Q(type = "1전심")|Q(type = "1전선")).values_list('point',flat = True)
+        culture_point = user.sign_up.filter(Q(type = "교선")|Q(type = "교필")).values_list('point',flat = True)
+        context = {
+            "total" : sum(points),
+            "major" : sum(major_point),
+            "culture" : sum(culture_point)
+        }
+        return render(request,"index.html",context)
+    else:
+        return render(request,"login.html")
 
 #아이디 중복 체크
 @csrf_exempt
@@ -190,5 +193,6 @@ def profile(request):
     return render(request,'inform.html')
 
 # 로그아웃
-def logout():
-    return
+def logout(request):
+    auth.logout(request)
+    return render(request,"login.html")
