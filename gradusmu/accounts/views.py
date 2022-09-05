@@ -9,6 +9,8 @@ from django.core.mail import EmailMessage
 import random
 from django.db.models import Q
 
+def kyc(request):
+    return render(request,"subjectDetail.html")
 #로그인
 def login(request):
     if request.method == 'POST':
