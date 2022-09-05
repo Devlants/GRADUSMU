@@ -343,7 +343,7 @@ def sendData(request):
     criteria = GraduationCiteria.object.all()
     return render(request, '/templates/scoreDetail.html', {"criteria" : criteria})
 
-
+#핵신교양 확인
 def checkCore(request):
     core = CoreLiberalArts.object.all()
     user = User.objects.get(id=request['user_id'])
@@ -367,7 +367,7 @@ def checkCore(request):
         'Ethics': key4
     }
     return render(request, '/templates/scoreDetail.html', {"checkEss": context})
-
+#기초교양 확인
 def checkESS(request):
     ess = EssentialLiberalArts.object.all()
     user = User.objects.get(id=request['user_id'])
@@ -394,7 +394,7 @@ def checkESS(request):
         'Algorithm': key5
     }
     return render(request, '/templates/scoreDetail.html', {"checkEss": context})
-
+#균교 확인
 def checkBal(request):
     bal = BalancedCulture.object.all()
     user = User.objects.get(id=request['user_id'])
@@ -423,7 +423,7 @@ def checkBal(request):
     return render(request, '/templates/scoreDetail.html', {"checkBal": context})
 
 
-##
+## 내 균교영역 보내기
 def sendMyBal(request):
     bal = BalancedCulture.object.all()
     user = User.objects.get(id=request['user_id'])
