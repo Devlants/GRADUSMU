@@ -17,8 +17,6 @@ header {
     align-items: center;
 }
 
-
-
 header > a > #login_logo_img{
     width: inherit;
     height: inherit;
@@ -30,18 +28,22 @@ main {
     height: 50vh;
 }
 main > form{
+    width: inherit;
+    height: inherit;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    padding: 0 3rem 0 3rem;
     height: inherit;
     font-family: 'Heebo', sans-serif;
+    align-items: center;
 }
 
 main > form > .input-group {
     display: flex;
     text-align: center;
     flex: 1;
+    justify-content: center;
+    width: inherit;
 }
 
 main > form > .input-group >.input-group-text{
@@ -52,6 +54,7 @@ main > form > .input-group >.input-group-text{
 main > form > .input-group > .login_input{
     flex: 4;
     height: 6rem;
+    font-size: 2rem;
 }
 
 main > form > .login_btn_wrap{
@@ -87,27 +90,38 @@ footer > div > a{
     font-weight: bold;
 }
 
-@media(max-width: 760px){
-    main > form > .input-group >.input-group-text{
-        font-size: 3rem;
+@media screen and (max-width:700px) {
+    header > a > #login_logo_img{
+        width: 400px;
     }
-    
+
+    main > form > .input-group >.input-group-text{
+        font-size: 2rem;
+    }
+
     main > form > .input-group > .login_input{
-        height: 4rem;
+        flex: 3;
+        height: 2rem;
+        font-size: 1rem;
+    }
+
+    main > form > .input-group {
+        width: 80%;
     }
 
     main > form > .login_btn_wrap > #login_btn{
-        font-size: 3rem;
+        height: 50px;
+        width: 200px;
+        font-size: 2rem;
     }
-    header > a{
-        width: 80%;
-        height: inherit;
-        text-align: center;
+
+    footer{
+        flex-direction: column;
+        height: 10vh;
     }
-    
-    header > a > #login_logo_img{
-        width: inherit;
-        height: inherit;
-        object-fit: contain;
+
+    footer > div > a{
+        font-size: 1rem;
     }
+
 }
