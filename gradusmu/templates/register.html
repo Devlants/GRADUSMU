@@ -1,4 +1,3 @@
-{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,123 +7,132 @@
     <title>회원가입 페이지</title>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet">
     <script src="https://kit.fontawesome.com/53a8c415f1.js" crossorigin="anonymous"></script>
-    <link href="{% static 'css/register.css' %}" rel="stylesheet" />
+    <link href="register.css" rel="stylesheet" />
     <script src="https://code.jquery.com/jquery-3.6.0.slim.js" integrity="sha256-HwWONEZrpuoh951cQD1ov2HUK5zA5DwJ1DNUXaM6FsY=" crossorigin="anonymous"></script>
 </head>
 <body>
     <body>
         <div class="header">
-            <image src="{% static 'img/gradusmu.png' %}" alt="image"></image>
+            <image src="/GraduSMU.png" alt="image"></image>
+        </div>
+        
+        <div class="line">
         </div>
 
         <div class="wrapper">
-            <form id ="login_form" method = 'post' action = "{% url 'register' %}">
-                {% csrf_token %}
-                <div class="name"> 이름
-                    <input id="name" name = "name" type="text" placeholder="이름을 입력해 주세요.">
-                    <div id="nameError" class="error"></div>
-                </div>
-
-                <div class="email"> Email
-                    <input id="email" name = "email" type="text" placeholder="이메일을 입력해 주세요.">
-                    <div id="emailError" class="error"></div>
-                </div>
-
-                <hr>
-
-                <div class="classInform">
-                    <div class="grade"> 학년
-                        <select id="grade" name = "grade">
-                            <option selected disabled>선택</option>
-                            <option value = "1">1학년</option>
-                            <option value = "2">2학년</option>
-                            <option value = "3">3학년</option>
-                            <option value = "4">4학년</option>
-                        </select>
+            <form id ="login_form" name="login_form">
+                <div class="box1">
+                    <div class="name"> 이름
+                        <input id="name" name="user_name"  type="text" placeholder="이름을 입력해 주세요.">
+                        <div id="nameError" class="error"></div>
                     </div>
 
-                    <div class="classNum"> 학번
-                        <input id="classNum" name = "student_num" type="text" placeholder="예) 20학번 - 20">
-                    </div>
-
-                    <div class="classDepart"> 대학
-                        <select id="classDepart" name = "universe" onchange="categoryChange(this)">
-                            <option selected disabled> 대학 </option>
-                            <option value = "인문사회과학대학">인문사회과학대학</option>
-                            <option value = "사범대학">사범대학</option>
-                            <option value = "경영경제대학">경영경제대학</option>
-                            <option value = "융합공과대학">융합공과대학</option>
-                            <option value = "문화예술대학">문화예술대학</option>
-                        </select>
-                    </div>
-
-                    <div class="classMajor"> 학과
-                        <select id="classMajor" name = "dept">
-                            <option selected disabled> 학부/학과 </option>
-                        </select>
+                    <div class="email"> Email
+                        <input id="email" name="user_email" type="text" placeholder="이메일을 입력해 주세요.">
+                        <div id="emailError" class="error"></div>
                     </div>
                 </div>
-                <div id="classInformError" class="error"></div>
 
-                <div class="line">
-                    <hr>
-                </div>
-                <div class="UserId"> * 아이디 <br>
-                    <input id="UserId" name = "username" type="text" placeholder="Id를 입력해 주세요.">
-                    <div id="UserIdError" class="error"></div>
-                </div>
-
-                <div class="UserIdCheck">
-                    <button id="UserIdCheckButton" disabled onclick="UserIdCheckCheck()">중복확인</button>
-                </div>
-
-                <div class="password"> * 비밀번호 <br>
-                    <input id="password" name = "password" type="password" placeholder="비밀번호를 입력해 주세요.">
-                    <div id="passwordError" class="error"></div>
-                </div>
-                <div class="passwordCheck">
-                    <input id="passwordCheck" type="password" placeholder="비밀번호를 다시 입력해 주세요.">
-                    <div id="passwordCheckError" class="error"></div>
-                </div>
-
-                <hr>
+                <div class="line"></div>
                 
-                <div class="select" id = "dept_type"> 전공분류
-                    <input type="radio" id="select" name="dept_type" value = "전공심화"checked><label for="select">전공심화</label>
-                    <input type="radio" id="select2" name="dept_type"value = "복수전공"><label for="select2">복수전공</label>
-                    <input type="radio" id="select3" name="dept_type"value = "부전공"><label for="select3">부전공</label>
-                </div>
+                
+                    <div class="classInform">
+                        <div class="grade"> 학년
+                            <select id="grade" name="user_grade">
+                                <option selected disabled>선택</option>
+                                <option>1학년</option>
+                                <option>2학년</option>
+                                <option>3학년</option>
+                                <option>4학년</option>
+                            </select>
+                        </div>
 
-                <div class="plusMajor">
-                    <div class="classDepart"> 대학
-                        <select id="plus_classDepart" name = "second_universe" onchange="categoryChange_plus(this)">
-                            <option selected disabled> 선택 </option>
-                            <option value = "인문사회과학대학">인문사회과학대학</option>
-                            <option value = "사범대학">사범대학</option>
-                            <option value = "경영경제대학">경영경제대학</option>
-                            <option value = "융합공과대학">융합공과대학</option>
-                            <option value = "문화예술대학">문화예술대학</option>
-                        </select>
+                        <div class="classNum"> 학번
+                            <input id="classNum" name="user_classNum" type="text" placeholder="예) 20학번 - 20">
+                        </div>
+
+                        <div class="classDepart">
+                            <select id="classDepart" name="user_classDepart" onchange="categoryChange(this)">
+                                <option selected disabled> 대학 선택 </option>
+                                <option value = "a">인문사회과학대학</option>
+                                <option value = "b">사범대학</option>
+                                <option value = "c">경영경제대학</option>
+                                <option value = "d">융합공과대학</option>
+                                <option value = "e">문화예술대학</option>
+                            </select>
+                        </div>
+
+                        <div class="classMajor">
+                            <select id="classMajor" name="user_classMajor">
+                                <option selected disabled> 학부/학과 선택</option>
+                            </select>
+                        </div>
+                        <div id="classInformError" class="error"></div>
+                    </div>
+                    
+
+                    <div class="line"></div>
+
+                    <div class = "box3">
+                        <div class="UserId"> * 아이디 <br>
+                            <input id="UserId" name="user_id" type="text" placeholder="Id를 입력해 주세요.">
+                            <div id="UserIdError" class="error"></div>
+
+                            <div class="UserIdCheck">
+                                <button id="UserIdCheckButton" onclick="UserIdCheckCheck()">중복확인</button>
+                            </div>
+                        </div>
+
+                        <div class="password"> * 비밀번호 <br>
+                            <input id="password" name="user_pwd" type="password" placeholder="비밀번호를 입력해 주세요.">
+                            <div id="passwordError" class="error"></div>
+
+                            <div class="passwordCheck">
+                                <input id="passwordCheck" type="password" placeholder="비밀번호를 다시 입력해 주세요.">
+                                <div id="passwordCheckError" class="error"></div>
+                            </div>
+                        </div>
                     </div>
 
-                    <div class="classMajor"> 학과
-                        <select id="plus_classMajor" name = "second_dept">
-                            <option selected disabled>선택</option>
-                        </select>
+                    <div class="line"></div>
+                
+                    <div class="select" name="user_selectMajor"> 전공분류
+                        <input type="radio" id="select" name="MajorType" checked="checked" value="simhwa"><label for="select">전공심화</label>
+                        <input type="radio" id="select2" name="MajorType" value="boksu"><label for="select2">복수전공</label>
+                        <input type="radio" id="select3" name="MajorType" value="bu"><label for="select3">부전공</label>
+                    </div>
+
+                    <div class="plusMajor" id="plusMajor">
+                        <div class="classDepart">
+                            <select id="plus_classDepart" name="user_plus_classDepart" onchange="categoryChange_plus(this)">
+                                <option selected disabled> 대학 선택 </option>
+                                <option value = "a">인문사회과학대학</option>
+                                <option value = "b">사범대학</option>
+                                <option value = "c">경영경제대학</option>
+                                <option value = "d">융합공과대학</option>
+                                <option value = "e">문화예술대학</option>
+                            </select>
+                        </div>
+
+                        <div class="classMajor">
+                            <select id="plus_classMajor" name="user_plus_classMajor">
+                                <option selected disabled> 학부/ 학과 선택</option>
+                            </select>
+                        </div>
                     </div>  
-                </div>
-                <input type = "submit" id = "register_submit" style = "display:none;">
-            </form>
-        </div>
-        <div class="warp">
-            
-            <p>상기의 정보들을 바탕으로 회원가입을 진행하시겠습니까?</p>
-
-            <div class="login_Submit">
-                <button id="login_Submit" onclick="signUpCheck()">회원가입하기</button>
                 
+            </form>
+
+            <div class="warp">
+                <p>상기의 정보들을 바탕으로 회원가입을 진행하시겠습니까?</p>
+    
+                <div class="login_Submit">
+                    <button id="login_Submit" onclick="signUpCheck()">회원가입하기</button>
+                </div>
             </div>
+
         </div>
-    <script src="{% static 'js/register.js' %}"></script>
+
+    <script src="register.js"></script>
 </body>
 </html>
