@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -10,10 +11,10 @@
     <link href="{% static 'css/register.css' %}" rel="stylesheet" />
     <script src="https://code.jquery.com/jquery-3.6.0.slim.js" integrity="sha256-HwWONEZrpuoh951cQD1ov2HUK5zA5DwJ1DNUXaM6FsY=" crossorigin="anonymous"></script>
 </head>
+
+    {% include "base.html" %}
+
 <body>
-    <body>
-        {% extends 'base.html' %}
-        {% block content %}
 
         <div class="wrapper">
             <form id ="login_form" method = 'post' action = "{% url 'register' %}">
@@ -131,8 +132,6 @@
             </div>
 
         </div>
-
-        {% endblock %}
 
     <script src="{% static 'js/register.js' %}"></script>
 </body>

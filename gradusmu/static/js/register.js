@@ -18,9 +18,6 @@ var classMajor_e =
 "생활예술전공", "음악학부", "외식경영학연계전공", "미디어아트연계전공", "음악경영학연계전공", "문화예술교육융합전공"];
 
 
-$(document).ready(function(){
-  $(".plusMajor").css('display',"none");
-
 //대학 선택에 따라 학부/학과 선택 dropbox의 값이 달라집니다.
 function categoryChange(classDepart) {
     var target = document.getElementById("classMajor");
@@ -64,14 +61,21 @@ function categoryChange_plus(classDepart) {
 }
 
 //심화전공 선택시 전공분류 하위 학적정보 display가 none이 됩니다.
-$(".select").click(function()
-{
-    if ($("#dept_type>input[id='select']").is(":checked")){
-        $(".plusMajor").css('display',"none");
+$(document).ready(function() {
+  var radioChecked = document.querySelector('input[type=radio][name="dept_type"]:checked');
+  if (radioChecked.value === '전공심화') {
+    document.getElementById("plusMajor").style.display = "none";
+  }}
+);
+
+$(document).ready(function() {
+  $('input[type=radio][name="dept_type"]').on('change', function() {
+    if (this.value !== '전공심화') {
+      document.getElementById("plusMajor").style.display = "flex";
+    } else {
+      document.getElementById("plusMajor").style.display = "none";
     }
-    else{
-      $(".plusMajor").css('display',"block");
-    }
+  });
 });
 
 //form 입력창의 값이 유효한지 확인 후 submit 합니다.
@@ -152,4 +156,4 @@ function signUpCheck() {
       
       $("#register_submit").trigger("click");
     }
-  }})
+  }

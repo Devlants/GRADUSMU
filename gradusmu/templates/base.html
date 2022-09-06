@@ -1,3 +1,5 @@
+{% load static %}
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,7 +10,7 @@
 </head>
 <body>
     <div class = "header">
-        <img id="devlant_img" src="{% static 'img/devlant.png' %}" alt="">
+        <img id="devlant_img" src="{% static 'img/devlant.png' %}" />
 
         <div class="mainImg">
             <img id="mainImg" src="{% static 'img/gradusmu.png' %}" />
@@ -17,28 +19,38 @@
 
     <div class="line"></div>
 
-    {% block content %}
-    {% endblock %}
+    
 
 </body>
 
 <style>
+    
+    #devlant_img {
+        float: left;
+        margin-top : -50px;
+    }
+
     .header {
         width:100%;
-        margin: auto;
-        height: 150px;
+        height: 200px;
     }
 
     .mainImg {
-        margin: auto;
-        text-align: center;;
+        text-align: center;
     }
+
+    #mainImg {
+        width: 400px;
+        height: 50px;
+        margin-top: 30px;
+    } 
 
     .line {
         width: 100%;
         height: 2px;
         background-color: gray;
     }
+
 
 </style>
 
