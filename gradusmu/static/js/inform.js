@@ -17,9 +17,28 @@ var classMajor_e =
 ["식품영양학전공", "의류학전공", "스포츠무용학부", "스포츠건강관리전공", "무용예술전공", "조형예술전공",
 "생활예술전공", "음악학부", "외식경영학연계전공", "미디어아트연계전공", "음악경영학연계전공", "문화예술교육융합전공"];
 
-
 $(document).ready(function(){
   $(".plusMajor").css('display',"none");
+
+//비밀번호 수정 모달창 꺼지기 기능 함수입니다.
+const modal = document.getElementById("modal")
+function modalOn() {
+    modal.style.display = "flex"
+}
+
+function isModalOn() {
+    return modal.style.display === "flex"
+  }
+
+function modalOff() {
+    modal.style.display = "none"
+}
+
+const closeBtn = modal.querySelector(".close-area")
+closeBtn.addEventListener("click", function() {
+  modal.style.display = "none"    
+})
+
 
 //대학 선택에 따라 학부/학과 선택 dropbox의 값이 달라집니다.
 function categoryChange(classDepart) {
@@ -74,82 +93,98 @@ $(".select").click(function()
     }
 });
 
-//form 입력창의 값이 유효한지 확인 후 submit 합니다.
-function signUpCheck() {
-    let email = document.getElementById("email").value
-    let name = document.getElementById("name").value
-    let password = document.getElementById("password").value
-    let passwordCheck = document.getElementById("passwordCheck").value
-    //let classInform = document.getElementById("classInform").value
-    let grade = document.getElementById("grade").value
-    let classNum = document.getElementById("classNum").value
-    let classDepart = document.getElementById("classDepart").value
-    let classMajor = document.getElementById("classMajor").value
-    let check = true;
+//수정한 값을 확인 후 submit 합니다.
+function modifyingCheck(){
 
-    // 이름확인
-    if(name===""){
-        document.getElementById("nameError").innerHTML="이름이 올바르지 않습니다."
-        check = false
-    }else{
-        document.getElementById("nameError").innerHTML=""
-    }
+  var form = document.getElementById("modifying_form");
+  let email = document.getElementById("email").value
+  let name = document.getElementById("name").value
+  //let classInform = document.getElementById("classInform").value
+  let grade = document.getElementById("grade").value
+  let classNum = document.getElementById("classNum").value
+  let classDepart = document.getElementById("classDepart").value
+  let classMajor = document.getElementById("classMajor").value
+  let check = true;
 
-    // 이메일확인
-    if(email.includes('@')){
-      let emailId = email.split('@')[0]
-      let emailServer = email.split('@')[1]
-      if(emailId === "" || emailServer === ""){
-        document.getElementById("emailError").innerHTML="이메일이 올바르지 않습니다."
-        check = false
-      }
-      else{
-        document.getElementById("emailError").innerHTML=""
-      }
-    }else{
+  // 이름확인
+  if(name===""){
+      document.getElementById("nameError").innerHTML="이름이 올바르지 않습니다."
+      check = false
+  }else{
+      document.getElementById("nameError").innerHTML=""
+  }
+
+  // 이메일확인
+  if(email.includes('@')){
+    let emailId = email.split('@')[0]
+    let emailServer = email.split('@')[1]
+    if(emailId === "" || emailServer === ""){
       document.getElementById("emailError").innerHTML="이메일이 올바르지 않습니다."
       check = false
     }
-  
-    // 비밀번호 확인
-    if(password !== passwordCheck){
-      document.getElementById("passwordError").innerHTML=""
-      document.getElementById("passwordCheckError").innerHTML="비밀번호가 동일하지 않습니다."
-      check = false
-    }else{
-      document.getElementById("passwordError").innerHTML=""
-      document.getElementById("passwordCheckError").innerHTML=""
-    }
-  
-    if(password===""){
-      document.getElementById("passwordError").innerHTML="비밀번호를 입력해주세요."
-      check = false
-    }else{
-      //document.getElementById("passwordError").innerHTML=""
-    }
-    if(passwordCheck===""){
-      document.getElementById("passwordCheckError").innerHTML="비밀번호를 다시 입력해주세요."
-      check = false
-    }else{
-      //document.getElementById("passwordCheckError").innerHTML=""
-    }
-  
-  
-    // 학적정보 확인
-    if(grade === "선택" || classNum === ""  || classDepart === "대학 선택" || classMajor === "학부/학과 선택"){
-      document.getElementById("classInformError").innerHTML="학적정보를 정확히 입력해주세요"
-      check = false
-    }else{
-      document.getElementById("classInformError").innerHTML=""
-    }
-  
-    if(check){ //모두 check가 되었다면
+    else{
       document.getElementById("emailError").innerHTML=""
-      document.getElementById("nameError").innerHTML=""
-      document.getElementById("passwordError").innerHTML=""
-      document.getElementById("passwordCheckError").innerHTML=""
-      document.getElementById("classInformError").innerHTML=""
-      
-      $("#register_submit").trigger("click");
     }
+  }else{
+    document.getElementById("emailError").innerHTML="이메일이 올바르지 않습니다."
+    check = false
+  }
+  // 학적정보 확인
+  if(grade === "선택" || classNum === ""  || classDepart === "대학" || classMajor === "학부/학과"){
+    document.getElementById("classInformError").innerHTML="학적정보를 정확히 입력해주세요"
+    check = false
+  }else{
+    document.getElementById("classInformError").innerHTML=""
+  }
+
+  if(check){ //모두 check가 되었다면
+    document.getElementById("emailError").innerHTML=""
+    document.getElementById("nameError").innerHTML=""
+    document.getElementById("passwordError").innerHTML=""
+    document.getElementById("passwordCheckError").innerHTML=""
+    document.getElementById("classInformError").innerHTML=""
+    
+    //비동기 처리이벤트
+    $("#modifying_Submit").trigger("click");
+  }
+}
+
+function modifyingPwdCheck(){
+
+    var form = document.getElementById("modifying_pwd");
+    //let Userpassword = document.getElementById("user_password").value
+    let password = document.getElementById("password").value
+    let passwordCheck = document.getElementById("passwordCheck").value
+    let check = true;
+  
+   
+  // 비밀번호 확인
+  if(password !== passwordCheck){
+    document.getElementById("passwordError").innerHTML=""
+    document.getElementById("passwordCheckError").innerHTML="비밀번호가 동일하지 않습니다."
+    check = false
+  }else{
+    document.getElementById("passwordError").innerHTML=""
+    document.getElementById("passwordCheckError").innerHTML=""
+  }
+
+  if(password===""){
+    document.getElementById("passwordError").innerHTML="비밀번호를 입력해주세요."
+    check = false
+  }else{
+    //document.getElementById("passwordError").innerHTML=""
+  }
+  if(passwordCheck===""){
+    document.getElementById("passwordCheckError").innerHTML="비밀번호를 다시 입력해주세요."
+    check = false
+  }else{
+    //document.getElementById("passwordCheckError").innerHTML=""
+  }
+
+  
+  if(check){ //모두 check가 되었다면
+    document.getElementById("passwordCheckError").innerHTML=""
+    
+    $("#pwdModifyingButton").trigger("click");
+  }
   }})
