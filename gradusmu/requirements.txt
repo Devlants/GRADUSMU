@@ -7,6 +7,7 @@ bs4==0.0.1
 certifi==2022.6.15
 cffi==1.15.1
 charset-normalizer==2.1.1
+Django==4.1
 h11==0.13.0
 idna==3.3
 mysqlclient==2.1.1
