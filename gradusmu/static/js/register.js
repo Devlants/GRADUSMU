@@ -1,4 +1,3 @@
-//Id 중복확인버튼은 아직 구현하지 않았습니다.
 var classMajor_a =
 ["역사콘텐츠전공", "지적재산권전공", "문헌정보학전공", "한일문화콘텐츠학과", "공간환경학부", 
 "공공인재학부", "행정학부", "가족복지학과", "국가안보학과", "문화콘텐츠연계전공", "빅데이터과학연계전공", 
@@ -18,16 +17,20 @@ var classMajor_e =
 ["식품영양학전공", "의류학전공", "스포츠무용학부", "스포츠건강관리전공", "무용예술전공", "조형예술전공",
 "생활예술전공", "음악학부", "외식경영학연계전공", "미디어아트연계전공", "음악경영학연계전공", "문화예술교육융합전공"];
 
+
+$(document).ready(function(){
+  $(".plusMajor").css('display',"none");
+
 //대학 선택에 따라 학부/학과 선택 dropbox의 값이 달라집니다.
 function categoryChange(classDepart) {
     var target = document.getElementById("classMajor");
     var plustarget = document.getElementById("plus_classMajor");
  
-    if(classDepart.value == "a") var major = classMajor_a;
-    else if(classDepart.value == "b") var major = classMajor_b;
-    else if(classDepart.value == "c") var major = classMajor_c;
-    else if(classDepart.value == "d") var major = classMajor_d;
-    else if(classDepart.value == "e") var major = classMajor_e;
+    if(classDepart.value == "인문사회과학대학") var major = classMajor_a;
+    else if(classDepart.value == "사범대학") var major = classMajor_b;
+    else if(classDepart.value == "경영경제대학") var major = classMajor_c;
+    else if(classDepart.value == "융합공과대학") var major = classMajor_d;
+    else if(classDepart.value == "문화예술대학") var major = classMajor_e;
  
     target.options.length = 1;
     plustarget.options.length = 1;
@@ -44,11 +47,11 @@ function categoryChange(classDepart) {
 function categoryChange_plus(classDepart) {
     var plustarget = document.getElementById("plus_classMajor");
  
-    if(classDepart.value == "a") var major = classMajor_a;
-    else if(classDepart.value == "b") var major = classMajor_b;
-    else if(classDepart.value == "c") var major = classMajor_c;
-    else if(classDepart.value == "d") var major = classMajor_d;
-    else if(classDepart.value == "e") var major = classMajor_e;
+    if(classDepart.value == "인문사회과학대학") var major = classMajor_a;
+    else if(classDepart.value == "사범대학") var major = classMajor_b;
+    else if(classDepart.value == "경영경제대학") var major = classMajor_c;
+    else if(classDepart.value == "융합공과대학") var major = classMajor_d;
+    else if(classDepart.value == "문화예술대학") var major = classMajor_e;
  
     plustarget.options.length = 1;
    // document.createElement("option selected disabled");
@@ -61,26 +64,18 @@ function categoryChange_plus(classDepart) {
 }
 
 //심화전공 선택시 전공분류 하위 학적정보 display가 none이 됩니다.
-    $(document).ready(function() {
-      var radioChecked = document.querySelector('input[type=radio][name="MajorType"]:checked');
-      if (radioChecked.value === 'simhwa') {
-        document.getElementById("plusMajor").style.display = "none";
-      }}
-    );
-
-$(document).ready(function() {
-  $('input[type=radio][name="MajorType"]').on('change', function() {
-      if (this.value !== 'simhwa') {
-        document.getElementById("plusMajor").style.display = "flex";
-      } else {
-        document.getElementById("plusMajor").style.display = "none";
-      }
-  });
+$(".select").click(function()
+{
+    if ($("#dept_type>input[id='select']").is(":checked")){
+        $(".plusMajor").css('display',"none");
+    }
+    else{
+      $(".plusMajor").css('display',"block");
+    }
 });
 
 //form 입력창의 값이 유효한지 확인 후 submit 합니다.
-function signUpCheck(){
-    var form = document.getElementById("login_form");
+function signUpCheck() {
     let email = document.getElementById("email").value
     let name = document.getElementById("name").value
     let password = document.getElementById("password").value
@@ -141,7 +136,7 @@ function signUpCheck(){
   
   
     // 학적정보 확인
-    if(grade === "선택" || classNum === ""  || classDepart === "대학" || classMajor === "학부/학과"){
+    if(grade === "선택" || classNum === ""  || classDepart === "대학 선택" || classMajor === "학부/학과 선택"){
       document.getElementById("classInformError").innerHTML="학적정보를 정확히 입력해주세요"
       check = false
     }else{
@@ -155,12 +150,6 @@ function signUpCheck(){
       document.getElementById("passwordCheckError").innerHTML=""
       document.getElementById("classInformError").innerHTML=""
       
-      //비동기 처리이벤트
-      setTimeout(function() {
-        form.action = "/post";
-        form.method = "post";
-        form.submit();
-        alert("가입이 완료되었습니다.")
-    },0);
+      $("#register_submit").trigger("click");
     }
-  }
+  }})
