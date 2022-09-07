@@ -108,7 +108,7 @@ def chagne_pwd(request):
     if request.method == "POST":
         request = json.loads(request.body)
         try:
-            user = User.objects.get(id = request["user_id"])
+            user = User.objects.get(id = int(request["uesr_id"]))
             user.password = request["password"]
             user.save()
             is_changed = True
@@ -171,7 +171,7 @@ def profile_img(request):
     
     if request.method == "POST":
 
-        user = User.objects.get(id = request.POST['user_id'])
+        user = User.objects.get(id = int(request.POST['user_id']))
         try:
             user.image = request.FILES["image"]
             user.save()
