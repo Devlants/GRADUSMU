@@ -10,7 +10,9 @@ datas_patterns = [
     path("score_graph_detail/",views.score_graph_detail,name = "scoreGraphDetail"),
     path("balanced_culture/",views.balanced_search_subject,name = "balanced_culture"),
     path("core_culture/", views.core_search_subject, name="core_culture"),
-    path("ess_culture/", views.ess_search_subject, name="ess_culture")
+    path("ess_culture/", views.ess_search_subject, name="ess_culture"),
+    path("checkBal/", views.checkBal, name="checkBal"),
+    path("sendMyBal/", views.sendMyBal, name="sendMyBal"),
 
 ]
 
