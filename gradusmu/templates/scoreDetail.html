@@ -60,6 +60,7 @@
 
             <div class="basicCultureScoreWrap">
                 <h3>*기초교양</h3>
+                {% for athlete in athlete_list %}
                 <div class="basicCultureScoreGraphWrap" onclick="location.href='{% url 'scoreGraphDetail' %}'">
                     <div class="basicCultureScoreGraph"></div>
                 </div>

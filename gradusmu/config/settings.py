@@ -5,6 +5,7 @@ from django.core.exceptions import ImproperlyConfigured
 from pathlib import Path
 import pymysql
 
+
 pymysql.install_as_MySQLdb()
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.

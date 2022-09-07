@@ -345,6 +345,9 @@ def sendData(request):
 
 #핵신교양 확인
 def checkCore(request):
+
+    request = json.loads(request.body)
+
     core = CoreLiberalArts.object.all()
     user = User.objects.get(id=request['user_id'])
     signed = list(user.sign_up.values_list('id', flat=True))
@@ -366,9 +369,13 @@ def checkCore(request):
         'Diversity': key3,
         'Ethics': key4
     }
-    return render(request, '/templates/scoreDetail.html', {"checkEss": context})
+    return JsonResponse(context)
 #기초교양 확인
 def checkESS(request):
+
+    request = json.loads(request.body)
+
+
     ess = EssentialLiberalArts.object.all()
     user = User.objects.get(id=request['user_id'])
     signed = list(user.sign_up.values_list('id', flat=True))
@@ -393,10 +400,11 @@ def checkESS(request):
         'Computing': key4,
         'Algorithm': key5
     }
-    return render(request, '/templates/scoreDetail.html', {"checkEss": context})
+    return JsonResponse(context)
 #균교 확인
 def checkBal(request):
-    bal = BalancedCulture.object.all()
+    request = json.loads(request.body)
+
     user = User.objects.get(id=request['user_id'])
     signed = list(user.sign_up.values_list('id', flat=True))
     datas = BalancedCulture.getBal()
@@ -420,11 +428,14 @@ def checkBal(request):
         'Engineering': key4,
         'Art': key5
     }
-    return render(request, '/templates/scoreDetail.html', {"checkBal": context})
+    return JsonResponse(context)
 
 
 ## 내 균교영역 보내기
 def sendMyBal(request):
+    request = json.loads(request.body)
+
+
     bal = BalancedCulture.object.all()
     user = User.objects.get(id=request['user_id'])
     compare = BalancedCurtureNot.object.all()
@@ -433,7 +444,7 @@ def sendMyBal(request):
         if user.dept == com.major:
             result = com.field
 
-    return render(request, '/templates/scoreDetail.html', {"myBal": result})
+    return JsonResponse(result)
 
 
 
