@@ -18,9 +18,6 @@
 
 <body>
     <div class="mainBody">
-        <div class="logoutBtn">
-            <button type="button" class="loginBtn" onclick = "location.href = '{%url 'logout' %}'">LOGOUT</button>
-        </div>
         <div class="profileBody">
             <div class="profileContentBody">
                 <div class="profileName">
@@ -73,16 +70,16 @@
                     <option value="균교">균교</option>
                 </select>
                 <select id="select3">
-                    <option>22년도 1학기</option>
-                    <option>22년도 2학기</option>
-                    <option>21년도 1학기</option>
-                    <option>21년도 2학기</option>
-                    <option>20년도 1학기</option>
-                    <option>20년도 2학기</option>
-                    <option>19년도 1학기</option>
-                    <option>19년도 2학기</option>
-                    <option>18년도 1학기</option>
-                    <option>18년도 2학기</option>
+                    <option value="22년도 1학기">22년도 1학기</option>
+                    <option value="22년도 2학기">22년도 2학기</option>
+                    <option value="21년도 1학기">21년도 1학기</option>
+                    <option value="21년도 2학기">21년도 2학기</option>
+                    <option value="20년도 1학기">20년도 1학기</option>
+                    <option value="20년도 2학기">20년도 2학기</option>
+                    <option value="19년도 1학기">19년도 1학기</option>
+                    <option value="19년도 2학기">19년도 2학기</option>
+                    <option value="18년도 1학기">18년도 1학기</option>
+                    <option value="18년도 2학기">18년도 2학기</option>
                 </select>
             </div>
             <div class="subjectTable">
@@ -95,47 +92,15 @@
                         <td>삭제</td>
                         <td>상세정보</td>
                     </thead>
-                    <tbody>
-                        <tr class="tbodyTr">
+                    <tbody id="subjectTableTbody">
+                        <!-- <tr class="tbodyTr">
                             <td>소프트웨어공학</td>
                             <td>HAEA0009-1</td>
                             <td>함혁수</td>
                             <td>3(설계)</td>
                             <td><button type="button" class="deleteSubjectBtn">삭제하기</button></td>
                             <td><button type="button" class="detailSubjectBtn">상세정보</button></td>
-                        </tr>
-                        <tr class="tbodyTr">
-                            <td>소프트웨어공학</td>
-                            <td>HAEA0009-1</td>
-                            <td>함혁수</td>
-                            <td>3(설계)</td>
-                            <td><button type="button" class="deleteSubjectBtn">삭제하기</button></td>
-                            <td><button type="button" class="detailSubjectBtn">상세정보</button></td>
-                        </tr>
-                        <tr class="tbodyTr">
-                            <td>소프트웨어공학</td>
-                            <td>HAEA0009-1</td>
-                            <td>함혁수</td>
-                            <td>3(설계)</td>
-                            <td><button type="button" class="deleteSubjectBtn">삭제하기</button></td>
-                            <td><button type="button" class="detailSubjectBtn">상세정보</button></td>
-                        </tr>
-                        <tr class="tbodyTr">
-                            <td>소프트웨어공학</td>
-                            <td>HAEA0009-1</td>
-                            <td>함혁수</td>
-                            <td>3(설계)</td>
-                            <td><button type="button" class="deleteSubjectBtn">삭제하기</button></td>
-                            <td><button type="button" class="detailSubjectBtn">상세정보</button></td>
-                        </tr>
-                        <tr class="tbodyTr">
-                            <td>소프트웨어공학</td>
-                            <td>HAEA0009-1</td>
-                            <td>함혁수</td>
-                            <td>3(설계)</td>
-                            <td><button type="button" class="deleteSubjectBtn">삭제하기</button></td>
-                            <td><button type="button" class="detailSubjectBtn">상세정보</button></td>
-                        </tr>
+                        </tr> -->
                     </tbody>
                 </table>
             </div>

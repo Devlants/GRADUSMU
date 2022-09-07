@@ -13,9 +13,6 @@
 
 <body>
     <div class="scoreDetailBody">
-        <div class="logoutBtn">
-            <button type="button" class="loginBtn">LOGOUT</button>
-        </div>
         <div class="scoreDetailContent">
             <div class="userName">
                 <div id="user_name">{{user.name}}</div>
@@ -32,6 +29,14 @@
 
             <div class="majorScoreWrap">
                 <h3>전공</h3>
+                <div class="majorScoreGraphWrap" onclick="location.href='{% url 'scoreGraphDetail' %}'">
+                    <div class="majorScoreGraph"></div>
+                </div>
+                <h3 id="majorScoreFraction">{{user.major_points}}/67<br>(전선{{user.choice_major_points}}+전심{{user.deep_major_points}})</h3>
+            </div>
+
+            <div class="majorScoreWrap">
+                <h3>전공선택</h3>
                 <div class="majorScoreGraphWrap" onclick="location.href='{% url 'scoreGraphDetail' %}'">
                     <div class="majorScoreGraph"></div>
                 </div>
@@ -76,32 +81,6 @@
                     <div class="essentialCultureScoreGraph"></div>
                 </div>
                 <h3 id="essentialCultureScoreFraction">{{user.essential_culture_points}}(융복합+다양성)/2</h3>
-            </div>
-
-            <h3 id="engineeringCertification">공학인증</h3>
-
-            <div class="bsmScoreWrap">
-                <h3>BSM</h3>
-                <div class="bsmScoreGraphWrap" onclick="location.href='{% url 'scoreGraphDetail' %}'">
-                    <div class="bsmScoreGraph"></div>
-                </div>
-                <h3 id="bsmScoreFraction">15/18<br>(전공12+교양3)</h3>
-            </div>
-
-            <div class="designScoreWrap">
-                <h3>설계</h3>
-                <div class="designScoreGraphWrap" onclick="location.href='{% url 'scoreGraphDetail' %}'">
-                    <div class="designScoreGraph"></div>
-                </div>
-                <h3 id="designScoreFraction">9/12<br>(일반9+캡스톤0)</h3>
-            </div>
-
-            <div class="majorBsmScoreWrap">
-                <h3>전공-BSM</h3>
-                <div class="majorBsmScoreGraphWrap" onclick="location.href='{% url 'scoreGraphDetail' %}'">
-                    <div class="majorBsmScoreGraph"></div>
-                </div>
-                <h3 id="majorBsmScoreFraction">36/60</h3>
             </div>
         </div>
         <div class="informText">
