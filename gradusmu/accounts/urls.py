@@ -11,6 +11,7 @@ accounts_patterns = [
     path('find_pwd/change_pwd', views.find_pwd_change_pwd, name='find_pwd_change_pwd'),
     path('profile/',views.profile,name = "settings"),
     path('profile_img/',views.profile_img,name = "profile_img"),
+    path('change_pwd/',views.chagne_pwd,name = "change_pwd"),
     path('logout/', auth_views.LogoutView.as_view(), name='logout'),
 ]
 
