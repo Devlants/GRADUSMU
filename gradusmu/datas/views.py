@@ -1,3 +1,6 @@
+import urllib
+
+from cffi.backend_ctypes import unicode
 from django.shortcuts import render, redirect
 from .models import subjects, BalancedCulture, CoreLiberalArts, EssentialLiberalArts, GraduationCiteria, \
     BalancedCurtureNot
@@ -344,15 +347,15 @@ def sendData(request):
     return render(request, '/templates/scoreDetail.html', {"criteria" : criteria})
 
 #핵신교양 확인
+@csrf_exempt
 def checkCore(request):
 
     request = json.loads(request.body)
 
-    core = CoreLiberalArts.object.all()
     user = User.objects.get(id=request['user_id'])
     signed = list(user.sign_up.values_list('id', flat=True))
     datas = CoreLiberalArts.getCore()
-    key1, key2, key3, key4= False
+    key1 = key2 = key3 = key4 = False
     for key in list(datas.keys()):
         for data in datas[key].filter(id__in=signed):
             if key == '창의적문제해결역량':
@@ -371,16 +374,16 @@ def checkCore(request):
     }
     return JsonResponse(context)
 #기초교양 확인
+@csrf_exempt
 def checkESS(request):
 
     request = json.loads(request.body)
 
 
-    ess = EssentialLiberalArts.object.all()
     user = User.objects.get(id=request['user_id'])
     signed = list(user.sign_up.values_list('id', flat=True))
     datas = EssentialLiberalArts.getEss()
-    key1, key2, key3, key4, key5 = False
+    key1 = key2 = key3 = key4 = key5 = False
     for key in list(datas.keys()):
         for data in datas[key].filter(id__in=signed):
             if key == '사고와표현':
@@ -402,13 +405,14 @@ def checkESS(request):
     }
     return JsonResponse(context)
 #균교 확인
+@csrf_exempt
 def checkBal(request):
     request = json.loads(request.body)
 
     user = User.objects.get(id=request['user_id'])
     signed = list(user.sign_up.values_list('id', flat=True))
     datas = BalancedCulture.getBal()
-    key1, key2, key3, key4, key5 = False
+    key1 = key2 = key3 = key4 = key5 = False
     for key in list(datas.keys()):
         for data in datas[key].filter(id__in=signed):
             if key == '인문':
@@ -432,19 +436,20 @@ def checkBal(request):
 
 
 ## 내 균교영역 보내기
+@csrf_exempt
 def sendMyBal(request):
     request = json.loads(request.body)
-
-
-    bal = BalancedCulture.object.all()
     user = User.objects.get(id=request['user_id'])
-    compare = BalancedCurtureNot.object.all()
+    compare = BalancedCurtureNot.objects.all()
 
     for com in compare:
         if user.dept == com.major:
-            result = com.field
+                result1 = com.field
 
-    return JsonResponse(result)
+    context = {
+        'result': result1
+    }
+    return JsonResponse(context)
 
 
 

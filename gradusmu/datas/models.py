@@ -114,8 +114,14 @@ class BalancedCurtureNot(models.Model):
     major = models.CharField(max_length=50, null=True)
     field = models.CharField(max_length=50, null=True)
 
+    def getBalField():
+        field = BalancedCurtureNot.objects.all()
+
+        return (field)
+
 class BalancedCultureSortation(models.Model):
     name = models.CharField(max_length = 50, null=True)
+
 
 
 
