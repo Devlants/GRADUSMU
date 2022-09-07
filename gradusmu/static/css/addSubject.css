@@ -9,10 +9,6 @@ body {
     padding: 2rem;
 }
 
-#devlant_img {
-    position: absolute;
-    width: min-content;
-}
 
 header {
     width: 100%;
@@ -127,9 +123,14 @@ main>#center_area>#main_area>.row {
 
 main>#center_area>#main_area .row .col {
     flex: 1;
-    display: flex;
+    text-align: center;
     justify-content: center;
     align-items: center;
+    overflow: hidden;
+    border-right: 1px solid black;
+    white-space: normal;
+    display: flex;
+    /* max-width: calc(100%/6); */
 }
 
 .mainarea_btn {

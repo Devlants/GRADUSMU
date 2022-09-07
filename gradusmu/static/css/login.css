@@ -4,11 +4,6 @@ body {
     font-size: 16px;
 }
 
-#devlant_img {
-    position: absolute;
-    width: min-content;
-}
-
 header {
     width: 100%;
     height: 25vh;

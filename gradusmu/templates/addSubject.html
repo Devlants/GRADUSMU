@@ -16,14 +16,12 @@
     <!-- jquery -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
-    <link rel="stylesheet" href="../css/addSubject.css">
-    <script src="{% static 'js/addSubject.js' %}"></script>
+    <link rel="stylesheet" href="{% static 'css/addSubject.css' %}">
     <title>Gradusmu</title>
 
 </head>
 
 <body>
-    <img id="devlant_img" src="{% static 'img/devlant.png' %}" alt="">
     <header class="container">
         <div id="logo_div">
             <a href="">
@@ -40,10 +38,10 @@
 
         <div id="select_div" class="container">
             <select id='select-parent' class="drop_box" required name='parent_category'>
-                <option value="" disabled selected style="display:none">상위항목</option>
+                <option value="" disabled selected style="display:none"></option>
             </select>
-            <select id='select-child'class="drop_box" required name='child_category'>
-                <option value="" disabled selected style="display:none">하위항목</option>
+            <select id='select-child' class="drop_box" required name='child_category'>
+                <option value="" disabled selected style="display:none"></option>
             </select>
             <select id='third-drop' class="drop_box" required name='third-drop' disabled>
                 <option value="" disabled selected style="display:none"></option>
@@ -69,7 +67,8 @@
     <footer>
         <button id="return_btn" onclick="location.href = '{% url 'home' %}'">돌아가기</button>
     </footer>
-    
+    <script type="text/javascript">var user_id = "{{user.id}}"</script>
+    <script src="{% static 'js/addSubject.js' %}"></script>
     <!-- jquery -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 </body>
