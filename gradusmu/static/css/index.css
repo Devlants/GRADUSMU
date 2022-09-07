@@ -94,7 +94,9 @@ html, body{
 }
 
 .profileImg img{
+    border-radius: 70px;
     width: 150px;
+    height: 150px;
 }
 
 .profileImg button{
@@ -304,4 +306,14 @@ html, body{
     display: flex;
     justify-content: center;
     font-size: 1.6rem;
+}
+
+#profileImgBtn{
+    height: 1px;
+    visibility: hidden;
+}
+
+#uploadForm{
+    visibility: hidden;
+    height: 1px;
 }
