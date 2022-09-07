@@ -10,7 +10,10 @@
     <link rel="stylesheet" href="{% static 'css/index.css' %}">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://code.jquery.com/jquery-latest.js"></script>
-    <sccipt type="text/javascript" src="{% static 'js/index.js' %}"></sccipt>
+    <script type="text/javascript" src="{% static 'js/index.js' %}"></script>
+    <script type = "text/javascript">
+        var user_id = "{{user.id}}";
+    </script>
 </head>
 
 <body>
@@ -28,8 +31,11 @@
                     <div class="profileNotNameWrap">
                         <div class="profileImg">
                             <img src={{request.user.image.url}} />
-                            
-                            <button type="button" class="editProfileImgBtn">프로필 사진 편집</button>
+                            <form id="uploadForm" enctype="multipart/form-data">
+                                <input id="profileImgBtn" name="image" type="file" />
+                                <input name="user_id" type="text" value='{{user.id}}'/>
+                            </form>
+                            <button type="button" class="editProfileImgBtn" onclick="editProfileImg();">프로필 사진 편집</button>
                             
                         </div>
                         <div class="profileContentWrap">
@@ -60,20 +66,23 @@
                     <option>교양</option>
                 </select>
                 <select id="select2">
-                    <option>전심</option>
-                    <option>전선</option>
-                    <option>교필</option>
-                    <option>교선</option>
+                    <option value="전심">전심</option>
+                    <option value="전선">전선</option>
+                    <option value="교필">교필</option>
+                    <option value="교선">교선</option>
+                    <option value="균교">균교</option>
                 </select>
                 <select id="select3">
-                    <option>1학년1학기</option>
-                    <option>1학년2학기</option>
-                    <option>2학년1학기</option>
-                    <option>2학년2학기</option>
-                    <option>3학년1학기</option>
-                    <option>3학년2학기</option>
-                    <option>4학년1학기</option>
-                    <option>4학년2학기</option>
+                    <option>22년도 1학기</option>
+                    <option>22년도 2학기</option>
+                    <option>21년도 1학기</option>
+                    <option>21년도 2학기</option>
+                    <option>20년도 1학기</option>
+                    <option>20년도 2학기</option>
+                    <option>19년도 1학기</option>
+                    <option>19년도 2학기</option>
+                    <option>18년도 1학기</option>
+                    <option>18년도 2학기</option>
                 </select>
             </div>
             <div class="subjectTable">
