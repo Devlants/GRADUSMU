@@ -99,7 +99,25 @@ def find_id(request):
         "id" : id,
         "is_find" : is_find,
     }
-    return JsonResponse(context)    
+    return JsonResponse(context)   
+
+# 비밀번호 변경 
+@csrf_exempt
+def chagne_pwd(request):
+    
+    if request.method == "POST":
+        request = json.loads(request.body)
+        try:
+            user = User.objects.get(id = request["user_id"])
+            user.password = request["password"]
+            user.save()
+            is_changed = True
+        except:
+            is_changed = False
+    context = {
+        "is_changed" : is_changed,
+    }
+    return JsonResponse(context)
 
 #비밀번호 찾기-인증메일 보내기
 @csrf_exempt
@@ -170,7 +188,6 @@ def profile(request):
     if request.method == 'POST':
         try:
             user = User.objects.get(id = request.user.id)
-            user.password=request.POST['password']
             user.email=request.POST['email']
             user.name = request.POST['name']
             user.grade = int(request.POST['grade'])
@@ -196,3 +213,5 @@ def profile(request):
 def logout(request):
     auth.logout(request)
     return render(request,"login.html")
+
+
