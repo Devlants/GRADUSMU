@@ -4,20 +4,6 @@ body {
     font-size: 16px;
 }
 
-header {
-    width: 100%;
-    height: 25vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-header > a > #login_logo_img{
-    width: inherit;
-    height: inherit;
-    object-fit: contain;
-}
-
 main {
     width: 100%;
     height: 50vh;
