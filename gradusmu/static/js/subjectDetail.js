@@ -1,7 +1,6 @@
 $(document).ready(function () {
 
     setModal();
-
     $('.detail_btn').click(function () {
         showModal($('.modal-wrap'));
     });
@@ -12,6 +11,7 @@ $(document).ready(function () {
 
 });
 
+
 function showModal($modalwrap) {
     $modalwrap.css('display', 'block');
 }
@@ -21,59 +21,44 @@ function noneModal($modalwrap) {
 }
 
 function setModal() {
-
     $.ajax({
         //요청이 전송될 URL 주소
-        url: '',
+        url: '/datas/subject_detail/',
         type: "POST",
         dataType: "JSON",
-        data: {
-            'name': '소프트웨어공학',
-            'serialNumber': 'HAEA0008',
-            'distribution': 1,
-            'prof': '한혁수',
-            'dept': '컴퓨터과학과',
-            'time': '목(5,6,7)',
-            'room': 'G211',
-            'type': '전공심화',
-            'point': 3,
-            'year': '2022',
-            'youngyuck': '영역',
-            'take': true,
-
-            csrfmiddlewaretoken: '{{ csrf_token }}'
-        },
+        data: JSON.stringify({
+            "user_id" : "3",
+            "dept_type" : "전심",
+            "subject_id" : "1"
+        }),
         headers: { "X-CSRFToken": "{{ csrf_token }}" },
 
         success: function (data) {
             console.log("2");
-            var $title = data.name;
-            var $classNumber = data.serialNumber;
-            var $subjectType = data.type;
-            var $distribution = data.distribution;
-            var $professor = data.prof;
-            var $grades = data.point;
-            var $establishment = data.year;
-            var $lectureRoom = data.room;
-            var $lectureTime = data.time;
-            var $department = data.dept;
-            var $youngyuck = data.youngyuck;
-            var $acceptance = data.take;
+            var $name = data.name;
+            var $serialnum = data.serial_num;
+            var $type = data.type;
+            var $prof = data.prof;
+            var $point = data.point;
+            var $year = data.year;
+            var $room = data.room;
+            var $time = data.time;
+            var $dept = data.dept;
+            var $signed = data.signed;
 
-            $('#subjectDetail_title').append($title);
-            $('#class_number').append('학수번호-분반: ' + $classNumber + '-' + $distribution);
-            $('#subject_type').append('과목분류: ' + $subjectType + '(' + $youngyuck + ')');
-            $('#professor').append('담당교수: ' + $professor);
-            $('#grades').append('학점: ' + $grades + '학점');
-            $('#establishment').append('개설연도: ' + $establishment);
-            $('#lecture_room').append('강의실: ' + $lectureRoom);
-            $('#lecture_time').append('강의시간: ' + $lectureTime);
-            $('#department').append('개설학과: ' + $department);
-            $('#acceptance').append('수강여부: ' + ($acceptance ? 'o' : 'x'));
+            $('.modal-title').append($name);
+            $('#class_number').append('학수번호-분반: ' + $serialnum);
+            $('#subject_type').append('과목분류: '+ $type);
+            $('#professor').append('담당교수: ' + $prof);
+            $('#grades').append('학점: ' + $point);
+            $('#establishment').append('개설연도: ' + $year);
+            $('#lecture_room').append('강의실: ' + $room);
+            $('#lecture_time').append('강의시간: ' + $time);
+            $('#department').append('개설학과: ' + $dept);
+            $('#acceptance').append('수강여부: ' + ($signed ? 'o' : 'x'));
 
         },
         error: function (xhr, textStatus, thrownError) {
-            console.log("3");
             alert(
                 "Could not send URL to Django. Error: " +
                 xhr.status +

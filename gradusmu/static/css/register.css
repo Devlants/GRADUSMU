@@ -1,83 +1,9 @@
+
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
     font-family: "Noto Sans KR", sans-serif;
-  }
-
-a {
-    text-decoration: none;
-    color: black;
-  }
-
-body {
-    line-height: -50%;
-    font-size: 20px;
-    
-}
-
-.header {
-    padding-bottom: 100px;
-    padding-top: 100px;
-}
-
-.wrapper {
-    width: 100%;
-    height: 100vh;
-    display: flex;
-    padding: 10px;
-    margin: auto;
-    align-items: center;
-    justify-content: center;
-    background: rgba(0, 0, 0, 0.1);
-  }
-
-.wrap{
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
-}
-  
-.div {
-    width: 200px;
-    height: 300px;
-    margin-left: 20px;
-    margin-top: 20px;
-    border: 10px solid black;
-  }
-
-img {
-    display: block;
-    margin: 0px auto;
-   }
-
-input {
-    width: 500px;
-    height: 32px;
-    font-size: 15px;
-    border: 0;
-    border-radius: 15px;
-    outline: none;
-    padding-left: 10px;
-    background-color: rgb(255, 255, 255);
-}
-
-.login_Submit {
-    margin-top: 50px;
-    width: 80%;
-  }
-
-#login_Submit {
-    width: 200px;
-    height: 50px;
-    border: 0;
-    outline: none;
-    border-radius: 40px;
-    background: linear-gradient(to left, rgb(255, 77, 46), rgb(255, 155, 47));
-    color: white;
-    font-size: 1.2em;
-    letter-spacing: 2px;
   }
 
 .error {
@@ -86,11 +12,230 @@ input {
     font-size: small;
     padding: 10px;
     width: 80%;
-    font-size: 14px;
+    font-size: 17px;
     display: flex;
     justify-content: space-between;
     align-items: center;
     font-weight: bold;
+}
+
+#classInformError {
+    padding-left: 15%;
+}
+
+.header {
+    padding-bottom: 50px;
+    padding-top: 50px;
+    border: 0;
+}
+
+.line {
+    border: 0;
+    height: 2px;
+    background: #ccc;
+}
+
+img {
+    display: block;
+    margin: 0px auto;
+   }
+
+
+a {
+    text-decoration: none;
+    color: black;
+  }
+
+
+body {
+    line-height: 160%;
+    font-size: 20px;
+}
+
+.name {
+    float: left;
+    margin-left : 15%;
+    margin-right : 10%;
+    margin-top : 10px;
+    margin-bottom : 10px;
+    width: 30%;
+    padding: auto;
+}
+
+.email {
+    float: right;
+    margin-right : 15%;
+    margin-top : 10px;
+    margin-bottom : 10px;
+    width: 30%;
+    padding: auto;
+}
+
+.grade {
+    float: left;
+    margin-left : 15%;
+    margin-right : 10%;
+    margin-top : 10px;
+    margin-bottom : 10px;
+    width: 10%;
+    padding: auto;
+}
+
+.classNum {
+    float: left;
+    margin-top : 10px;
+    margin-bottom : 10px;
+    width: 20%;
+    padding: auto;
+}
+
+.classDepart {
+    float: left;
+    margin-right : 10%;
+    margin-top : 10px;
+    margin-bottom : 10px;
+    width: 10%;
+    padding: auto;
+}
+
+.classMajor {
+    float: left;
+    margin-right : 10%;
+    margin-top : 10px;
+    margin-bottom : 10px;
+    width: 10%;
+    padding: auto;
+}
+
+.UserId {
+    float: left;
+    margin-left: 15%;
+    margin-right : 10%;
+    margin-top : 10px;
+    margin-bottom : 10px;
+    width: 35%;
+    padding: auto;
+}
+
+.password {
+    float: left;
+    margin-right : 50px;
+    margin-top : 10px;
+    margin-bottom : 10px;
+    width: 35%;
+    padding: auto;
+}
+
+.select {
+    display:inline-block;
+    margin-left:15%;
+    margin-right : 10%;
+    margin-top : 10px;
+    margin-bottom : 10px;
+    width: 35%;
+    padding: auto;
+}
+
+.wrapper {
+    width: 100%;
+    flex-direction: row;
+    margin: auto;
+    padding-bottom: 5%;
+    justify-content: center;
+    background: rgba(0, 0, 0, 0.1);
+  }
+
+.warp {
+    display: block;
+    float: inline-block;
+    margin: 0px auto;
+    width : 800px;
+    height : auto;
+    text-align: center;
+    font-weight: bold;
+    padding-top: 40px;
+}
+
+
+.plusMajor {
+    display: flex;
+    float: inline-block;
+    justify-content: center;
+}
+
+input {
+    width : 500px;
+    height: 40px;
+    font-size: 15px;
+    border: 3px solid black;
+    outline: none;
+    padding-left: 10px;
+    background-color: rgb(255, 255, 255);
+}
+
+#name {
+    margin-left: 10%;
+    width: 300px;
+}
+
+#email {
+    margin-left: 50px;
+    width: 500px;
+}
+
+#grade {
+    margin-left: 50px;
+    width: 100px;
+}
+
+#classNum {
+    margin-left: 50px;
+    width: 200px;
+}
+
+#classDepart {
+    margin-left: 50px;
+    width: 200px;
+}
+
+#class {
+    margin-left: 50px;
+    width: 200px;
+}
+
+.login_Submit {
+    margin-top: 20px;
+  }
+
+#login_Submit {
+    cursor: pointer;
+    width: 250px;
+    height: 80px;
+    border: 0;
+    outline: none;
+    border-radius: 20px;
+    background: #5B4FE9;
+    color: white;
+    font-weight: bold;
+    font-size: 40px;
+    letter-spacing: 2px;
+  }
+
+#UserIdCheckButton {
+    display: inline-block;
+    cursor: pointer;
+    height: 24px;
+    width: 90px;
+    border: 1px solid black;
+    background-color: black;
+    color: #fff;
+    line-height: 24px;
+    text-align: center;
+    font-weight:bold;
+    font-size:18px;
+    padding-top: 5px;
+    padding-bottom: 30px;
+    border-radius: 10px;
 }
 
 .select {
@@ -104,18 +249,32 @@ input {
     cursor: pointer;
     height: 24px;
     width: 90px;
-    border: 1px solid rgb(255, 155, 47);
+    border: 1px solid #5B4FE9;
     line-height: 24px;
     text-align: center;
     font-weight:bold;
     font-size:18px;
-    padding-bottom: 5%;
+    padding-top: 5px;
+    padding-bottom: 30px;
+    border-radius: 10px;
+    margin-left: 10px;
 }
 .select input[type=radio]+label{
     background-color: #fff;
-    color: rgb(255, 155, 47);
+    color: #5B4FE9;
 }
 .select input[type=radio]:checked+label{
-    background-color: rgb(255, 155, 47);
+    background-color: #5B4FE9;
     color: #fff;
+}
+
+select {
+    width:300px;
+    padding:5px;
+    border: 3px solid black;
+    border-radius:3px;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance : none;
+    font-size: large;
 }
