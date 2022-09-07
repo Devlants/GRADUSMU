@@ -15,7 +15,7 @@ import datetime
 def signed_search_subject(request):
     request = json.loads(request.body)
     
-    user = User.objects.get(id = request['user_id'])
+    user = User.objects.get(id = int(request["user_id"]))
     signed = list(user.sign_up.values_list('id',flat=True))
     if request['dept_type'] == "전심":
         dept_type = "1전심"
@@ -92,7 +92,7 @@ def signed_search_subject(request):
 def unsigned_search_subject(request):
     request = json.loads(request.body)
     
-    user = User.objects.get(id = request['user_id'])
+    user = User.objects.get(id = int(request["user_id"]))
     signed = list(user.sign_up.values_list('id',flat=True))
     if request['dept_type'] == "전심":
         dept_type = "1전심"
@@ -169,7 +169,7 @@ def subject_detail(request):
     request = json.loads(request.body)
     print(1)
     print(request)
-    user = User.objects.get(id = request['user_id'])
+    user = User.objects.get(id = int(request["user_id"]))
     signed = list(user.sign_up.values_list('id',flat=True))
 
     subject = subjects.objects.get(id = request['subject_id'])
@@ -205,8 +205,8 @@ def add_subject(request):
         try:
             data = json.loads(request.body)
             
-            user = User.objects.get(id = data['user_id'])
-            user.sign_up.add(subjects.objects.get(id = data["subject_id"]))
+            user = User.objects.get(id = int(data['user_id']))
+            user.sign_up.add(subjects.objects.get(id = int(data["subject_id"])))
             is_added = True
         except:
             is_added = False
@@ -224,8 +224,8 @@ def delete_subject(request):
         try:
             data = json.loads(request.body)
             
-            user = User.objects.get(id = data['user_id'])
-            user.sign_up.remove(subjects.objects.get(id = data["subject_id"]))
+            user = User.objects.get(id = int(data['user_id']))
+            user.sign_up.remove(subjects.objects.get(id = int(data["subject_id"])))
             is_deleted = True
         except:
             is_deleted = False
@@ -241,7 +241,7 @@ def delete_subject(request):
 def balanced_search_subject(request):
     request = json.loads(request.body)
     
-    user = User.objects.get(id = request['user_id'])
+    user = User.objects.get(id = int(request['user_id']))
     signed = list(user.sign_up.values_list('id',flat=True))
     currentDateTime = datetime.datetime.now()
     date = currentDateTime.date()
@@ -276,7 +276,7 @@ def balanced_search_subject(request):
 def core_search_subject(request):
     request = json.loads(request.body)
 
-    user = User.objects.get(id=request['user_id'])
+    user = User.objects.get(id=int(request['user_id']))
     signed = list(user.sign_up.values_list('id', flat=True))
     currentDateTime = datetime.datetime.now()
     date = currentDateTime.date()
@@ -310,7 +310,7 @@ def core_search_subject(request):
 def ess_search_subject(request):
     request = json.loads(request.body)
 
-    user = User.objects.get(id=request['user_id'])
+    user = User.objects.get(id=int(request['user_id']))
     signed = list(user.sign_up.values_list('id', flat=True))
     currentDateTime = datetime.datetime.now()
     date = currentDateTime.date()
@@ -352,7 +352,7 @@ def checkCore(request):
 
     request = json.loads(request.body)
 
-    user = User.objects.get(id=request['user_id'])
+    user = User.objects.get(id=int(request['user_id']))
     signed = list(user.sign_up.values_list('id', flat=True))
     datas = CoreLiberalArts.getCore()
     key1 = key2 = key3 = key4 = False
@@ -380,7 +380,7 @@ def checkESS(request):
     request = json.loads(request.body)
 
 
-    user = User.objects.get(id=request['user_id'])
+    user = User.objects.get(id=int(request['user_id']))
     signed = list(user.sign_up.values_list('id', flat=True))
     datas = EssentialLiberalArts.getEss()
     key1 = key2 = key3 = key4 = key5 = False
@@ -409,7 +409,7 @@ def checkESS(request):
 def checkBal(request):
     request = json.loads(request.body)
 
-    user = User.objects.get(id=request['user_id'])
+    user = User.objects.get(id=int(request['user_id']))
     signed = list(user.sign_up.values_list('id', flat=True))
     datas = BalancedCulture.getBal()
     key1 = key2 = key3 = key4 = key5 = False
@@ -439,7 +439,7 @@ def checkBal(request):
 @csrf_exempt
 def sendMyBal(request):
     request = json.loads(request.body)
-    user = User.objects.get(id=request['user_id'])
+    user = User.objects.get(id=int(request['user_id']))
     compare = BalancedCurtureNot.objects.all()
 
     for com in compare:
