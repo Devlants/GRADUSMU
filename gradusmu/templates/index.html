@@ -10,15 +10,14 @@
     <link rel="stylesheet" href="{% static 'css/index.css' %}">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://code.jquery.com/jquery-latest.js"></script>
-    <script type="text/javascript" src="{% static 'js/index.js' %}"></script>
-    <script type = "text/javascript">
-        var user_id = "{{user.id}}";
-    </script>
+    <sccipt type="text/javascript" src="{% static 'js/index.js' %}"></sccipt>
 </head>
 
 <body>
-    {% include "header.html" %}
     <div class="mainBody">
+        <div class="logoutBtn">
+            <button type="button" class="loginBtn" onclick = "location.href = '{%url 'logout' %}'">LOGOUT</button>
+        </div>
         <div class="profileBody">
             <div class="profileContentBody">
                 <div class="profileName">
@@ -29,11 +28,8 @@
                     <div class="profileNotNameWrap">
                         <div class="profileImg">
                             <img src={{request.user.image.url}} />
-                            <form id="uploadForm" enctype="multipart/form-data">
-                                <input id="profileImgBtn" name="image" type="file" />
-                                <input name="user_id" type="text" value='{{user.id}}'/>
-                            </form>
-                            <button type="button" class="editProfileImgBtn" onclick="editProfileImg();">프로필 사진 편집</button>
+                            
+                            <button type="button" class="editProfileImgBtn">프로필 사진 편집</button>
                             
                         </div>
                         <div class="profileContentWrap">
@@ -64,23 +60,20 @@
                     <option>교양</option>
                 </select>
                 <select id="select2">
-                    <option value="전심">전심</option>
-                    <option value="전선">전선</option>
-                    <option value="교필">교필</option>
-                    <option value="교선">교선</option>
-                    <option value="균교">균교</option>
+                    <option>전심</option>
+                    <option>전선</option>
+                    <option>교필</option>
+                    <option>교선</option>
                 </select>
                 <select id="select3">
-                    <option value="22년도 1학기">22년도 1학기</option>
-                    <option value="22년도 2학기">22년도 2학기</option>
-                    <option value="21년도 1학기">21년도 1학기</option>
-                    <option value="21년도 2학기">21년도 2학기</option>
-                    <option value="20년도 1학기">20년도 1학기</option>
-                    <option value="20년도 2학기">20년도 2학기</option>
-                    <option value="19년도 1학기">19년도 1학기</option>
-                    <option value="19년도 2학기">19년도 2학기</option>
-                    <option value="18년도 1학기">18년도 1학기</option>
-                    <option value="18년도 2학기">18년도 2학기</option>
+                    <option>1학년1학기</option>
+                    <option>1학년2학기</option>
+                    <option>2학년1학기</option>
+                    <option>2학년2학기</option>
+                    <option>3학년1학기</option>
+                    <option>3학년2학기</option>
+                    <option>4학년1학기</option>
+                    <option>4학년2학기</option>
                 </select>
             </div>
             <div class="subjectTable">
@@ -93,15 +86,47 @@
                         <td>삭제</td>
                         <td>상세정보</td>
                     </thead>
-                    <tbody id="subjectTableTbody">
-                        <!-- <tr class="tbodyTr">
+                    <tbody>
+                        <tr class="tbodyTr">
                             <td>소프트웨어공학</td>
                             <td>HAEA0009-1</td>
                             <td>함혁수</td>
                             <td>3(설계)</td>
                             <td><button type="button" class="deleteSubjectBtn">삭제하기</button></td>
                             <td><button type="button" class="detailSubjectBtn">상세정보</button></td>
-                        </tr> -->
+                        </tr>
+                        <tr class="tbodyTr">
+                            <td>소프트웨어공학</td>
+                            <td>HAEA0009-1</td>
+                            <td>함혁수</td>
+                            <td>3(설계)</td>
+                            <td><button type="button" class="deleteSubjectBtn">삭제하기</button></td>
+                            <td><button type="button" class="detailSubjectBtn">상세정보</button></td>
+                        </tr>
+                        <tr class="tbodyTr">
+                            <td>소프트웨어공학</td>
+                            <td>HAEA0009-1</td>
+                            <td>함혁수</td>
+                            <td>3(설계)</td>
+                            <td><button type="button" class="deleteSubjectBtn">삭제하기</button></td>
+                            <td><button type="button" class="detailSubjectBtn">상세정보</button></td>
+                        </tr>
+                        <tr class="tbodyTr">
+                            <td>소프트웨어공학</td>
+                            <td>HAEA0009-1</td>
+                            <td>함혁수</td>
+                            <td>3(설계)</td>
+                            <td><button type="button" class="deleteSubjectBtn">삭제하기</button></td>
+                            <td><button type="button" class="detailSubjectBtn">상세정보</button></td>
+                        </tr>
+                        <tr class="tbodyTr">
+                            <td>소프트웨어공학</td>
+                            <td>HAEA0009-1</td>
+                            <td>함혁수</td>
+                            <td>3(설계)</td>
+                            <td><button type="button" class="deleteSubjectBtn">삭제하기</button></td>
+                            <td><button type="button" class="detailSubjectBtn">상세정보</button></td>
+                        </tr>
                     </tbody>
                 </table>
             </div>
