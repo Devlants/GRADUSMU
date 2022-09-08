@@ -169,8 +169,8 @@ function duplicated_check() {
       headers: { "X-CSRFToken": "{{ csrf_token }}" },
 
       success: function (result) {
-          var idChk = result.result
-          alert(idChk )
+          var idChk = result['is_duplacated']
+          alert(idChk)
           
             if (idChk == false) {
               alert("아이디 중복 알림");
