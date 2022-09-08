@@ -16,13 +16,23 @@
     <!-- jquery -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
-    <link rel="stylesheet" href="{% static 'css/addSubject.css' %}">
+    <link rel="stylesheet" href="../css/addSubject.css">
+    <script src="{% static 'js/addSubject.js' %}"></script>
     <title>Gradusmu</title>
 
 </head>
 
 <body>
-    {% include "header.html" %}
+    <img id="devlant_img" src="{% static 'img/devlant.png' %}" alt="">
+    <header class="container">
+        <div id="logo_div">
+            <a href="">
+                <img id="login_logo_img" src="{% static 'img/gradusmu.png' %}" alt="">
+            </a>
+        </div>
+        <button id="addSubject_logout_btn">Logout</button>
+
+    </header>
     <main class="container">
         <div id="addSubject_user_name" class="container">
             {{user.name}}({{user.dept}})
@@ -30,13 +40,10 @@
 
         <div id="select_div" class="container">
             <select id='select-parent' class="drop_box" required name='parent_category'>
-                <option value="전공" selected="'selected">전공</option>
-                <option value="교양">교양</option>
-                <option value="일선">일선</option>
+                <option value="" disabled selected style="display:none">상위항목</option>
             </select>
-            <select id='select-child' class="drop_box" required name='child_category'>
-                <option value="전심" selected="'selected">전심</option>
-                <option value="전선">전선</option>
+            <select id='select-child'class="drop_box" required name='child_category'>
+                <option value="" disabled selected style="display:none">하위항목</option>
             </select>
             <select id='third-drop' class="drop_box" required name='third-drop' disabled>
                 <option value="" disabled selected style="display:none"></option>
@@ -62,8 +69,7 @@
     <footer>
         <button id="return_btn" onclick="location.href = '{% url 'home' %}'">돌아가기</button>
     </footer>
-    <script type="text/javascript">var user_id = "{{user.id}}"</script>
-    <script src="{% static 'js/addSubject.js' %}"></script>
+    
     <!-- jquery -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 </body>
