@@ -194,8 +194,11 @@ def score_detail(request):
     return render(request,"scoreDetail.html")
 
 #학점 상세 페이지
-def score_graph_detail(request):
-    return render(request,"scoreGraphDetail.html")
+def score_graph_detail(request, title):
+    context = {
+        "title" : title
+    }
+    return render(request,"scoreGraphDetail.html",context)
 
 #과목 추가
 @csrf_exempt

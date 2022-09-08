@@ -25,25 +25,6 @@ class GraduationCiteria(models.Model):
     # 총 이수
     total = models.IntegerField(null=False)
 
-    def total(self):
-        return self.total
-
-    def deepMajor(self):
-        return self.deepMajor
-
-    def deepChoiceMajor(self):
-        return self.deepChoiceMajor
-
-    def manyMajor1(self):
-        return self.manyMajor1
-
-    def essMajor(self):
-        return self.essMajor
-
-    def subMajor(self):
-        return self.subMajor
-
-
 class subjects(models.Model):
     serialNumber = models.CharField(max_length=100, null=False)  # 학수번호
     semester = models.IntegerField()  # 학기
