@@ -27,7 +27,18 @@
                     <div class="profileNotNameWrap">
                         <div class="profileImg">
                             <img src={{request.user.image.url}} />
-                            ass="profileContent">
+                            <form id="uploadForm" enctype="multipart/form-data">
+                                <input id="profileImgBtn" name="image" type="file" />
+                                <input name="user_id" type="text" value='{{user.id}}'/>
+                            </form>
+                            <button type="button" class="editProfileImgBtn" onclick="editProfileImg();">프로필 사진 편집</button>
+
+                        </div>
+                      
+                        <div class="profileContentWrap">
+                            <button type="button" class="editProfileContentBtn"
+                                onclick="location.href = '{% url 'settings' %}'">수정하기</button>
+                            <div class="profileContent">
                                 <div>입학 : 20{{user.student_num}}</div>
                                 <div>학년 : {{user.grade}}</div>
                                 <div>학부 : {{user.universe}}</div>
@@ -72,7 +83,7 @@
                 </select>
             </div>
             <div class="subjectTable">
-                <table>
+                <table id="subjectTable">
                     <thead>
                         <td>과목명</td>
                         <td>학수번호(분반)</td>

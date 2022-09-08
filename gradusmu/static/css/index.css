@@ -210,11 +210,14 @@ html, body{
     margin-top: 15px;
     font-size: 1.2rem;
     width: 100%;
+    display: flex;
 }
 
 .subjectTable table{
     text-align: center;
     width: 100%;
+    display: flex;
+    flex-direction: column;
     border-collapse: collapse;
 }
 
@@ -223,10 +226,11 @@ html, body{
     color: white;
     text-align: center;
     margin-left: 0;
+    width: 100%;
 }
 
 .subjectTable td{
-    padding: 5px 50px;
+    padding: 5px 60px;
 }
 
 .tbodyTr{
