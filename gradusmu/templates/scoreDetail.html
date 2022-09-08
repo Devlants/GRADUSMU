@@ -9,6 +9,18 @@
     <link rel="stylesheet" href="{% static 'css/scoreDetail.css' %}">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://code.jquery.com/jquery-latest.js"></script>
+    <script type="text/javascript" src="{% static 'js/scoreDetail.js' %}"></script>
+    <script type = "text/javascript">
+        var user_id = "{{user.id}}";
+        var user_total_point = '{{user.total_points}}';
+        var user_total_major_point = '{{user.total_major}}';
+        var user_total_choiceMajor_point = '{{user.total_major_choice}}';
+        var user_total_deepMajor_point = '{{user.total_major_deep}}';
+        var user_major_point = '{{user.major_points}}';
+        var user_choice_major_point = '{{user.choice_major_points}}';
+        var user_deep_major_point = '{{user.deep_major_points}}';
+        var user_culture_point = '{{user.culture_points}}';
+    </script>
 </head>
 
 <body>
@@ -25,29 +37,80 @@
                 </div>
                 <h3 id="totalScoreFraction">{{user.total_points}}/130</h3>
             </div>
+
+            <!--심화전공일 때-->
             <div class="majorScoreWrap">
                 <h3>전공</h3>
-                <div class="majorScoreGraphWrap" onclick="location.href='{% url 'scoreGraphDetail' %}'">
+                <div class="majorScoreGraphWrap">
                     <div class="majorScoreGraph"></div>
                 </div>
-                <h3 id="majorScoreFraction">{{user.major_points}}/67<br>(전선{{user.choice_major_points}}+전심{{user.deep_major_points}})</h3>
+                <h3 id="majorScoreFraction">{{user.major_points}}/{{user.total_major}}<br>(전선{{user.choice_major_points}}+전심{{user.deep_major_points}})</h3>
             </div>
 
-            <div class="majorScoreWrap">
-                <h3>전공선택</h3>
-                <div class="majorScoreGraphWrap" onclick="location.href='{% url 'scoreGraphDetail' %}'">
-                    <div class="majorScoreGraph"></div>
+            <div class="selectMajorScoreWrap">
+                <h3 style="font-weight: 300;">*전공선택</h3>
+                <div class="majorSelectScoreGraphWrap" onclick="location.href='{% url 'scoreGraphDetail' %}'">
+                    <div class="majorSelectScoreGraph"></div>
                 </div>
-                <h3 id="majorScoreFraction">{{user.major_points}}/67<br>(전선{{user.choice_major_points}}+전심{{user.deep_major_points}})</h3>
+                <h3 id="majorScoreFraction">{{user.choice_major_points}}/{{user.total_major_choice}}</h3>
             </div>
 
             <div class="deepMajorScoreWrap">
-                <h3>*전공심화</h3>
+                <h3 style="font-weight: 300;">*전공심화</h3>
+                <div class="deepMajorScoreGraphWrap" onclick="location.href='{% url 'scoreGraphDetail' %}'">
+                    <div class="deepMajorScoreGraph"></div>
+                </div>
+                <h3 id="deepMajorScoreFraction">{{user.deep_major_points}}/{{user.total_major_deep}}</h3>
+            </div>
+
+            <div class="majorScoreWrap">
+                <h3>전공</h3>
+                <div class="majorScoreGraphWrap">
+                    <div class="majorScoreGraph"></div>
+                </div>
+                <h3 id="majorScoreFraction">{{user.major_points}}/{{user.total_major}}<br>(전선{{user.choice_major_points}}+전심{{user.deep_major_points}})</h3>
+            </div>
+
+            <div class="selectMajorScoreWrap">
+                <h3 style="font-weight: 300;">*전공1</h3>
+                <div class="majorSelectScoreGraphWrap" onclick="location.href='{% url 'scoreGraphDetail' %}'">
+                    <div class="majorSelectScoreGraph"></div>
+                </div>
+                <h3 id="majorScoreFraction">{{user.choice_major_points}}/45</h3>
+            </div>
+
+            <div class="deepMajorScoreWrap">
+                <h3 style="font-weight: 300;">*전공2</h3>
                 <div class="deepMajorScoreGraphWrap" onclick="location.href='{% url 'scoreGraphDetail' %}'">
                     <div class="deepMajorScoreGraph"></div>
                 </div>
                 <h3 id="deepMajorScoreFraction">{{user.deep_major_points}}/15</h3>
             </div>
+
+            <div class="majorScoreWrap">
+                <h3>전공</h3>
+                <div class="majorScoreGraphWrap">
+                    <div class="majorScoreGraph"></div>
+                </div>
+                <h3 id="majorScoreFraction">{{user.major_points}}/{{user.total_major}}<br>(전선{{user.choice_major_points}}+전심{{user.deep_major_points}})</h3>
+            </div>
+
+            <div class="selectMajorScoreWrap">
+                <h3 style="font-weight: 300;">*주전공</h3>
+                <div class="majorSelectScoreGraphWrap" onclick="location.href='{% url 'scoreGraphDetail' %}'">
+                    <div class="majorSelectScoreGraph"></div>
+                </div>
+                <h3 id="majorScoreFraction">{{user.choice_major_points}}/45</h3>
+            </div>
+
+            <div class="deepMajorScoreWrap">
+                <h3 style="font-weight: 300;">*부전공</h3>
+                <div class="deepMajorScoreGraphWrap" onclick="location.href='{% url 'scoreGraphDetail' %}'">
+                    <div class="deepMajorScoreGraph"></div>
+                </div>
+                <h3 id="deepMajorScoreFraction">{{user.deep_major_points}}/15</h3>
+            </div>
+
             <div class="cultureScoreWrap">
                 <h3>교양</h3>
                 <div class="cultureScoreGraphWrap" onclick="location.href='{% url 'scoreGraphDetail' %}'">
@@ -57,25 +120,76 @@
             </div>
 
             <div class="basicCultureScoreWrap">
-                <h3>*기초교양</h3>
-                <div class="basicCultureScoreGraphWrap" onclick="location.href='{% url 'scoreGraphDetail' %}'">
-                    <div class="basicCultureScoreGraph"></div>
+                <h3 style="font-weight: 300;">*기초교양</h3>
+                <div class="selectBasicType" style="display: flex; flex-direction: row; align-items: center;">
+                    <label><input type="checkbox" name="subject" value=""> 사고와 표현</label>
+                    <div style="background-color: silver; padding: 5px; border-radius: 10px;">
+                        <label><input type="checkbox" name="subject" value=""> 영어</label>
+                        <label><input type="checkbox" name="subject" value=""> 수학</label>
+                    </div>
+                    <label style="margin-left: 10px;"><input type="checkbox" name="subject" value=""> 컴퓨팅사고</label>
+                    <label><input type="checkbox" name="subject" value=""> 알고리즘</label>
                 </div>
-                <h3 id="basicCultureScoreFraction">8/9(3/4)</h3>
             </div>
             <div class="balanceCultureScoreWrap">
-                <h3>*균형교양</h3>
-                <div class="balanceCultureScoreGraphWrap">
-                    <div class="balanceCultureScoreGraph"></div>
+                <h3 style="font-weight: 300;">*핵심 교양</h3>
+                <div class="selectBalanceType" style="display: flex; flex-direction: row; align-items: center;">
+                    <div style="background-color: silver; padding: 5px; border-radius: 10px;">
+                        <label><input type="checkbox" name="subject" value=""> 창의적문제해결</label>
+                        <label><input type="checkbox" name="subject" value=""> 융복합</label>
+                    </div>
+                    <div style="background-color: silver; padding: 5px; border-radius: 10px; margin-left: 20px;">
+                        <label><input type="checkbox" name="subject" value=""> 다양성존중</label>
+                        <label><input type="checkbox" name="subject" value=""> 윤리실천</label>
+                    </div>
                 </div>
-                <h3 id="balanceCultureScoreFraction">{{core.sort}}</h3>
             </div>
             <div class="essentialCultureScoreWrap">
-                <h3>*필수교양</h3>
-                <div class="essentialCultureScoreGraphWrap">
-                    <div class="essentialCultureScoreGraph"></div>
+                <div style="display: flex; flex-direction: row; align-items: center;">
+                    <h3 style="font-weight: 300;">*균형교양</h3>
+                    <div class="selectEssentialType">
+                        <label><input type="checkbox" name="subject" value="인문" onclick="checkOnlyOne(this);" disabled> 인문</label>
+                        <label><input type="checkbox" name="subject" value="사회" onclick="checkOnlyOne(this);" disabled> 사회</label>
+                        <label><input type="checkbox" name="subject" value="자연" onclick="checkOnlyOne(this);" disabled> 자연</label>
+                        <label><input type="checkbox" name="subject" value="공학" onclick="checkOnlyOne(this);" disabled> 공학</label>
+                        <label><input type="checkbox" name="subject" value="예술" onclick="checkOnlyOne(this);" disabled> 예술</label>
+                    </div>
                 </div>
-                <h3 id="essentialCultureScoreFraction">{{user.essential_culture_points}}(융복합+다양성)/2</h3>
+            </div>
+            <div class="showCultureTable">
+                <div class="selectCultureType">
+                    <select id="selectCultureType">
+                        <option value="인문">인문</option>
+                        <option value="사회">사회</option>
+                        <option value="자연">자연</option>
+                        <option value="공학">공학</option>
+                        <option value="예술">예술</option>
+                    </select>
+                </div>
+                <div class="selectCultureTable">
+                    <div class="subjectTable">
+                        <table id="subjectTable">
+                            <thead>
+                                <td>과목명</td>
+                                <td>학수번호(분반)</td>
+                                <td>담당교수</td>
+                                <td>취득학점</td>
+                                <td>수강여부</td>
+                                <td>상세정보</td>
+                            </thead>
+                            <tbody id="subjectTableTbody">
+                                <!-- <tr class="tbodyTr">
+                                    <td>소프트웨어공학</td>
+                                    <td>HAEA0009-1</td>
+                                    <td>함혁수</td>
+                                    <td>3(설계)</td>
+                                    <td><button type="button" class="deleteSubjectBtn">삭제하기</button></td>
+                                    <td><button type="button" class="detailSubjectBtn">상세정보</button></td>
+                                    </tr> -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
             </div>
         </div>
         <div class="informText">
