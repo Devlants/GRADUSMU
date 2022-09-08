@@ -20,21 +20,20 @@ function noneModal($modalwrap) {
     $modalwrap.css('display', 'none');
 }
 
-function setModal() {
+function setModal($userid,$dept_tye,$subjectid) {
     $.ajax({
         //요청이 전송될 URL 주소
         url: '/datas/subject_detail/',
         type: "POST",
         dataType: "JSON",
         data: JSON.stringify({
-            "user_id" : "3",
-            "dept_type" : "전심",
-            "subject_id" : "1"
+            "user_id" : $userid,
+            "dept_type" : $dept_tye,
+            "subject_id" : $subjectid
         }),
         headers: { "X-CSRFToken": "{{ csrf_token }}" },
 
         success: function (data) {
-            console.log("2");
             var $name = data.name;
             var $serialnum = data.serial_num;
             var $type = data.type;
