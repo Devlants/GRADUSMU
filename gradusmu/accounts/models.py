@@ -1,7 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser
 from django.db.models import Q
-from datas.models import BalancedCulture
+from datas.models import BalancedCulture,GraduationCiteria
 class User(AbstractUser):
     #이름
     name = models.CharField(max_length=20, unique=False, verbose_name='사용자 이름', null=False)
@@ -28,10 +28,16 @@ class User(AbstractUser):
         return sum(self.sign_up.filter(Q(type = "1전심")|Q(type = "1전선")).values_list('point',flat = True))
     
     def choice_major_points(self):
-        return sum(self.sign_up.filter(Q(type = "1전선")).values_list('point',flat = True))
+        if self.dept_type == "전공심화":
+            return sum(self.sign_up.filter(Q(type = "1전선")).values_list('point',flat = True))
+        else :
+            return sum(self.sign_up.filter(Q(dept = self.dept, type = "1전심")|Q(dept = self.dept, type = "1전선")).values_list('point',flat = True))
     
     def deep_major_points(self):
-        return sum(self.sign_up.filter(Q(type = "1전심")).values_list('point',flat = True))
+        if self.dept_type == "전공심화":
+            return sum(self.sign_up.filter(Q(type = "1전심")).values_list('point',flat = True))
+        else :
+            return sum(self.sign_up.filter(Q(dept = self.second_dept, type = "1전심")|Q(dept = self.second_dept, type = "1전선")).values_list('point',flat = True))
     
     def culture_points(self):
         return sum(self.sign_up.filter(Q(type = "교선")|Q(type = "교필")).values_list('point',flat = True))
@@ -86,3 +92,35 @@ class User(AbstractUser):
         result = sum(datas["예술"].filter(id__in = signed).values_list('point',flat=True))
 
         return result
+
+    def total_major(self):
+        if self.dept_type == "전공심화":
+            return GraduationCiteria.objects.get(major = self.dept).deepMajor + GraduationCiteria.objects.get(major = self.dept).deepChoiceMajor
+        elif self.dept_type == "복수전공":
+            return GraduationCiteria.objects.get(major = self.dept).manyMajor1 + GraduationCiteria.objects.get(major = self.second_dept).manyMajor1
+        else:
+            return GraduationCiteria.objects.get(major = self.dept).essMajor + GraduationCiteria.objects.get(major = self.second_dept).subMajor
+
+    def total_major_choice(self):
+        if self.dept_type == "전공심화":
+            return GraduationCiteria.objects.get(major = self.dept).deepChoiceMajor
+        elif self.dept_type == "복수전공":
+            return GraduationCiteria.objects.get(major = self.dept).manyMajor1
+        else:
+            return GraduationCiteria.objects.get(major = self.dept).essMajor
+    def total_major_deep(self):
+        if self.dept_type == "전공심화":
+            return GraduationCiteria.objects.get(major = self.dept).deepMajor
+        elif self.dept_type == "복수전공":
+            return GraduationCiteria.objects.get(major = self.second_dept).manyMajor1
+        else:
+            return GraduationCiteria.objects.get(major = self.second_dept).subMajor
+
+    def total_culture(self):
+        return GraduationCiteria.objects.get(major = self.dept).essentialLiberal+ GraduationCiteria.objects.get(major = self.dept).choiceLiberal
+    
+    def total_culture_essential(self):
+        return GraduationCiteria.objects.get(major = self.dept).essentialLibaral
+    
+    def total_cultuer_choice(self):
+        return GraduationCiteria.objects.get(major = self.second_dept).choiceLiberal
