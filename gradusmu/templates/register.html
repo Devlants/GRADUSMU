@@ -9,7 +9,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet">
     <script src="https://kit.fontawesome.com/53a8c415f1.js" crossorigin="anonymous"></script>
     <link href="{% static 'css/register.css' %}" rel="stylesheet" />
-    <script src="https://code.jquery.com/jquery-3.6.0.slim.js" integrity="sha256-HwWONEZrpuoh951cQD1ov2HUK5zA5DwJ1DNUXaM6FsY=" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
 </head>
 
     
@@ -80,7 +80,7 @@
                             <div id="UserIdError" class="error"></div>
 
                             <div class="UserIdCheck">
-                                <button id="UserIdCheckButton" onclick="UserIdCheckCheck()">중복확인</button>
+                                <button type="button" id="UserIdCheckButton" onclick="duplicated_check()">중복확인</button>
                             </div>
                         </div>
 

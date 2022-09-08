@@ -158,32 +158,41 @@ function signUpCheck() {
     }
   }
 
-function duplicated_check() {
-  $.ajax({
-      url: 'accounts/duplicated_check/',
-      type: "POST",
-      dataType: "JSON",
-      data: JSON.stringify({
-        "id" : "jomulagy988@gmail.com"
-      }),
-      headers: { "X-CSRFToken": "{{ csrf_token }}" },
+	function duplicated_check(){
+      var email = $('#UserId').val()
+      if(email == ''){
+        alert('아이디를 입력해주세요.')
+        return;
+      }
 
-      success: function (result) {
-          var idChk = result['is_duplacated']
-          alert(idChk)
-          
-            if (idChk == false) {
-              alert("아이디 중복 알림");
-            }
-      },
+			$.ajax({
+        url: '/accounts/duplicated_check/',
+        type: "POST",
+        dataType: "JSON",
+        data: JSON.stringify({
+          "id" : email
+        }),
+        headers: { "X-CSRFToken": "{{ csrf_token }}" },
 
-      error: function (xhr, textStatus, thrownError) {
+				success: function(result){
+          console.log(result.is_duplicated);
+					if(result.is_duplicated == true){
+						alert("중복되는 이메일 입니다!");
+						$('#UserId').val('').focus();
+						return;
+					} else {
+            alert("사용 가능한 이메일 입니다!");
+						return;
+					}
+				},
+
+        error: function (xhr, textStatus, thrownError) {
           alert(
               "Could not send URL to Django. Error: " +
               xhr.status +
-              ": " +
+              ": " +
               xhr.responseText
           );
-      },
-  });
-}
+				},
+			})
+		}
