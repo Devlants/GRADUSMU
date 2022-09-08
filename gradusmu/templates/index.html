@@ -27,7 +27,14 @@
                     <div class="profileNotNameWrap">
                         <div class="profileImg">
                             <img src={{request.user.image.url}} />
+                            <form id="uploadForm" enctype="multipart/form-data">
+                                <input id="profileImgBtn" name="image" type="file" />
+                                <input name="user_id" type="text" value='{{user.id}}'/>
+                            </form>
+                            <button type="button" class="editProfileImgBtn" onclick="editProfileImg();">프로필 사진 편집</button>
+
                         </div>
+                      
                         <div class="profileContentWrap">
                             <button type="button" class="editProfileContentBtn"
                                 onclick="location.href = '{% url 'settings' %}'">수정하기</button>
