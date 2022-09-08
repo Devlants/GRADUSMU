@@ -1,32 +1,19 @@
 {% load static %}
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
     <link rel="shortcut icon" href="#">
-
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@700&display=swap" rel="stylesheet">
-
     <link rel="stylesheet" href="{% static 'css/login.css' %}">
     <title>Gradusmu</title>
-
 </head>
 
 <body>
-    <img id="devlant_img" src="{% static 'img/devlant.png' %}" alt="">
-    <header class="container">
-        <a href="">
-            <img id="login_logo_img" src="{% static 'img/gradusmu.png' %}" alt="">
-        </a>
-
-    </header>
-    
     <main class="container">
         <form class="user" method="post" action="{% url 'login' %}">
             {% csrf_token %}
@@ -52,9 +39,7 @@
             <a href="" class="footer_btn">비밀번호 찾기</a>
         </div>
     </footer>
-
     <!-- jquery -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 </body>
-
 </html>
