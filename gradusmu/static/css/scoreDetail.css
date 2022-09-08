@@ -68,25 +68,48 @@ html, body{
     color: #801CAF;
 }
 
-.totalScoreWrap, .majorScoreWrap, .deepMajorScoreWrap, .cultureScoreWrap, .basicCultureScoreWrap, .basicCultureScoreWrap, .balanceCultureScoreWrap, .essentialCultureScoreWrap, .bsmScoreWrap, .designScoreWrap, .majorBsmScoreWrap{
+.totalScoreWrap, .majorScoreWrap, .selectMajorScoreWrap, .deepMajorScoreWrap, .cultureScoreWrap, .basicCultureScoreWrap, .bsmScoreWrap, .designScoreWrap, .majorBsmScoreWrap{
     display: flex;
     flex-direction: row;
     width: 100%;
     height: 65px;
 }
 
+.basicCultureScoreWrap{
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    height: 50px;
+}
+
+.balanceCultureScoreWrap{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    width: 100%;
+    height: 50px;
+}
+
+.essentialCultureScoreWrap{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 65px;
+    margin-top: 10px;
+}
+
 .totalScoreWrap{
     margin-top: 30px;
 }
 
-.totalScoreWrap h3, .majorScoreWrap h3, .deepMajorScoreWrap h3, .cultureScoreWrap h3, .basicCultureScoreWrap h3, .basicCultureScoreWrap h3, .balanceCultureScoreWrap h3, .essentialCultureScoreWrap h3, .bsmScoreWrap h3, .designScoreWrap h3, .majorBsmScoreWrap h3{
+.totalScoreWrap h3, .majorScoreWrap h3, .selectMajorScoreWrap h3, .deepMajorScoreWrap h3, .cultureScoreWrap h3, .basicCultureScoreWrap h3, .basicCultureScoreWrap h3, .balanceCultureScoreWrap h3, .essentialCultureScoreWrap h3, .bsmScoreWrap h3, .designScoreWrap h3, .majorBsmScoreWrap h3{
     font-size: 1.4rem;
     margin: auto 0;
     text-align: left;
     width: 10%;
 }
 
-.totalScoreGraphWrap, .majorScoreGraphWrap, .deepMajorScoreGraphWrap, .cultureScoreGraphWrap, .basicCultureScoreGraphWrap, .balanceCultureScoreGraphWrap, .essentialCultureScoreGraphWrap, .bsmScoreGraphWrap, .designScoreGraphWrap, .majorBsmScoreGraphWrap{
+.totalScoreGraphWrap, .majorScoreGraphWrap, .majorSelectScoreGraphWrap, .deepMajorScoreGraphWrap, .cultureScoreGraphWrap, .basicCultureScoreGraphWrap, .balanceCultureScoreGraphWrap, .bsmScoreGraphWrap, .designScoreGraphWrap, .majorBsmScoreGraphWrap{
     margin-left: 100px;
     display: flex;
     align-items: center;
@@ -99,11 +122,27 @@ html, body{
     border-radius: 20px;
 }
 
-.totalScoreGraphWrap, .majorScoreGraphWrap, .deepMajorScoreGraphWrap, .bsmScoreGraphWrap, .cultureScoreGraphWrap, .basicCultureScoreGraphWrap, .designScoreGraphWrap, .majorBsmScoreGraphWrap{
+.essentialCultureScoreGraphWrap{
+    margin-left: 170px;
+    display: flex;
+    align-items: center;
+    width: 79%;
+    height: 35px;
+    margin: auto 0 auto 20px;
+    background-color: #D9D9D9;
+    font-weight: 600;
+    font-size: 0.8rem;
+    border-radius: 20px;
+}
+
+.totalScoreGraphWrap, .majorScoreGraphWrap, .majorSelectScoreGraphWrap, .deepMajorScoreGraphWrap, .bsmScoreGraphWrap, .cultureScoreGraphWrap, .basicCultureScoreGraphWrap, .designScoreGraphWrap, .majorBsmScoreGraphWrap{
     cursor: pointer;
 } 
 
-.totalScoreGraph, .majorScoreGraph, .deepMajorScoreGraph, .cultureScoreGraph, .basicCultureScoreGraph, .balanceCultureScoreGraph, .essentialCultureScoreGraph, .bsmScoreGraph, .designScoreGraph, .majorBsmScoreGraph{
+.basicCultureScoreWrap input {
+    font-size: 1rem;
+}
+.totalScoreGraph, .majorScoreGraph, .majorSelectScoreGraph, .deepMajorScoreGraph, .cultureScoreGraph, .basicCultureScoreGraph, .balanceCultureScoreGraph, .essentialCultureScoreGraph, .bsmScoreGraph, .designScoreGraph, .majorBsmScoreGraph{
     border-radius: 20px;
     height: 35px;
     padding: 0;
@@ -117,38 +156,64 @@ html, body{
 }
 
 .totalScoreGraph{
-    width: 72%;  
     background-color: #FF0000;
 }
 
 .majorScoreGraph{
-    width: 72%;  
     background-color: #15F97E;
 }
 
+.majorSelectScoreGraph{
+    background-color: #2BCE1C;
+}
+
 .deepMajorScoreGraph{
-    width: 72%;  
     background-color: #2BCE1C;
 }
 
 .cultureScoreGraph{
-    width: 72%;  
     background-color: #C60DF4;
 }
 
 .basicCultureScoreGraph{
-    width: 72%;  
     background-color: #801CAF;
 }
 
 .balanceCultureScoreGraph{
-    width: 72%;  
     background-color: #5C2874;
 }
 
 .essentialCultureScoreGraph{
-    width: 72%;  
     background-color: #9667AC;
+}
+
+.selectBasicType{
+    margin-left: 30px;
+    font-size: 1.2rem;
+}
+
+.selectBasicType label{
+    margin-right: 20px;
+}
+
+.selectEssentialType{
+    margin-left: 30px;
+    font-size: 1.2rem;
+    height: 30px;
+}
+
+.selectEssentialType label{
+    margin-right: 20px;
+}
+
+.selectBalanceType{
+    margin-left: 30px;
+    font-size: 1.2rem;
+    height: 30px;
+}
+
+.selectBalanceType label{
+    margin-right: 20px;
 }
 
 .bsmScoreGraph{
@@ -182,6 +247,68 @@ html, body{
     color: red;
     line-height: 25px;
     text-align: end;
+}
+
+.showCultureTable{
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+}
+
+.selectCultureType{
+    width: 12%;
+}
+
+.selectCultureTable{
+    width: 83%;
+}
+
+.subjectTable{
+    font-size: 1.2rem;
+    width: 100%;
+    display: flex;
+}
+
+.subjectTable table{
+    text-align: center;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    border-collapse: collapse;
+}
+
+.subjectTable thead{
+    background-color: #5B4FE9;
+    color: white;
+    text-align: center;
+    height: 40px;
+}
+
+.subjectTable td{
+    padding: 7px 50px;
+}
+
+.tbodyTr{
+    width: 100%;
+    background-color: white;
+    border: 1px solid black;
+}
+
+#selectCultureType{
+    width: 100px;
+    height: 30px;
+    font-size: 1.2rem;
+}
+
+.detailSubjectBtn{
+    width: 70px;
+    height: 25px;
+    background-color: #000000;
+    border: 0;
+    border-radius: 10px;
+    color: white;
+    font-size: 0.9rem;
+    cursor: pointer;
 }
 
 @media(max-width: 1370px){
