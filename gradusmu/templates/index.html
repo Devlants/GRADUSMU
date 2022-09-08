@@ -27,7 +27,11 @@
                     <div class="profileNotNameWrap">
                         <div class="profileImg">
                             <img src={{request.user.image.url}} />
-                            ass="profileContent">
+                        </div>
+                        <div class="profileContentWrap">
+                            <button type="button" class="editProfileContentBtn"
+                                onclick="location.href = '{% url 'settings' %}'">수정하기</button>
+                            <div class="profileContent">
                                 <div>입학 : 20{{user.student_num}}</div>
                                 <div>학년 : {{user.grade}}</div>
                                 <div>학부 : {{user.universe}}</div>
