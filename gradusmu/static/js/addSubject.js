@@ -1,92 +1,106 @@
-var obj = {
-    전공: ['전심', '전선'],
-    교양: ['균교', '교선', '교필'],
-    일선: [1, 2, 3],
-    교직: [10, 11, 12]
-}
+var grade_year = 19;    // 입학년도
+var grade = [[grade_year, 1], [grade_year, 2], [grade_year + 1, 1], [grade_year + 1, 2], [grade_year + 2, 1], [grade_year + 2, 2], [grade_year + 3, 1], [grade_year + 3, 2]];
 
-var test = {
-    name: '김지훈',
-    department: '컴퓨터과학과',
-    semester: [3, 1]
-}
-
-var grade = [[1, 1], [1, 2], [2, 1], [2, 2], [3, 1], [3, 2], [4, 1], [4, 2]];
-
-var arr = {
-    0: ['소프트웨어공학', 'HAEA0008-1', '한혁수', '3(설계)'],
-    1: ['인공지능', 'HAEA0017-1', '김영준', '취득학점'],
-    2: ['운영체제', 'HAEZ0004', '손성훈', '3'],
-    3: ['컴퓨터네트워크', 'HAEA0001', '신경섭', '3']
-
-}
-var keysets = Object.keys(obj);
 
 $(document).ready(function () {
-    set_user_info();
-    set_dropbox();
-    print_mainarea(arr);
-    setBtn()
+    set_page();
 });
 
-function set_user_info() {
-    var $name = test.name;
-    var $department = test.department;
-    document.getElementById('addSubject_user_name').append($name + '(' + $department + ')');
+function set_page() {
+    init_mainarea(user_id,"전심", "22년도 2학기");
+    set_dropbox()
+}
+
+function init_mainarea($userid,$dept_tye,$year){
+    $.ajax({
+        //요청이 전송될 URL 주소
+        url: '/datas/unsigned_search/',
+        type: "POST",
+        dataType: "JSON",
+        data: JSON.stringify({
+            "user_id": $userid,
+            "dept_type": $dept_tye,
+            "year": $year
+        }),
+        headers: { "X-CSRFToken": "{{ csrf_token }}" },
+
+        success: function (data) {
+            var vlist = Object.values(data);
+            set_mainarea(vlist);
+            setBtn();
+        },
+        error: function (xhr, textStatus, thrownError) {
+            alert(
+                "Could not send URL to Django. Error: " +
+                xhr.status +
+                ": " +
+                xhr.responseText
+            );
+        },
+    });
 }
 
 function set_dropbox() {
     var select_parent = $('#select-parent');
-    keysets.forEach(function (item) {
-        var option_parent = document.createElement('option');
-        $(option_parent).val(item);
-        $(option_parent).text(item);
-        select_parent.append(option_parent);
-    });
+    var select_child = $('#select-child');
+    var select_thrid = $('#third-drop');
 
     $('#select-parent').change(function () {
+        if (this.value == '전공') {
+            var option_child_arr = ['전심', '전선'];
+        }
+        else if (this.value == '교양') {
+            var option_child_arr = ['균교', '교필', '교선'];
+        }
+        else {
+            var option_child_arr = ['1', '2', '3'];
+        }
+
         $('#select-child option').remove()
-
-        var select_child = $('#select-child');
-        var key = $(this).val()
-        obj[key].forEach(function (item) {
+        option_child_arr.forEach(function (i) {
             var option_child = document.createElement('option');
-            $(option_child).val(item);
-            $(option_child).text(item);
-
+            $(option_child).val(i);
+            $(option_child).text(i);
             select_child.append(option_child);
         });
-
-        $('#select-child').click(function () {
-            $('#third-drop').attr("disabled", false);
-            var select_thrid = $('#third-drop');
-            grade.forEach(function (item) {
-                let option_third = document.createElement('option');
-                $(option_third).val(item[0] + '학년 ' + item[1] + '학기');
-                $(option_third).text(item[0] + '학년 ' + item[1] + '학기');
-                select_thrid.append(option_third);
-            });
-
-        });
+        $("#select-child option:eq(0)").prop("selected", true);
+        $('#third-drop').attr("disabled", true);
     });
 
+    $('#select-child').change(function () {
+        $('#third-drop').attr("disabled", false);
+        $('#third-drop option').remove()
+        grade.forEach(function (item) {
+            let option_third = document.createElement('option');
+            $(option_third).val(item[0] + '년도 ' + item[1] + '학기');
+            $(option_third).text(item[0] + '년도 ' + item[1] + '학기');
+            select_thrid.append(option_third);
+        });
+        $("#third-drop option:eq(0)").prop("selected", true);
+    });
 
+    $('#third-drop').change(function () {
+        var dept = select_child.val();
+        var year = $(this).val();
+        console.log(user_id,dept,year);
+        print_mainarea(user_id, dept, year);
+    })
 }
 
 
-function print_mainarea($arr) {
+function set_mainarea(vlist) {
     var container = $('#main_area');
-    for (var i = 0; i < Object.keys($arr).length; i++) {
+    vlist.forEach(function (item) {
+        var i = Object.keys(item);
         var row = document.createElement('div');
-        $(row).addClass('row');
+        $(row).addClass('row ' + item[i[0]]);
         container.append(row);
         for (var j = 0; j < 4; j++) {
             var col = document.createElement('div');
             $(col).addClass('col');
-            col.append($arr[i][j]);
+            col.append(item[i[j + 1]]);
             row.append(col);
         }
-
         var col = document.createElement('div');
         $(col).addClass('col');
         var btn = document.createElement('button');
@@ -104,8 +118,38 @@ function print_mainarea($arr) {
         $(btn).css('background', '#A51B86')
         col.append(btn);
         row.append(col);
+    });
+}
 
-    }
+function print_mainarea($userid, $dept_tye, $year) {
+    $.ajax({
+        //요청이 전송될 URL 주소
+        url: '/datas/unsigned_search/',
+        type: "POST",
+        dataType: "JSON",
+        data: JSON.stringify({
+            "user_id": $userid,
+            "dept_type": $dept_tye,
+            "year": $year
+        }),
+        headers: { "X-CSRFToken": "{{ csrf_token }}" },
+
+        success: function (data) {
+            var vlist = Object.values(data);
+            console.log(1);
+            $('#main_area').empty();
+            set_mainarea(vlist);
+            setBtn();
+        },
+        error: function (xhr, textStatus, thrownError) {
+            alert(
+                "Could not send URL to Django. Error: " +
+                xhr.status +
+                ": " +
+                xhr.responseText
+            );
+        },
+    });
 }
 
 function setBtn() {
@@ -114,10 +158,34 @@ function setBtn() {
         console.log('detail');
     });
     $('.addbtn').click(function () {
-        console.log('add');
-        location.reload();
+        var subject_id = $(this).parent().parent().attr('class').substr(4);
+        addSubject(user_id, subject_id);
     });
-    $('#return_btn').click(function () {
-        console.log('d');
+}
+
+function addSubject($userid, $subjectid) {
+    $.ajax({
+        //요청이 전송될 URL 주소
+        url: '/datas/add/',
+        type: "POST",
+        dataType: "JSON",
+        data: JSON.stringify({
+            "user_id": $userid,
+            "subject_id": $subjectid
+        }),
+        headers: { "X-CSRFToken": "{{ csrf_token }}" },
+
+        success: function (data) {
+            alert('과목추가성공');
+            $('div').remove('.'+$subjectid);
+        },
+        error: function (xhr, textStatus, thrownError) {
+            alert(
+                "Could not send URL to Django. Error: " +
+                xhr.status +
+                ": " +
+                xhr.responseText
+            );
+        },
     });
 }
