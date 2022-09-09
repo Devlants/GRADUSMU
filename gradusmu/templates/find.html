@@ -1,0 +1,119 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ID/PW 찾기 페이지</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/53a8c415f1.js" crossorigin="anonymous"></script>
+    <link href="{% static 'css/register.css' %}" rel="stylesheet" />
+    <script src="https://code.jquery.com/jquery-3.4.1.js"></script> 
+</head>
+<body>
+    <body>
+        {% include "header.html" %}
+
+        <div class="wrapper">
+            <form id ="ID_find_form" name="ID_find_form">
+                <div class="name"> <p>이름</p>
+                    <input id="name" name="user_name"  type="text" placeholder="이름을 입력해 주세요.">
+                    <div id="nameError" class="error"></div>
+                </div>
+            
+                <div class="classInform">
+                    <div class="grade"> <p>학년</p>
+                        <select id="grade" name="user_grade">
+                            <option selected disabled>선택</option>
+                            <option>1학년</option>
+                            <option>2학년</option>
+                            <option>3학년</option>
+                            <option>4학년</option>
+                        </select>
+                    </div>
+
+                    <div class="classNum"> <p>학번</p>
+                        <input id="classNum" name="user_classNum" type="text" placeholder="예) 20학번 - 20">
+                    </div>
+
+                    <div class="classDepart">
+                        <select id="classDepart" name="user_classDepart" onchange="categoryChange(this)">
+                            <option selected disabled> 대학 선택 </option>
+                            <option value = "a">인문사회과학대학</option>
+                            <option value = "b">사범대학</option>
+                            <option value = "c">경영경제대학</option>
+                            <option value = "d">융합공과대학</option>
+                            <option value = "e">문화예술대학</option>
+                        </select>
+                    </div>
+
+                    <div class="classMajor">
+                        <select id="classMajor" name="user_classMajor">
+                            <option selected disabled> 학부/학과 선택</option>
+                        </select>
+                    </div>
+                    <div id="classInformError" class="error"></div>                    
+            </form>
+
+            <div class="ID_Submit">
+                <h2>ID는 {id} 입니다.</h2>
+                <button id="ID_Submit" type="button" onclick="signUpCheck()">ID 찾기</button>
+            </div>
+            
+        <div class="line"></div>
+
+            <form id ="PW_find_form" name="PW_find_form">
+                    <div class="UserId"> <p>아이디</p>
+                        <input id="UserId" name="user_id" type="text" placeholder="Id를 입력해 주세요.">
+                        
+                        <div class="UserIdCheck">
+                            <button id="CheckButton" type="button" onclick="UserIdCheckCheck()">확인</button>
+                        </div>
+                        <div id="UserIdError" class="error"></div>
+                    </div>
+                    
+                    <div class="email"> <p>Email</p>
+                        <input id="email" name="user_email" type="text" placeholder="이메일을 입력해 주세요.">
+                        <div id="emailError" class="error"></div>
+
+                        <div class="PinNum">
+                            <button id="CheckButton" type="button" onclick="UserIdCheckCheck()">인증번호 전송</button>
+                        </div>
+
+                        <div class="reSubmit">
+                            <button id="CheckButton"  type="button" onclick="UserIdCheckCheck()">재전송</button>
+                        </div>
+                    </div>
+
+                <div class="checkNum"> <p>인증번호</p>
+                    <input id="checkNum" name="checkNum" type="text" placeholder="인증번호를 입력해 주세요.">
+                    <div id="checkNumError" class="error"></div>
+
+                    <div class="checkNumButton">
+                        <button id="CheckButton"  type="button" onclick="UserIdCheckCheck()">확인</button>
+                    </div>
+                </div>  
+            </form>
+
+            <form id ="Modify_find_form" name="password">
+                <div class="password"> * 새 비밀번호 <br>
+                    <input id="password" name="password" type="password" placeholder="비밀번호를 입력해 주세요.">
+                    <div id="passwordError" class="error"></div>
+
+                    <div class="passwordCheck">
+                        <input id="passwordCheck" type="password" placeholder="비밀번호를 다시 입력해 주세요.">
+                        <div id="passwordCheckError" class="error"></div>
+                    </div>
+                </div>
+            </form>
+    
+            <div class="PW_Submit">         
+                <button id="ID_Submit" onclick="signUpCheck()">비밀번호 찾기</button>
+            </div>
+
+        </div>
+
+    <script src="{% static 'js/find.js' %}"></script>
+</body>
+</html>
