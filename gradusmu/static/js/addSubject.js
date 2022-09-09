@@ -1,6 +1,6 @@
-var grade_year = 19;    // 입학년도
-var grade = [[grade_year, 1], [grade_year, 2], [grade_year + 1, 1], [grade_year + 1, 2], [grade_year + 2, 1], [grade_year + 2, 2], [grade_year + 3, 1], [grade_year + 3, 2]];
-
+let date = new Date();
+let grade_year = date.getFullYear().toString().substring(2);
+var grade = [[grade_year, 2], [grade_year, 1], [grade_year - 1, 2], [grade_year - 1, 1], [grade_year - 2, 2], [grade_year - 2, 1], [grade_year - 3, 2], [grade_year - 3, 1]];
 
 $(document).ready(function () {
     set_page();
@@ -44,16 +44,14 @@ function set_dropbox() {
     var select_parent = $('#select-parent');
     var select_child = $('#select-child');
     var select_thrid = $('#third-drop');
+    $('#third-drop option:eq(0)').text(grade[0][0]+"년도 "+grade[0][1]+"학기");
 
     $('#select-parent').change(function () {
         if (this.value == '전공') {
             var option_child_arr = ['전심', '전선'];
         }
-        else if (this.value == '교양') {
-            var option_child_arr = ['균교', '교필', '교선'];
-        }
         else {
-            var option_child_arr = ['1', '2', '3'];
+            var option_child_arr = ['균교', '교필', '교선'];
         }
 
         $('#select-child option').remove()
@@ -139,7 +137,7 @@ function print_mainarea($userid, $dept_tye, $year) {
             console.log(1);
             $('#main_area').empty();
             set_mainarea(vlist);
-            setBtn();
+            setBtn($dept_tye);
         },
         error: function (xhr, textStatus, thrownError) {
             alert(
@@ -152,10 +150,17 @@ function print_mainarea($userid, $dept_tye, $year) {
     });
 }
 
-function setBtn() {
+function setBtn($dept_tye) {
 
     $('.detailbtn').click(function () {
+        var $subject_id = $(this).parent().parent().attr('class').substr(4);
+        setModal(user_id,$dept_tye,$subject_id);
         console.log('detail');
+        showModal($('.modal-wrap'));
+    });
+
+    $('.close-btn').click(function () {
+        noneModal($('.modal-wrap'));
     });
     $('.addbtn').click(function () {
         var subject_id = $(this).parent().parent().attr('class').substr(4);

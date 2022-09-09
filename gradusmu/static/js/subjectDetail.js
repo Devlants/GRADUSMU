@@ -1,22 +1,10 @@
-$(document).ready(function () {
-
-    setModal();
-    $('.detail_btn').click(function () {
-        showModal($('.modal-wrap'));
-    });
-
-    $('.close-btn').click(function () {
-        noneModal($('.modal-wrap'));
-    });
-
-});
-
 
 function showModal($modalwrap) {
     $modalwrap.css('display', 'block');
 }
 
 function noneModal($modalwrap) {
+    $('.modal-title, #class_number, #subject_type, #professor, #grades, #establishment, #lecture_room, #lecture_time, #department, #acceptance').empty();
     $modalwrap.css('display', 'none');
 }
 

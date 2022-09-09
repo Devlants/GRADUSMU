@@ -18,6 +18,7 @@
 </head>
 
 <body>
+    {% include "subjectDetail.html" %}
     <main class="container">
         <div id="addSubject_user_name" class="container">
             {{user.name}}({{user.dept}})
@@ -27,14 +28,13 @@
             <select id='select-parent' class="drop_box" required name='parent_category'>
                 <option value="전공" selected="'selected">전공</option>
                 <option value="교양">교양</option>
-                <option value="일선">일선</option>
             </select>
             <select id='select-child' class="drop_box" required name='child_category'>
                 <option value="전심" selected="'selected">전심</option>
                 <option value="전선">전선</option>
             </select>
             <select id='third-drop' class="drop_box" required name='third-drop' disabled>
-                <option value="" disabled selected style="display:none"></option>
+                <option value="" disabled selected="'selected"></option>
             </select>
         </div>
         <div id="center_area" class="container">
