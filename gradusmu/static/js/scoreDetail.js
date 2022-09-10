@@ -43,6 +43,7 @@ function getEssentialTable(){
         }),
         success: function(data){
             putSubjectTable(data);
+            setBtn(dept_type);
         }, 
         error: function(){
             alert('못 가져오는뎈?');
@@ -69,4 +70,18 @@ function putSubjectTable(data){
             $('#subjectTableTbody').append('<tr class="tbodyTr"> <td>' + data[i]['name'] + '</td><td>' + data[i]['serial_num'] + '</td><td>' + data[i]['prof'] + '</td><td>' + data[i]['point'] + '</td><td>' + data[i]['signed'] + '</td><td><button type="button" class="detailSubjectBtn" id="' + data[i]['id'] + '">상세정보</button></td>');
         }
     }
+}
+
+function setBtn($dept_tye) {
+
+    $('.detailSubjectBtn').click(function () {
+        var $subject_id = $(this).attr('id');
+        setModal(user_id,$dept_tye,$subject_id);
+        console.log($subject_id);
+        showModal($('.modal-wrap'));
+    });
+
+    $('.close-btn').click(function () {
+        noneModal($('.modal-wrap'));
+    });
 }
