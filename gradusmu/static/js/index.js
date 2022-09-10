@@ -53,11 +53,27 @@ function getSubject(){
         }),
         success: function(data){
             putSubjectTable(data);
+            setBtn(dept_type);  //modal setting btn 함수 호출
         }, 
         error: function(){
             alert('못 가져오는뎈?');
         }
     })
+}
+
+// modal setting 하는 btn 
+function setBtn($dept_tye) {
+
+    $('.detailSubjectBtn').click(function () {
+        var $subject_id = $(this).attr('id');
+        setModal(user_id,$dept_tye,$subject_id);
+        console.log($subject_id);
+        showModal($('.modal-wrap'));
+    });
+
+    $('.close-btn').click(function () {
+        noneModal($('.modal-wrap'));
+    });
 }
 
 function deleteSubject(num){
@@ -84,5 +100,23 @@ $(document).ready(function(){
     $('.selecBasicInformation').change(function(){
         getSubject();
     })
+    setPieChart();
 })
 
+function setPieChart(){
+    let major_int = parseInt(major);
+    let culture_int = parseInt(culture);
+    new Chart(document.getElementById("doughnut-chart"), {
+        type: 'doughnut',
+        data: {
+          labels: ["전공", "교양"],
+          datasets: [
+            {
+              label: "Population (millions)",
+              backgroundColor: ["#2BCE1C", "#FFC700"],
+              data: [major_int,culture_int]
+            }
+          ]
+        }
+    });
+}
