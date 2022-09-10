@@ -53,11 +53,27 @@ function getSubject(){
         }),
         success: function(data){
             putSubjectTable(data);
+            setBtn(dept_type);  //modal setting btn 함수 호출
         }, 
         error: function(){
             alert('못 가져오는뎈?');
         }
     })
+}
+
+// modal setting 하는 btn 
+function setBtn($dept_tye) {
+
+    $('.detailSubjectBtn').click(function () {
+        var $subject_id = $(this).attr('id');
+        setModal(user_id,$dept_tye,$subject_id);
+        console.log($subject_id);
+        showModal($('.modal-wrap'));
+    });
+
+    $('.close-btn').click(function () {
+        noneModal($('.modal-wrap'));
+    });
 }
 
 function deleteSubject(num){
