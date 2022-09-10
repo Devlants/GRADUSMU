@@ -17,80 +17,73 @@ var classMajor_e =
 ["식품영양학전공", "의류학전공", "스포츠무용학부", "스포츠건강관리전공", "무용예술전공", "조형예술전공",
 "생활예술전공", "음악학부", "외식경영학연계전공", "미디어아트연계전공", "음악경영학연계전공", "문화예술교육융합전공"];
 
-$(document).ready(function(){
-  $(".plusMajor").css('display',"none");
-
-//비밀번호 수정 모달창 꺼지기 기능 함수입니다.
-const modal = document.getElementById("modal")
-function modalOn() {
-    modal.style.display = "flex"
-}
-
-function isModalOn() {
-    return modal.style.display === "flex"
-  }
-
-function modalOff() {
-    modal.style.display = "none"
-}
-
-const closeBtn = modal.querySelector(".close-area")
-closeBtn.addEventListener("click", function() {
-  modal.style.display = "none"    
-})
-
-
 //대학 선택에 따라 학부/학과 선택 dropbox의 값이 달라집니다.
 function categoryChange(classDepart) {
-    var target = document.getElementById("classMajor");
-    var plustarget = document.getElementById("plus_classMajor");
- 
-    if(classDepart.value == "인문사회과학대학") var major = classMajor_a;
-    else if(classDepart.value == "사범대학") var major = classMajor_b;
-    else if(classDepart.value == "경영경제대학") var major = classMajor_c;
-    else if(classDepart.value == "융합공과대학") var major = classMajor_d;
-    else if(classDepart.value == "문화예술대학") var major = classMajor_e;
- 
-    target.options.length = 1;
-    plustarget.options.length = 1;
-   // document.createElement("option selected disabled");
-    for (x in major) {
-        var opt = document.createElement("option");
-        opt.value = major[x];
-        opt.innerHTML = major[x];
-        target.appendChild(opt);
-    }    
+  var target = document.getElementById("classMajor");
+  var plustarget = document.getElementById("plus_classMajor");
+
+  if(classDepart.value == "인문사회과학대학") var major = classMajor_a;
+  else if(classDepart.value == "사범대학") var major = classMajor_b;
+  else if(classDepart.value == "경영경제대학") var major = classMajor_c;
+  else if(classDepart.value == "융합공과대학") var major = classMajor_d;
+  else if(classDepart.value == "문화예술대학") var major = classMajor_e;
+
+  target.options.length = 1;
+  plustarget.options.length = 1;
+ // document.createElement("option selected disabled");
+  for (x in major) {
+      var opt = document.createElement("option");
+      opt.value = major[x];
+      opt.innerHTML = major[x];
+      target.appendChild(opt);
+  }    
 }
 
 //전공분류 하위의 학적정보 dropbox 선택 함수입니다.
 function categoryChange_plus(classDepart) {
-    var plustarget = document.getElementById("plus_classMajor");
- 
-    if(classDepart.value == "인문사회과학대학") var major = classMajor_a;
-    else if(classDepart.value == "사범대학") var major = classMajor_b;
-    else if(classDepart.value == "경영경제대학") var major = classMajor_c;
-    else if(classDepart.value == "융합공과대학") var major = classMajor_d;
-    else if(classDepart.value == "문화예술대학") var major = classMajor_e;
- 
-    plustarget.options.length = 1;
-   // document.createElement("option selected disabled");
-    for (x in major) {
-        var opt = document.createElement("option");
-        opt.value = major[x];
-        opt.innerHTML = major[x];
-        plustarget.appendChild(opt);
-    }    
+  var plustarget = document.getElementById("plus_classMajor");
+
+  if(classDepart.value == "인문사회과학대학") var major = classMajor_a;
+  else if(classDepart.value == "사범대학") var major = classMajor_b;
+  else if(classDepart.value == "경영경제대학") var major = classMajor_c;
+  else if(classDepart.value == "융합공과대학") var major = classMajor_d;
+  else if(classDepart.value == "문화예술대학") var major = classMajor_e;
+
+  plustarget.options.length = 1;
+ // document.createElement("option selected disabled");
+  for (x in major) {
+      var opt = document.createElement("option");
+      opt.value = major[x];
+      opt.innerHTML = major[x];
+      plustarget.appendChild(opt);
+  }    
+}
+
+//비밀번호 수정하기 버튼을 누르면 비밀번호 수정 폼이 나타납니다.
+function pwdFormOn() {
+  if ( document.getElementById('changePwd').style.display == "block") {
+    document.getElementById('changePwd').style.display = "none";
+  } else {
+    document.getElementById('changePwd').style.display = "block";
+  }
 }
 
 //심화전공 선택시 전공분류 하위 학적정보 display가 none이 됩니다.
-$(".select").click(function()
-{
-    if ($("#dept_type>input[id='select']").is(":checked")){
-        $(".plusMajor").css('display',"none");
+$(document).ready(function() {
+  var radioChecked = document.querySelector('input[type=radio][name="dept_type"]:checked');
+  if (radioChecked.value === '전공심화') {
+    document.getElementById("plusMajor").style.display = "none";
+  }}
+);
+
+$(document).ready(function() {
+  $('input[type=radio][name="dept_type"]').on('change', function() {
+    if (this.value !== '전공심화') {
+      document.getElementById("plusMajor").style.display = "flex";
+    } else {
+      document.getElementById("plusMajor").style.display = "none";
     }
-    else{
-      $(".plusMajor").css('display',"block");
-    }
+  });
 });
 
 //수정한 값을 확인 후 submit 합니다.
@@ -143,9 +136,8 @@ function modifyingCheck(){
     document.getElementById("passwordError").innerHTML=""
     document.getElementById("passwordCheckError").innerHTML=""
     document.getElementById("classInformError").innerHTML=""
-    
-    //비동기 처리이벤트
-    $("#modifying_Submit").trigger("click");
+  
+    $("#modifying_submit").trigger("click");
   }
 }
 
@@ -187,4 +179,4 @@ function modifyingPwdCheck(){
     
     $("#pwdModifyingButton").trigger("click");
   }
-  }})
+  }
