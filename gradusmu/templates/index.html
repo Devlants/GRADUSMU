@@ -12,10 +12,18 @@
     <script type="text/javascript" src="{% static 'js/index.js' %}"></script>
     <script type = "text/javascript">
         var user_id = "{{user.id}}";
+        var major = "{{major}}";
+        var culture = "{{culture}}";
     </script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
+
+
 </head>
 
 <body>
+    {% include "header.html" %}
+    {% include "subjectDetail.html" %}
     <div class="mainBody">
     <div class="profileBody">
             <div class="profileContentBody">
@@ -48,11 +56,8 @@
                         </div>
                     </div>
                     <div class="profileGraph">
-                        <div class="majorScore">전공 {{major}}</div>
-                        <div class="cultureScore">교양 {{culture}}</div>
-                        <div class="pie-chart">
-                            <span class="center">취득학점<br>{{total}}</span>
-                        </div>
+                        <canvas id="doughnut-chart" width="300" height="250"></canvas>
+                            <div class="center">취득학점<br>{{total}}</div>
                         <button type="button" class="detailScoreBtn" onclick = "location.href = '{% url 'score_detail' %}'">학점상세</button>
                     </div>
                 </div>
