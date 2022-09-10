@@ -9,7 +9,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet">
     <script src="https://kit.fontawesome.com/53a8c415f1.js" crossorigin="anonymous"></script>
     <link href="{% static 'css/inform.css' %}" rel="stylesheet" />
-    <script src="https://code.jquery.com/jquery-3.6.0.slim.js" integrity="sha256-HwWONEZrpuoh951cQD1ov2HUK5zA5DwJ1DNUXaM6FsY=" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-latest.js"></script>
 </head>
 <body>
     <body>
@@ -52,7 +52,7 @@
 
                         <div class="classDepart">
                             <select id="classDepart" name="universe" onchange="categoryChange(this)">
-                                <option selected disabled> 대학 선택 </option>
+                                <option selected disabled>대학 선택</option>
                                 <option value = "인문사회과학대학">인문사회과학대학</option>
                                 <option value = "사범대학">사범대학</option>
                                 <option value = "경영경제대학">경영경제대학</option>
@@ -63,27 +63,43 @@
 
                         <div class="classMajor">
                             <select id="classMajor" name="dept">
-                                <option selected disabled> 학부/학과 선택</option>
+                                <option selected disabled>학부/학과 선택</option>
                             </select>
                         </div>
                         <div id="classInformError" class="error"></div>
                     </div>
-                    
 
                     <div class="line"></div>
 
-                        <div class="password"> * 비밀번호 <br>
+                    <div class="password"> * 비밀번호 <br>
+                        <div class="pwdModifying">
+                            <button type="button" id="pwdModifyingButton" onclick="pwdFormOn()">수정하기</button>
+                        </div>
+                        
+                        <div class="changePwd" id="changePwd">
+                            <form id ="modifying_pwd" name="pwd_form" method = "post">
+                                <input id="User_password" name="user_pwd" type="password" placeholder="현재 비밀번호를 입력해 주세요.">
+                                    <div id="passwordError" class="error"></div>
+
+                                <input id="password" name="user_pwd" type="password" placeholder="수정 비밀번호를 입력해 주세요.">
+                                    <div class="passwordCheck">
+                                        <input id="passwordCheck" type="password" placeholder="수정 비밀번호를 다시 입력해 주세요.">
+                                        <div id="passwordCheckError" class="error"></div>  
+                                    </div>
+                            </form>
+
                             <div class="pwdModifying">
-                                <button id="pwdModifyingButton" onclick="modalOn()">수정하기</button>
+                                <button type="button" class="submitBtn" id="pwdModifyingButton" onclick="modifyingPwdCheck()">비밀번호 수정하기</button>
                             </div>
                         </div>
+                    </div>
 
                     <div class="line"></div>
                 
-                    <div class="select"> 전공분류
-                        <input type="radio" id="select" name="dept_type" checked="checked"><label for="select">전공심화</label>
-                        <input type="radio" id="select2" name="dept_type"><label for="select2">복수전공</label>
-                        <input type="radio" id="select3" name="dept_type"><label for="select3">부전공</label>
+                    <div class="select" name="dept_type"> 전공분류
+                        <input type="radio" id="select" name="dept_type" checked="checked" value="전공심화"><label for="select">전공심화</label>
+                        <input type="radio" id="select2" name="dept_type" value="복수전공"><label for="select2">복수전공</label>
+                        <input type="radio" id="select3" name="dept_type" value="부전공"><label for="select3">부전공</label>
                     </div>
 
                     <div class="plusMajor" id="plusMajor">
@@ -104,40 +120,13 @@
                             </select>
                         </div>
                     </div>  
-                
+                    <input type = "submit" id = "modifying_submit" style = "display:none;">
             </form>
 
-            <div class="warp">
+            <div class="warp" id="submitWarp">
                 <p>상기에 입력한 정보대로 수정하시겠습니까?</p>
-    
                 <div class="modifying_Submit">
                     <button id="modifying_Submit" onclick="modifyingCheck()">수정하기</button>
-                </div>
-            </div>
-
-            
-            <div id="modal" class="modal-overlay">
-                <div class="modal-window">
-                    <div class="title">
-                        <h2>비밀번호 수정하기</h2>
-                    </div>
-                    <div class="close-area">X</div>
-                    <div class="content" id="inputPwd">
-                        <form id ="modifying_pwd" name="pwd_form" method = "post">
-                            <input id="User_password" name="user_pwd" type="password" placeholder="현재 비밀번호를 입력해 주세요.">
-                                <div id="passwordError" class="error"></div>
-
-                            <input id="password" name="user_pwd" type="password" placeholder="수정 비밀번호를 입력해 주세요.">
-                                <div class="passwordCheck">
-                                    <input id="passwordCheck" type="password" placeholder="수정 비밀번호를 다시 입력해 주세요.">
-                                    <div id="passwordCheckError" class="error"></div>  
-                                </div>
-                        </form>
-
-                        <div class="pwdModifying">
-                            <button id="pwdModifyingButton" onclick="modifyingPwdCheck()">수정하기</button>
-                        </div>
-                    </div>
                 </div>
             </div>
 
