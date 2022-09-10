@@ -57,7 +57,7 @@
             </form>
 
             <div class="ID_Submit">
-                <h2>ID는 {id} 입니다.</h2>
+                <h2 id="resultId"">ID</h2>
                 <button id="ID_Submit" type="button" onclick="findId()">ID 찾기</button>
             </div>
             
@@ -78,11 +78,11 @@
                         <div id="emailError" class="error"></div>
 
                         <div class="PinNum">
-                            <button id="CheckButton" type="button" onclick="UserIdCheckCheck()">인증번호 전송</button>
+                            <button id="CheckButton" type="button" onclick="sendNumber()">인증번호 전송</button>
                         </div>
 
                         <div class="reSubmit">
-                            <button id="CheckButton"  type="button" onclick="UserIdCheckCheck()">재전송</button>
+                            <button id="CheckButton"  type="button" onclick="ResendNumber()">재전송</button>
                         </div>
                     </div>
 
@@ -91,7 +91,7 @@
                     <div id="checkNumError" class="error"></div>
 
                     <div class="checkNumButton">
-                        <button id="CheckButton"  type="button" onclick="UserIdCheckCheck()">확인</button>
+                        <button id="CheckButton"  type="button" onclick="sendNumCheck()">확인</button>
                     </div>
                 </div>  
             </form>
@@ -109,7 +109,7 @@
             </form>
     
             <div class="PW_Submit">         
-                <button id="ID_Submit" onclick="signUpCheck()">비밀번호 찾기</button>
+                <button id="ID_Submit" onclick="newPwd()">비밀번호 변경</button>
             </div>
 
         </div>

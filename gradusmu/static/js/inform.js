@@ -86,13 +86,55 @@ $(document).ready(function() {
   });
 });
 
-//수정한 값을 확인 후 submit 합니다.
-function modifyingCheck(){
+function updatePwd() {
+  var presentPwd = $('#presentPwd').val()
+  var newPwd = $('#NewPwdCheck').val()
 
-  var form = document.getElementById("modifying_form");
+  //if (presentPwd==false) then alert("올바르지 않은 비밀번호입니다.")
+  if(email == ''){
+    alert('아이디를 입력해주세요.')
+    return;
+  }
+
+  $.ajax({
+    url: '/accounts/change_pwd/',
+    type: "POST",
+    dataType: "JSON",
+    data: JSON.stringify({
+      "user_id": 3,
+      "password" : newPwd }
+      ),
+    headers: { "X-CSRFToken": "{{ csrf_token }}" },
+
+    success: function(result){
+      console.log(result.is_changed);
+      if(result.is_changed == true){
+        alert("비밀번호와 회원정보가 변경되었습니다.");
+        return;
+      } else {
+        alert("실패");
+        return;
+      }
+    },
+
+    error: function (xhr, textStatus, thrownError) {
+      alert(
+          "Could not send URL to Django. Error: " +
+          xhr.status +
+          ": " +
+          xhr.responseText
+      );
+    },
+  })
+}
+
+//form 입력창의 값이 유효한지 확인 후 수정 submit 합니다.
+function modifyingCheck() {
   let email = document.getElementById("email").value
   let name = document.getElementById("name").value
-  //let classInform = document.getElementById("classInform").value
+  let presentPwd = document.getElementById("presentPwd").value
+  let password = document.getElementById("NewPwd").value
+  let passwordCheck = document.getElementById("NewPwdCheck").value
   let grade = document.getElementById("grade").value
   let classNum = document.getElementById("classNum").value
   let classDepart = document.getElementById("classDepart").value
@@ -122,8 +164,35 @@ function modifyingCheck(){
     document.getElementById("emailError").innerHTML="이메일이 올바르지 않습니다."
     check = false
   }
+
+  // 비밀번호 확인
+  if(presentPwd===""){
+    document.getElementById("passwordError").innerHTML="현재 비밀번호를 입력해주세요."
+    check = false
+  }else{
+    //document.getElementById("passwordError").innerHTML=""
+  }
+  
+  if(password !== passwordCheck){
+    document.getElementById("passwordError").innerHTML=""
+    document.getElementById("passwordCheckError").innerHTML="비밀번호가 동일하지 않습니다."
+    check = false
+  }else{
+    document.getElementById("passwordError").innerHTML=""
+    document.getElementById("passwordCheckError").innerHTML=""
+  }
+
+
+  if(passwordCheck===""){
+    document.getElementById("passwordCheckError").innerHTML="수정 비밀번호를 다시 입력해주세요."
+    check = false
+  }else{
+    //document.getElementById("passwordCheckError").innerHTML=""
+  }
+  
+  
   // 학적정보 확인
-  if(grade === "선택" || classNum === ""  || classDepart === "대학" || classMajor === "학부/학과"){
+  if(grade === "선택" || classNum === ""  || classDepart === "대학 선택" || classMajor === "학부/학과 선택"){
     document.getElementById("classInformError").innerHTML="학적정보를 정확히 입력해주세요"
     check = false
   }else{
@@ -136,47 +205,7 @@ function modifyingCheck(){
     document.getElementById("passwordError").innerHTML=""
     document.getElementById("passwordCheckError").innerHTML=""
     document.getElementById("classInformError").innerHTML=""
-  
+
     $("#modifying_submit").trigger("click");
   }
 }
-
-function modifyingPwdCheck(){
-
-    var form = document.getElementById("modifying_pwd");
-    //let Userpassword = document.getElementById("user_password").value
-    let password = document.getElementById("password").value
-    let passwordCheck = document.getElementById("passwordCheck").value
-    let check = true;
-  
-   
-  // 비밀번호 확인
-  if(password !== passwordCheck){
-    document.getElementById("passwordError").innerHTML=""
-    document.getElementById("passwordCheckError").innerHTML="비밀번호가 동일하지 않습니다."
-    check = false
-  }else{
-    document.getElementById("passwordError").innerHTML=""
-    document.getElementById("passwordCheckError").innerHTML=""
-  }
-
-  if(password===""){
-    document.getElementById("passwordError").innerHTML="비밀번호를 입력해주세요."
-    check = false
-  }else{
-    //document.getElementById("passwordError").innerHTML=""
-  }
-  if(passwordCheck===""){
-    document.getElementById("passwordCheckError").innerHTML="비밀번호를 다시 입력해주세요."
-    check = false
-  }else{
-    //document.getElementById("passwordCheckError").innerHTML=""
-  }
-
-  
-  if(check){ //모두 check가 되었다면
-    document.getElementById("passwordCheckError").innerHTML=""
-    
-    $("#pwdModifyingButton").trigger("click");
-  }
-  }

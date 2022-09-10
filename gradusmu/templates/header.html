@@ -1,5 +1,5 @@
 {% load static %}
-<div class="header">
+<div class="myheader">
     <img id="devlant_img" src="{% static 'img/devlant.png' %}" alt="" >
 
     <div class="mainImg">
@@ -16,22 +16,22 @@
 <style>
   #devlant_img {
         float: left;
-        margin-top : -50px;
     }
 
-    .header {
+    .myheader {
         width:100%;
         height: 200px;
     }
 
     .mainImg {
+        position: relative;
         text-align: center;
+        padding-top: 70px;
     }
 
     #mainImg {
         width: 400px;
         height: 50px;
-        margin-top: 30px;
     } 
 
     .line {
@@ -44,6 +44,7 @@
         width: 90%;
         display: flex;
         justify-content: flex-end;
+        margin-top:-10px;
         margin-bottom: 10px;
     }
 
