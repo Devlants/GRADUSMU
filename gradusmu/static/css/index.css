@@ -19,18 +19,8 @@ html, body{
     height: 100%;
 }
 
-#mainImg{
-    width: 400px;
-    height: 50px;
-    margin-top: 30px;
-}
-
 .profileContentBody{
     width: 100%;
-}
-
-.mainImg img{
-    width: 500px;
 }
 
 .logoutBtn{

@@ -139,6 +139,22 @@ select {
     letter-spacing: 2px;
 }
 
+#PW_Submit{
+    float: right;
+    margin-right: 15vw;
+    cursor: pointer;
+    width: 230px;
+    height: 60px;
+    border: 0;
+    outline: none;
+    border-radius: 20px;
+    background: #5B4FE9;
+    color: white;
+    font-weight: bold;
+    font-size: 30px;
+    letter-spacing: 2px;
+}
+
 #PW_find_form > div, button, input, p {
     float: left;
     margin-bottom: 4px; 

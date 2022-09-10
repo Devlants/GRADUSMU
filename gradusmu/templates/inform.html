@@ -10,6 +10,15 @@
     <script src="https://kit.fontawesome.com/53a8c415f1.js" crossorigin="anonymous"></script>
     <link href="{% static 'css/inform.css' %}" rel="stylesheet" />
     <script src="https://code.jquery.com/jquery-latest.js"></script>
+    <script type="text/javascript">
+        var grade = "{{user.grade}}";
+        var universe = "{{user.universe}}";
+        var dept = "{{user.dept}}";
+        var dept_type = "{{user.dept_type}}";
+        var second_universe = "{{user.second_universe}}";
+        var second_dept = "{{user.second_dept}}";
+        var user_id = "{{user.id}}"
+     </script>
 </head>
 <body>
     <body>
@@ -22,12 +31,12 @@
                 {% csrf_token %}
                 <div class="box1">
                     <div class="name"> 이름
-                        <input id="name" name="name"  type="text" placeholder="이름을 입력해 주세요.">
+                        <input id="name" name="name"  type="text" value="{{user.name}}">
                         <div id="nameError" class="error"></div>
                     </div>
 
                     <div class="email"> Email
-                        <input id="email" name="email" type="text" placeholder="이메일을 입력해 주세요.">
+                        <input id="email" name="email" type="text" value="{{user.email}}">
                         <div id="emailError" class="error"></div>
                     </div>
                 </div>
@@ -47,7 +56,7 @@
                     </div>
 
                     <div class="classNum"> 학번
-                        <input id="classNum" name="student_num" type="text" placeholder="예) 20학번 - 20">
+                        <input id="classNum" name="student_num" type="text" value="{{user.student_num}}">
                     </div>
 
                     <div class="classDepart">
@@ -80,7 +89,7 @@
                         <input id="presentPwd" type="password" placeholder="현재 비밀번호를 입력해 주세요.">
                             <div id="passwordError" class="error"></div>
 
-                        <input id="NewPwd" name="user_pwd" type="password" placeholder="수정 비밀번호를 입력해 주세요.">
+                        <input id="NewPwd" type="password" placeholder="수정 비밀번호를 입력해 주세요.">
                             <div class="passwordCheck">
                                 <input id="NewPwdCheck" type="password" placeholder="수정 비밀번호를 다시 입력해 주세요.">
                                 <div id="passwordCheckError" class="error"></div>  
@@ -93,8 +102,8 @@
 
                 <div class="line"></div>
                 
-                <div class="select"> 전공분류
-                    <input type="radio" id="select" name="dept_type" checked="checked" value="전공심화"><label for="select">전공심화</label>
+                <div class="select" id="dept_type"> 전공분류
+                    <input type="radio" id="select" name="dept_type" value="전공심화" checked="checked"><label for="select">전공심화</label>
                     <input type="radio" id="select2" name="dept_type" value="복수전공"><label for="select2">복수전공</label>
                     <input type="radio" id="select3" name="dept_type" value="부전공"><label for="select3">부전공</label>
                 </div>
@@ -116,7 +125,7 @@
                             <option selected disabled> 학부/ 학과 선택</option>
                         </select>
                     </div>
-                    <input type = "submit" id = "modifying_submit" style = "display:none;">
+                    <input type = "submit" id ="submit" style = "display:none;">
                 </div>  
                     
             </form>

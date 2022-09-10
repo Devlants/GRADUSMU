@@ -39,7 +39,7 @@ function categoryChange(classDepart) {
 
 //Id찾기 버튼과 연결 - 정보입력확인
 function findId() {
-    let name = document.getElementById("name").ariaValueNow
+    let name = document.getElementById("name").value
     let grade = document.getElementById("grade").value
     let classNum = document.getElementById("classNum").value
     let classDepart = document.getElementById("classDepart").value
@@ -72,12 +72,13 @@ function findId() {
         "dept" : classMajor,
       }),
       headers: { "X-CSRFToken": "{{ csrf_token }}" },
-  
+
       success: function(result){
         console.log(result.id);
         if(result.is_find == true){
           alert("아이디 찾기 성공");
-          $("#resultId").innerHTML = result.id; //화면에 띄우기
+          $("#resultId").css("display","flex");
+          $("#resultId").text("Id는 "+result.id+" 입니다"); //화면에 띄우기
           return;
         } else {
           alert("아이디가 존재하지 않습니다.");
@@ -97,20 +98,51 @@ function findId() {
     }
   }
 
-function UserIdCheckCheck() {
-  //유저아이디 존재하는지 확인
-}
+var checkNum = ""
 
 function sendNumber() {
   //인증번호 보내기
-}
+  $.ajax({
+    url: '/accounts/find_pwd/send_email/',
+    type: "POST",
+    dataType: "JSON",
+    data: JSON.stringify({
+      "id" : $('#UserId').val(),
+      "email" : $('#email').val(),
+    }),
+    headers: { "X-CSRFToken": "{{ csrf_token }}" },
 
-function ResendNumber() {
-  //인증번호 다시보내기
+    success: function(result){
+      console.log(result.is_sent);
+      if(result.is_sent == true){
+        alert("이메일로 인증번호가 발송되었습니다.");
+        checkNum = result.certificationNumber;
+
+      } else {
+        alert("실패");
+        return;
+      }
+    },
+
+    error: function (xhr, textStatus, thrownError) {
+      alert(
+          "Could not send URL to Django. Error: " +
+          xhr.status +
+          ": " +
+          xhr.responseText
+      );
+    },
+  }) 
 }
 
 function sendNumCheck() {
   //인증번호 체크
+  if($("#checkNum").val() == checkNum) {
+    alert("인증번호가 일치합니다.")
+    document.getElementById('ID_Submit').disabled = flase;
+  } else {
+    alert("인증번호가 일치하지 않습니다.")
+  }
 }
 
 function newPwd() {
