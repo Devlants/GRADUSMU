@@ -96,7 +96,7 @@ def find_id(request):
 
     if request.method == "POST":
         request = json.loads(request.body)
-        user = User.objects.filter(name=request["name"], grade=request["grade"],
+        user = User.objects.filter(name=request["name"], grade=int(request["grade"]),
                                    student_num=request["student_num"], universe=request["universe"], dept=request["dept"])
         if (user.exists()):
             id = user[0].username
@@ -119,7 +119,7 @@ def chagne_pwd(request):
     if request.method == "POST":
         request = json.loads(request.body)
         try:
-            user = User.objects.get(id=int(request["uesr_id"]))
+            user = User.objects.get(id=int(request["user_id"]))
             user.password = request["password"]
             user.save()
             is_changed = True
@@ -138,6 +138,7 @@ def find_pwd_send_email(request):
 
     if request.method == "POST":
         request = json.loads(request.body)
+        print(request)
         user = User.objects.filter(username=request["id"])
         if user.exists() and user[0].email == request['email']:
             num = ""

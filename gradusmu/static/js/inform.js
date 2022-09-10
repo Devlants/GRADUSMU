@@ -17,7 +17,6 @@ var classMajor_e =
 ["식품영양학전공", "의류학전공", "스포츠무용학부", "스포츠건강관리전공", "무용예술전공", "조형예술전공",
 "생활예술전공", "음악학부", "외식경영학연계전공", "미디어아트연계전공", "음악경영학연계전공", "문화예술교육융합전공"];
 
-//대학 선택에 따라 학부/학과 선택 dropbox의 값이 달라집니다.
 function categoryChange(classDepart) {
   var target = document.getElementById("classMajor");
   var plustarget = document.getElementById("plus_classMajor");
@@ -59,6 +58,7 @@ function categoryChange_plus(classDepart) {
   }    
 }
 
+
 //비밀번호 수정하기 버튼을 누르면 비밀번호 수정 폼이 나타납니다.
 function pwdFormOn() {
   if ( document.getElementById('changePwd').style.display == "block") {
@@ -86,6 +86,25 @@ $(document).ready(function() {
   });
 });
 
+
+//수정폼에 기존정보 나타나기
+$(document).ready(function() {
+  document.getElementById("grade").value = grade;
+  //document.getElementById("classDepart").value = universe;
+  $("#classDepart").val(universe).prop("selected", true);
+  $("#classDepart").change(categoryChange(classDepart));
+  
+  $("#classMajor").val(dept).prop("selected", true);
+
+  //$("input:radio[name='dept_type']").prop('checked', false); 
+  $("input:radio[name='dept_type']:radio[value='"+dept_type+"']").prop('checked', true);
+  document.getElementById("dept_type").value = dept_type;
+
+  document.getElementById("plus_classDepart").value = second_universe;
+  document.getElementById("plus_classMajor").value = second_dept;
+});
+
+
 function updatePwd() {
   var presentPwd = $('#presentPwd').val()
   var newPwd = $('#NewPwdCheck').val()
@@ -101,7 +120,7 @@ function updatePwd() {
     type: "POST",
     dataType: "JSON",
     data: JSON.stringify({
-      "user_id": 3,
+      "user_id": user_id,
       "password" : newPwd }
       ),
     headers: { "X-CSRFToken": "{{ csrf_token }}" },
@@ -164,32 +183,6 @@ function modifyingCheck() {
     document.getElementById("emailError").innerHTML="이메일이 올바르지 않습니다."
     check = false
   }
-
-  // 비밀번호 확인
-  if(presentPwd===""){
-    document.getElementById("passwordError").innerHTML="현재 비밀번호를 입력해주세요."
-    check = false
-  }else{
-    //document.getElementById("passwordError").innerHTML=""
-  }
-  
-  if(password !== passwordCheck){
-    document.getElementById("passwordError").innerHTML=""
-    document.getElementById("passwordCheckError").innerHTML="비밀번호가 동일하지 않습니다."
-    check = false
-  }else{
-    document.getElementById("passwordError").innerHTML=""
-    document.getElementById("passwordCheckError").innerHTML=""
-  }
-
-
-  if(passwordCheck===""){
-    document.getElementById("passwordCheckError").innerHTML="수정 비밀번호를 다시 입력해주세요."
-    check = false
-  }else{
-    //document.getElementById("passwordCheckError").innerHTML=""
-  }
-  
   
   // 학적정보 확인
   if(grade === "선택" || classNum === ""  || classDepart === "대학 선택" || classMajor === "학부/학과 선택"){
@@ -206,6 +199,7 @@ function modifyingCheck() {
     document.getElementById("passwordCheckError").innerHTML=""
     document.getElementById("classInformError").innerHTML=""
 
-    $("#modifying_submit").trigger("click");
+    $("#submit").trigger("click");
+    alert("ㅎㅇ")
   }
 }
