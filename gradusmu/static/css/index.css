@@ -135,41 +135,13 @@ html, body{
     position: relative;
 }
 
-.majorScore{
-    position: absolute;
-    font-weight: 600;
-    color: #801CAF;
-    width: 100%;
-    left: 0px;
-    top: 0px;
-}
-
-.cultureScore{
-    position: absolute;
-    font-weight: 600;
-    color: #EF7E15;
-    left: 170px;
-    top: 195px;
-    width: 100%;
-}
-
-.pie-chart{
-    display:inline-block;
-    position:relative;
-    width: 200px;
-    height: 200px;
-    background: conic-gradient(#FFC700 0% 30%, #2BCE1C 30% 100%);
-    border-radius: 50%;
-}
-
 .center{  
     position:absolute;
     width: 100px; 
     height: 100px;
     background :#fff;
     border-radius: 50%;
-    top: 50px;
-    left: 50px;
+    top: 90px;
     display: flex;
     text-align: center;
     align-items: center;

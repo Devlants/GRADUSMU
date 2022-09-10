@@ -100,5 +100,23 @@ $(document).ready(function(){
     $('.selecBasicInformation').change(function(){
         getSubject();
     })
+    setPieChart();
 })
 
+function setPieChart(){
+    let major_int = parseInt(major);
+    let culture_int = parseInt(culture);
+    new Chart(document.getElementById("doughnut-chart"), {
+        type: 'doughnut',
+        data: {
+          labels: ["전공", "교양"],
+          datasets: [
+            {
+              label: "Population (millions)",
+              backgroundColor: ["#2BCE1C", "#FFC700"],
+              data: [major_int,culture_int]
+            }
+          ]
+        }
+    });
+}
