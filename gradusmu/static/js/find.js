@@ -58,7 +58,91 @@ function findId() {
       check = false
     }
   
-    if(check){ //모두 check가 되었다면
-      $("#ID_Submit").trigger("click");
+    if(check){ //모두 check가 되었다면 아이디 찾기
+    //  $("#ID_Submit").trigger("click");
+    $.ajax({
+      url: '/accounts/find_id/',
+      type: "POST",
+      dataType: "JSON",
+      data: JSON.stringify({
+        "name" : name,
+        "grade" : grade,
+        "student_num" : classNum,
+        "universe" : classDepart,
+        "dept" : classMajor,
+      }),
+      headers: { "X-CSRFToken": "{{ csrf_token }}" },
+  
+      success: function(result){
+        console.log(result.id);
+        if(result.is_find == true){
+          alert("아이디 찾기 성공");
+          $("#resultId").innerHTML = result.id; //화면에 띄우기
+          return;
+        } else {
+          alert("아이디가 존재하지 않습니다.");
+          return;
+        }
+      },
+  
+      error: function (xhr, textStatus, thrownError) {
+        alert(
+            "Could not send URL to Django. Error: " +
+            xhr.status +
+            ": " +
+            xhr.responseText
+        );
+      },
+    })
     }
   }
+
+function UserIdCheckCheck() {
+  //유저아이디 존재하는지 확인
+}
+
+function sendNumber() {
+  //인증번호 보내기
+}
+
+function ResendNumber() {
+  //인증번호 다시보내기
+}
+
+function sendNumCheck() {
+  //인증번호 체크
+}
+
+function newPwd() {
+  //비밀번호 변경
+  $.ajax({
+    url: '/accounts/find_pwd/change_pwd/',
+    type: "PUT",
+    dataType: "JSON",
+    data: JSON.stringify({
+      "id" : $('#UserId').val(),
+      "pwd" : $('#passwordCheck').val(),
+    }),
+    headers: { "X-CSRFToken": "{{ csrf_token }}" },
+
+    success: function(result){
+      console.log(result.is_changed);
+      if(result.is_changed == true){
+        alert("비밀번호가 성공적으로 변경되었습니다.");
+        return;
+      } else {
+        alert("실패");
+        return;
+      }
+    },
+
+    error: function (xhr, textStatus, thrownError) {
+      alert(
+          "Could not send URL to Django. Error: " +
+          xhr.status +
+          ": " +
+          xhr.responseText
+      );
+    },
+  })
+}

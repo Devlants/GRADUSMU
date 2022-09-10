@@ -78,10 +78,15 @@ $(document).ready(function() {
   });
 });
 
+function text() {
+  alert("테스트")
+}
+
 //form 입력창의 값이 유효한지 확인 후 submit 합니다.
 function signUpCheck() {
     let email = document.getElementById("email").value
     let name = document.getElementById("name").value
+    let presentPwd = document.getElementById("presentPwd").value
     let password = document.getElementById("password").value
     let passwordCheck = document.getElementById("passwordCheck").value
     //let classInform = document.getElementById("classInform").value
@@ -154,6 +159,7 @@ function signUpCheck() {
       document.getElementById("passwordCheckError").innerHTML=""
       document.getElementById("classInformError").innerHTML=""
       
+      text();
       $("#register_submit").trigger("click");
     }
   }
