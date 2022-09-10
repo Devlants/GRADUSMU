@@ -9,12 +9,6 @@ from django.core.mail import EmailMessage
 import random
 from django.db.models import Q
 
-
-def kyc(request):
-    return render(request, "subjectDetail.html")
-# 로그인
-
-
 def login(request):
     if request.method == 'POST':
         user = User.objects.filter(username=request.POST["username"])
@@ -95,7 +89,8 @@ def duplicated_check(request):
     return JsonResponse(context)
 # 아이디 확인
 
-
+def find(request):
+    return render(request,"find.html")
 @csrf_exempt
 def find_id(request):
 
