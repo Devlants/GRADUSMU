@@ -39,6 +39,7 @@ function getSelect(data){
     }
 }
 
+
 //과목 가져오기
 function getSubject(data){
     var dept_type = $('#selectWhat').val();
@@ -91,6 +92,7 @@ function getSubject(data){
         })
     }
 }
+
 
 $(document).ready(function(){
     getSelect(graphTitle);
