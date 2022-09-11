@@ -13,6 +13,8 @@ datas_patterns = [
     path("ess_culture/", views.ess_search_subject, name="ess_culture"),
     path("checkBal/", views.checkBal, name="checkBal"),
     path("sendMyBal/", views.sendMyBal, name="sendMyBal"),
+    path("checkESS/", views.checkESS, name="checkESS"),
+    path("checkCore/", views.checkCore, name="checkCore"),
 
 ]
 
