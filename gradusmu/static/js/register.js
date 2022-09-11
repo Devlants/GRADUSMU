@@ -78,15 +78,10 @@ $(document).ready(function() {
   });
 });
 
-function text() {
-  alert("테스트")
-}
-
 //form 입력창의 값이 유효한지 확인 후 submit 합니다.
 function signUpCheck() {
     let email = document.getElementById("email").value
     let name = document.getElementById("name").value
-    let presentPwd = document.getElementById("presentPwd").value
     let password = document.getElementById("password").value
     let passwordCheck = document.getElementById("passwordCheck").value
     //let classInform = document.getElementById("classInform").value
@@ -144,7 +139,7 @@ function signUpCheck() {
     }
   
   
-    // 학적정보 확인
+    // 학적정보 확인  
     if(grade === "선택" || classNum === ""  || classDepart === "대학 선택" || classMajor === "학부/학과 선택"){
       document.getElementById("classInformError").innerHTML="학적정보를 정확히 입력해주세요"
       check = false
@@ -159,7 +154,7 @@ function signUpCheck() {
       document.getElementById("passwordCheckError").innerHTML=""
       document.getElementById("classInformError").innerHTML=""
       
-      text();
+      alert("회원가입이 완료되었습니다.")
       $("#register_submit").trigger("click");
     }
   }

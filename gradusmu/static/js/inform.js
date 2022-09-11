@@ -69,39 +69,39 @@ function pwdFormOn() {
 }
 
 //심화전공 선택시 전공분류 하위 학적정보 display가 none이 됩니다.
-$(document).ready(function() {
+function showDeptType() {
   var radioChecked = document.querySelector('input[type=radio][name="dept_type"]:checked');
   if (radioChecked.value === '전공심화') {
     document.getElementById("plusMajor").style.display = "none";
+  } else {
+    document.getElementById("plusMajor").style.display = "flex";
   }}
-);
 
-$(document).ready(function() {
+$(document).ready(function () {
   $('input[type=radio][name="dept_type"]').on('change', function() {
-    if (this.value !== '전공심화') {
-      document.getElementById("plusMajor").style.display = "flex";
-    } else {
+    if (this.value === '전공심화') {
       document.getElementById("plusMajor").style.display = "none";
+    } else {
+      document.getElementById("plusMajor").style.display = "flex";
     }
   });
-});
-
+}
+);
 
 //수정폼에 기존정보 나타나기
 $(document).ready(function() {
-  document.getElementById("grade").value = grade;
+  document.getElementById("grade").value = grade; //학년
   //document.getElementById("classDepart").value = universe;
-  $("#classDepart").val(universe).prop("selected", true);
+  $("#classDepart").val(universe).prop("selected", true); //대학
   $("#classDepart").change(categoryChange(classDepart));
-  
-  $("#classMajor").val(dept).prop("selected", true);
+  $("#classMajor").val(dept).prop("selected", true); //학부
 
   //$("input:radio[name='dept_type']").prop('checked', false); 
-  $("input:radio[name='dept_type']:radio[value='"+dept_type+"']").prop('checked', true);
-  document.getElementById("dept_type").value = dept_type;
-
+  $("input:radio[name='dept_type']:radio[value='"+dept_type+"']").prop('checked', true); //전공분류
+  showDeptType(); //전공분류 드롭박스 보여주기
   document.getElementById("plus_classDepart").value = second_universe;
-  document.getElementById("plus_classMajor").value = second_dept;
+  $("#plus_classDepart").change(categoryChange_plus(plus_classDepart));
+  $("#plus_classMajor").val(second_dept).prop("selected", true); 
 });
 
 
@@ -151,9 +151,6 @@ function updatePwd() {
 function modifyingCheck() {
   let email = document.getElementById("email").value
   let name = document.getElementById("name").value
-  let presentPwd = document.getElementById("presentPwd").value
-  let password = document.getElementById("NewPwd").value
-  let passwordCheck = document.getElementById("NewPwdCheck").value
   let grade = document.getElementById("grade").value
   let classNum = document.getElementById("classNum").value
   let classDepart = document.getElementById("classDepart").value
@@ -200,6 +197,5 @@ function modifyingCheck() {
     document.getElementById("classInformError").innerHTML=""
 
     $("#submit").trigger("click");
-    alert("ㅎㅇ")
   }
 }
