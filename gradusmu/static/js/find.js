@@ -17,6 +17,14 @@ var classMajor_e =
 ["식품영양학전공", "의류학전공", "스포츠무용학부", "스포츠건강관리전공", "무용예술전공", "조형예술전공",
 "생활예술전공", "음악학부", "외식경영학연계전공", "미디어아트연계전공", "음악경영학연계전공", "문화예술교육융합전공"];
 
+let ableCheck = false;
+
+$(document).ready(function() {
+  $("#password").prop('disabled', true);
+  $("#passwordCheck").prop('disabled', true); 
+});
+
+
 //학부선택 드롭박스 변경 기능
 function categoryChange(classDepart) {
     var target = document.getElementById("classMajor");
@@ -113,7 +121,8 @@ function sendNumber() {
     headers: { "X-CSRFToken": "{{ csrf_token }}" },
 
     success: function(result){
-      console.log(result.is_sent);
+      ableCheck = true;
+      console.log(ableCheck);
       if(result.is_sent == true){
         alert("이메일로 인증번호가 발송되었습니다.");
         checkNum = result.certificationNumber;
@@ -121,6 +130,14 @@ function sendNumber() {
       } else {
         alert("실패");
         return;
+      }
+
+      if (ableCheck === true) { //인증번호 발송되었을 떄 input입력가능
+        $("#password").prop('disabled', false);
+        $("#passwordCheck").prop('disabled', false); 
+      } else {
+        $("#password").prop('disabled', true);
+        $("#passwordCheck").prop('disabled', true); 
       }
     },
 
@@ -198,4 +215,9 @@ function newPwd() {
 } else {
   alert("비밀번호가 일치하지 않습니다.");
 }
+}
+
+function unableInput() {
+
+  
 }
