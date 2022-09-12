@@ -135,46 +135,67 @@ function sendNumber() {
   }) 
 }
 
+var checkNumber = 0;
+
 function sendNumCheck() {
   //인증번호 체크
   if($("#checkNum").val() == checkNum) {
     alert("인증번호가 일치합니다.")
-    document.getElementById('ID_Submit').disabled = flase;
+    checkNumber = 1;
+    console.log(checkNumber)
   } else {
     alert("인증번호가 일치하지 않습니다.")
+    checkNumber = 0;
+    console.log(checkNumber)
   }
 }
 
 function newPwd() {
   //비밀번호 변경
-  $.ajax({
-    url: '/accounts/find_pwd/change_pwd/',
-    type: "PUT",
-    dataType: "JSON",
-    data: JSON.stringify({
-      "id" : $('#UserId').val(),
-      "pwd" : $('#passwordCheck').val(),
-    }),
-    headers: { "X-CSRFToken": "{{ csrf_token }}" },
+  console.log(checkNumber)
+  let Pwd = $('#password').val();
+  let PwdCheck = $('#passwordCheck').val();
 
-    success: function(result){
-      console.log(result.is_changed);
-      if(result.is_changed == true){
-        alert("비밀번호가 성공적으로 변경되었습니다.");
-        return;
-      } else {
-        alert("실패");
-        return;
-      }
-    },
+  if (Pwd !== PwdCheck) {
+    checkNumber = 2;
+  } else {
+    checkNumber = 1;
+  }
 
-    error: function (xhr, textStatus, thrownError) {
-      alert(
-          "Could not send URL to Django. Error: " +
-          xhr.status +
-          ": " +
-          xhr.responseText
-      );
-    },
-  })
+  if (checkNumber === 1) {
+    $.ajax({
+      url: '/accounts/find_pwd/change_pwd/',
+      type: "PUT",
+      dataType: "JSON",
+      data: JSON.stringify({
+        "id" : $('#UserId').val(),
+        "pwd" : $('#passwordCheck').val(),
+      }),
+      headers: { "X-CSRFToken": "{{ csrf_token }}" },
+
+      success: function(result){
+        console.log(result.is_changed);
+        if(result.is_changed == true){
+          alert("비밀번호가 성공적으로 변경되었습니다.");
+          return;
+        } else {
+          alert("실패");
+          return;
+        }
+      },
+
+      error: function (xhr, textStatus, thrownError) {
+        alert(
+            "Could not send URL to Django. Error: " +
+            xhr.status +
+            ": " +
+            xhr.responseText
+        );
+      },
+    })
+} else if (checkNumber === 0) {
+  alert("인증번호가 일치하지 않습니다.");
+} else {
+  alert("비밀번호가 일치하지 않습니다.");
+}
 }
