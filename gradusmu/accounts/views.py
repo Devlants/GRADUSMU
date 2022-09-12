@@ -223,7 +223,8 @@ def profile(request):
                 user.second_universe = ""
             user.save()
             request.user = user
-            return render(request, 'index.html')
+            print(1)
+            return redirect('home')
         except Exception as e:
             print(e)
             return render(request, 'inform.html')
