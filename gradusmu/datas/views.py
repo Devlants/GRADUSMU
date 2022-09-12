@@ -35,7 +35,7 @@ def signed_search_subject(request):
         context = {}
         i=0
         for key in list(datas.keys()):
-            for data in datas[key].filter(id__in = signed):
+            for data in datas[key].filter(year = year, id__in = signed):
                 context[i] = {
                     "id" : data.id,
                     "name" : data.name,
@@ -50,7 +50,7 @@ def signed_search_subject(request):
         context = {}
         i=0
         for key in list(datas.keys()):
-            for data in datas[key].filter(id__in = signed):
+            for data in datas[key].filter(year = year,id__in = signed):
                 context[i] = {
                     "id" : data.id,
                     "name" : data.name,
@@ -62,7 +62,7 @@ def signed_search_subject(request):
                 i+=1
         datas = EssentialLiberalArts.getEss()
         for key in list(datas.keys()):
-            for data in datas[key].filter(id__in = signed):
+            for data in datas[key].filter(year = year, id__in = signed):
                 context[i] = {
                     "id" : data.id,
                     "name" : data.name,
@@ -111,7 +111,7 @@ def unsigned_search_subject(request):
         context = {}
         i=0
         for key in list(datas.keys()):
-            for data in datas[key].exclude(id__in = signed):
+            for data in datas[key].exclude(year = year,id__in = signed):
                 context[i] = {
                     "id" : data.id,
                     "name" : data.name,
@@ -126,7 +126,7 @@ def unsigned_search_subject(request):
         context = {}
         i=0
         for key in list(datas.keys()):
-            for data in datas[key].exclude(id__in = signed):
+            for data in datas[key].exclude(year = year,id__in = signed):
                 context[i] = {
                     "id" : data.id,
                     "name" : data.name,
@@ -138,7 +138,7 @@ def unsigned_search_subject(request):
                 i+=1
         datas = EssentialLiberalArts.getEss()
         for key in list(datas.keys()):
-            for data in datas[key].exclude(id__in = signed):
+            for data in datas[key].exclude(year = year,id__in = signed):
                 context[i] = {
                     "id" : data.id,
                     "name" : data.name,
@@ -454,7 +454,40 @@ def sendMyBal(request):
     }
     return JsonResponse(context)
 
-
+@csrf_exempt
+def many_major(request):
+    request = json.loads(request.body)
+    
+    user = User.objects.get(id = int(request['user_id']))
+    signed = list(user.sign_up.values_list('id',flat=True))
+    currentDateTime = datetime.datetime.now()
+    date = currentDateTime.date()
+    year = date.strftime("%Y")
+    datas = subjects.objects.filter(dept = request['dept'])
+    context = {}
+    i=0
+    for data in datas.filter(id__in = signed):
+        context[i] = {
+            "id" : data.id,
+            "name" : data.name,
+            "serial_num" : data.serialNumber+"-"+str(data.distribution),
+            "prof" : data.prof,
+            "point" : data.point,
+            "signed" : True
+        }
+        i+=1
+    for data in datas.filter(year = year).exclude(id__in = signed):
+        context[i] = {
+            "id" : data.id,
+            "name" : data.name,
+            "serial_num" : data.serialNumber+"-"+str(data.distribution),
+            "prof" : data.prof,
+            "point" : data.point,
+            "signed" : False
+        }
+        i+=1    
+    return JsonResponse(context)
+    
 
 
 

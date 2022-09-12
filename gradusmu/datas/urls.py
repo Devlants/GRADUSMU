@@ -15,7 +15,7 @@ datas_patterns = [
     path("sendMyBal/", views.sendMyBal, name="sendMyBal"),
     path("checkESS/", views.checkESS, name="checkESS"),
     path("checkCore/", views.checkCore, name="checkCore"),
-
+    path("many_major/",views.many_major,name = "many_major"),
 ]
 
 urlpatterns = [
