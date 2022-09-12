@@ -8,15 +8,125 @@ function checkOnlyOne(element) {
     element.checked = true;
 }
 
+//내가 들은 균형교양 영역 확인해보기
+function getBalanceCategory(){
+    $.ajax({
+        type: 'POST',
+        url: '/datas/checkBal/',
+        data: JSON.stringify({
+            'user_id' : user_id
+        }),
+        success: function(data){
+            console.log(data);
+            checkBalanceCategory(data);
+        }
+    })
+}
+
+function checkBalanceCategory(data){
+    if(data['Liberal'] == true){
+        $("input:checkbox[value='인문']").prop("checked",true);  
+    }
+    if(data['Society'] == true){
+        $("input:checkbox[value='사회']").prop("checked",true);  
+    }
+    if(data['Natural'] == true){
+        $("input:checkbox[value='자연']").prop("checked",true);  
+    }
+    if(data['Engineering'] == true){
+        $("input:checkbox[value='공학']").prop("checked",true);  
+    }
+    if(data['Art'] == true){ 
+        $("input:checkbox[value='예술']").prop("checked",true);  
+    }
+}
+
+//내가 들은 기초교양 확인하기
+function getBasicCategory(){
+    $.ajax({
+        type: 'POST',
+        url: '/datas/checkESS/',
+        data: JSON.stringify({
+            'user_id' : user_id
+        }),
+        success: function(data){
+            console.log(data);
+            checkBasicCategory(data);
+        }
+    })
+}
+
+function checkBasicCategory(data){
+    if(data['Think'] == true){
+        $("input:checkbox[value='Think']").prop("checked",true);  
+    }
+    if(data['English'] == true){
+        $("input:checkbox[value='English']").prop("checked",true);  
+    }
+    if(data['Math'] == true){
+        $("input:checkbox[value='Math']").prop("checked",true);  
+    }
+    if(data['Computing'] == true){
+        $("input:checkbox[value='Computing']").prop("checked",true);  
+    }
+    if(data['Algorithm'] == true){ 
+        $("input:checkbox[value='Algorithm']").prop("checked",true);  
+    }
+}
+
+//내가 들은 핵심교양 확인하기
+function getCoreCategory(){
+    $.ajax({
+        type: 'POST',
+        url: '/datas/checkCore/',
+        data: JSON.stringify({
+            'user_id' : user_id
+        }),
+        success: function(data){
+            console.log(data);
+            checkCoreCategory(data);
+        }
+    })
+}
+
+function checkCoreCategory(data){
+    if(data['Creative'] == true){
+        $("input:checkbox[value='Creative']").prop("checked",true);  
+    }
+    if(data['English'] == true){
+        $("input:checkbox[value='Convergence']").prop("Convergence",true);  
+    }
+    if(data['Diversity'] == true){
+        $("input:checkbox[value='Diversity']").prop("checked",true);  
+    }
+    if(data['Ethics'] == true){
+        $("input:checkbox[value='Ethics']").prop("checked",true);  
+    }
+}
+
+//자기 전공 해당 영역 확인하기
+function checkApplicableMajor(){
+    $.ajax({
+        type: 'POST',
+        url: '/datas/sendMyBal/',
+        data: JSON.stringify({
+            "user_id": user_id
+        }),
+        success: function(data){
+            $("#" + data['result']).css("display", 'none'); 
+            $('.selectEssentialType').append('<div style="font-size: 1rem; color: rgb(91, 91, 91);">('+ data['result'] + '제외)</div');
+            // $("#" + data['result']).css('text-decoration', 'navy line-through'); 
+            // $("#" + data['result']).css('text-decoration-thickness', '3px');
+        }
+    })
+}
 
 $(document).ready(function(){
     getTotalScore();
-    getEssentialTable();
-    $('.selectCultureType').change(function(){
-        getEssentialTable();
-    })
-    // $('input:checkbox[value="인문"]').is(":checked") == true;
-    // alert($('.selectEssentialType input:checkbox').is(':checked'));
+    checkApplicableMajor();
+    getBalanceCategory();
+    getBasicCategory();
+    getCoreCategory();
 })
 
 function getTotalScore(){
@@ -30,46 +140,6 @@ function getTotalScore(){
     $('.majorSelectScoreGraph').css('width', choice_major + '%');
     $('.deepMajorScoreGraph').css('width', deep_major + '%');
     $('.cultureScoreGraph').css('width', culture + '%');
-}
-
-function getEssentialTable(){
-    var dept_type = $('#selectCultureType').val();
-    $.ajax({
-        type: 'POST',
-        url: '/datas/balanced_culture/',
-        data: JSON.stringify({
-            "user_id" : user_id,
-            "dept_type": dept_type
-        }),
-        success: function(data){
-            putSubjectTable(data);
-            setBtn(dept_type);
-        }, 
-        error: function(){
-            alert('못 가져오는뎈?');
-        }
-    })
-}
-
-function putSubjectTable(data){
-    $('#subjectTableTbody').html('');
-    var length = Object.keys(data).length;
-    for(var i = 0; i < length; i++){
-        if((data[i]['signed']) == true){
-            data[i]['signed'] = 'O';
-        }else{
-            data[i]['signed'] = 'X';
-        }
-    }
-    if(length == 0){
-        $('#subjectTable').append('<div style="display: flex; justify-content: center; padding: 40px 0; border: 1px solid black; border-top: none; background-color: white; width: initial; text-align:center;">수강하신 과목이 존재하지 않습니다.</div>');
-    }
-    if(length > 0){
-        $('#subjectTableTbody').html('<tr class="tbodyTr"> <td>' + data[0]['name'] + '</td><td>' + data[0]['serial_num'] + '</td><td>' + data[0]['prof'] + '</td><td>' + data[0]['point'] + '</td><td>' + data[0]['signed'] + '</td><td><button type="button" class="detailSubjectBtn" id="' + data[0]['id'] + '">상세정보</button></td>');
-        for(var i = 1; i < length; i++){
-            $('#subjectTableTbody').append('<tr class="tbodyTr"> <td>' + data[i]['name'] + '</td><td>' + data[i]['serial_num'] + '</td><td>' + data[i]['prof'] + '</td><td>' + data[i]['point'] + '</td><td>' + data[i]['signed'] + '</td><td><button type="button" class="detailSubjectBtn" id="' + data[i]['id'] + '">상세정보</button></td>');
-        }
-    }
 }
 
 function setBtn($dept_tye) {

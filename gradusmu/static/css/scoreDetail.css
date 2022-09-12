@@ -142,6 +142,7 @@ html, body{
 .basicCultureScoreWrap input {
     font-size: 1rem;
 }
+
 .totalScoreGraph, .majorScoreGraph, .majorSelectScoreGraph, .deepMajorScoreGraph, .cultureScoreGraph, .basicCultureScoreGraph, .balanceCultureScoreGraph, .essentialCultureScoreGraph, .bsmScoreGraph, .designScoreGraph, .majorBsmScoreGraph{
     border-radius: 20px;
     height: 35px;
@@ -316,3 +317,4 @@ html, body{
         height: 70px;
     }
 }
+

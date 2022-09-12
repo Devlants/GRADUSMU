@@ -165,7 +165,7 @@ html, body{
 }
 
 #select3{
-    width: 105px;
+    width: 140px;
 }
 
 .subjectTable{
@@ -177,18 +177,25 @@ html, body{
 
 .subjectTable table{
     text-align: center;
-    width: 100%;
     display: flex;
     flex-direction: column;
     border-collapse: collapse;
+    width: 100%;
 }
 
-.subjectTable thead{
+.subjectTable thead{    
+    display: flex;
+    justify-content: space-between;
     background-color: #5B4FE9;
     color: white;
+    width: inherit;
+    font-size: 1rem;
+    margin: 0;
+}
+
+.subjectTable tbody, tr{
     text-align: center;
     margin-left: 0;
-    width: 100%;
 }
 
 .subjectTable td{

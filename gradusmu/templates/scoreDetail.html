@@ -24,7 +24,7 @@
 </head>
 
 <body>
-    {% include header.html" %}
+    {% include "header.html" %}
     {% include "subjectDetail.html" %}
     <div class="scoreDetailBody">
         <div class="scoreDetailContent">
@@ -123,80 +123,45 @@
             </div>
             <!-- 교선 데이터 : {{user.choice_culture_points}}/{{user.total_culture_choice}}-->
             <div class="basicCultureScoreWrap">
-                <h3 style="font-weight: 300;">*기초교양</h3>
+                <h3 style="font-weight: 300; cursor: pointer;" onclick="location.href='{% url 'scoreGraphDetail' '기초교양' %}'">*기초 교양</h3>
                 <div class="selectBasicType" style="display: flex; flex-direction: row; align-items: center;">
-                    <label><input type="checkbox" name="subject" value=""> 사고와 표현</label>
+                    <label><input type="checkbox" name="subject" value="Think" disabled> 사고와 표현</label>
                     <div style="background-color: silver; padding: 5px; border-radius: 10px;">
-                        <label><input type="checkbox" name="subject" value=""> 영어</label>
-                        <label><input type="checkbox" name="subject" value=""> 수학</label>
+                        <label><input type="checkbox" name="subject" value="English" disabled> 영어</label>
+                        <label><input type="checkbox" name="subject" value="Math" disabled> 수학</label>
                     </div>
-                    <label style="margin-left: 10px;"><input type="checkbox" name="subject" value=""> 컴퓨팅사고</label>
-                    <label><input type="checkbox" name="subject" value=""> 알고리즘</label>
+                    <label style="margin-left: 10px;"><input type="checkbox" name="subject" value="Computing" disabled> 컴퓨팅사고</label>
+                    <label><input type="checkbox" name="subject" value="Algorithm" disabled> 알고리즘</label>
                 </div>
             </div>
             <div class="balanceCultureScoreWrap">
-                <h3 style="font-weight: 300;">*핵심 교양</h3>
+                <h3 style="font-weight: 300; cursor: pointer;" onclick="location.href='{% url 'scoreGraphDetail' '핵심교양' %}'">*핵심 교양</h3>
                 <div class="selectBalanceType" style="display: flex; flex-direction: row; align-items: center;">
                     <div style="background-color: silver; padding: 5px; border-radius: 10px;">
-                        <label><input type="checkbox" name="subject" value=""> 창의적문제해결</label>
-                        <label><input type="checkbox" name="subject" value=""> 융복합</label>
+                        <label><input type="checkbox" name="subject" value="Creative" disabled> 창의적문제해결</label>
+                        <label><input type="checkbox" name="subject" value="Convergence" disabled> 융복합</label>
                     </div>
                     <div style="background-color: silver; padding: 5px; border-radius: 10px; margin-left: 20px;">
-                        <label><input type="checkbox" name="subject" value=""> 다양성존중</label>
-                        <label><input type="checkbox" name="subject" value=""> 윤리실천</label>
+                        <label><input type="checkbox" name="subject" value="Diversity" disabled> 다양성존중</label>
+                        <label><input type="checkbox" name="subject" value="Ethics" disabled> 윤리실천</label>
                     </div>
                 </div>
             </div>
             <div class="essentialCultureScoreWrap">
                 <div style="display: flex; flex-direction: row; align-items: center;">
-                    <h3 style="font-weight: 300;">*균형교양</h3>
+                    <h3 style="font-weight: 300; cursor: pointer;" onclick="location.href='{% url 'scoreGraphDetail' '균형교양' %}'">*균형 교양</h3>
                     <div class="selectEssentialType">
-                        <label><input type="checkbox" name="subject" value="인문" onclick="checkOnlyOne(this);" disabled> 인문</label>
-                        <label><input type="checkbox" name="subject" value="사회" onclick="checkOnlyOne(this);" disabled> 사회</label>
-                        <label><input type="checkbox" name="subject" value="자연" onclick="checkOnlyOne(this);" disabled> 자연</label>
-                        <label><input type="checkbox" name="subject" value="공학" onclick="checkOnlyOne(this);" disabled> 공학</label>
-                        <label><input type="checkbox" name="subject" value="예술" onclick="checkOnlyOne(this);" disabled> 예술</label>
+                        <label id="인문"><input type="checkbox" name="subject" value="인문" disabled> 인문</label>
+                        <label id="사회"><input type="checkbox" name="subject" value="사회" disabled> 사회</label>
+                        <label id="자연"><input type="checkbox" name="subject" value="자연" disabled> 자연</label>
+                        <label id="공학"><input type="checkbox" name="subject" value="공학" disabled> 공학</label>
+                        <label id="예술"><input type="checkbox" name="subject" value="예술" disabled> 예술</label>
                     </div>
                 </div>
-            </div>
-            <div class="showCultureTable">
-                <div class="selectCultureType">
-                    <select id="selectCultureType">
-                        <option value="인문">인문</option>
-                        <option value="사회">사회</option>
-                        <option value="자연">자연</option>
-                        <option value="공학">공학</option>
-                        <option value="예술">예술</option>
-                    </select>
-                </div>
-                <div class="selectCultureTable">
-                    <div class="subjectTable">
-                        <table id="subjectTable">
-                            <thead>
-                                <td>과목명</td>
-                                <td>학수번호(분반)</td>
-                                <td>담당교수</td>
-                                <td>취득학점</td>
-                                <td>수강여부</td>
-                                <td>상세정보</td>
-                            </thead>
-                            <tbody id="subjectTableTbody">
-                                <!-- <tr class="tbodyTr">
-                                    <td>소프트웨어공학</td>
-                                    <td>HAEA0009-1</td>
-                                    <td>함혁수</td>
-                                    <td>3(설계)</td>
-                                    <td><button type="button" class="deleteSubjectBtn">삭제하기</button></td>
-                                    <td><button type="button" class="detailSubjectBtn">상세정보</button></td>
-                                    </tr> -->
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            </div>
+            </div>      
         </div>
         <div class="informText">
-            <p>* 자신이 수강한 학점의 상세정보를 보고 싶으시다면 그래프를 클릭해주세요.<br>(필수교양, 균형교양 제외)</p>
+            <p>* 자신이 수강한 전공과목을 더 자세히 보고 싶으시다면 그래프를 클릭해주세요.<br>(교양은 글자를 클릭해주세요)</p>
         </div>
     </div>
     <!-- bootstrap -->
