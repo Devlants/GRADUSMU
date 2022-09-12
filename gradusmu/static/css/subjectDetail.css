@@ -49,6 +49,9 @@ body{
     border: none;
     background-color: white;
 }
+.modal-header > .close-btn:hover{
+    cursor: pointer;
+}
 
 .modal-body{
     display: flex;
