@@ -5,6 +5,10 @@
     font-family: "Noto Sans KR", sans-serif;
   }
 
+html {
+    min-width: 1600px;
+}
+
 .error {
     color: red;
     text-align: left;
@@ -45,10 +49,10 @@ body {
     margin-right : 10%;
     margin-top : 10px;
     margin-bottom : 10px;
-    width: 30%;
     padding: auto;
 }
 
+/*
 .email {
     float: right;
     margin-right : 15%;
@@ -58,13 +62,34 @@ body {
     padding: auto;
 }
 
+.email {
+    margin-left: 10vw;
+    width: 100%;
+}
+*/
+.email {
+    margin-top : 10px;
+    margin-bottom : 10px;
+    float: left;
+    display : right;
+    margin-left: 10px;
+}
+
+#email {
+    margin-left: 50px;
+    margin-right: 10px;
+    margin-bottom: 10px;
+    width: 220px;
+}
+
+
 .grade {
     float: left;
     margin-left : 15%;
     margin-right : 10%;
     margin-top : 10px;
     margin-bottom : 10px;
-    width: 10%;
+    width : 10%;
     padding: auto;
 }
 
@@ -124,13 +149,14 @@ body {
 }
 
 .wrapper {
-    width: 127rem;
+    width: 100%;
     flex-direction: row;
     margin: auto;
     padding-bottom: 5%;
     justify-content: center;
     background: rgba(0, 0, 0, 0.1);
   }
+
 
 .wrapper > span {
     flex: left;
@@ -165,19 +191,27 @@ input {
 }
 
 #name {
-    margin-left: 10%;
+    margin-left: 40px;
     width: 300px;
 }
 
 #email {
     margin-left: 50px;
-    width: 500px;
+    width: 400px;
 }
 
 #grade {
-    margin-left: 50px;
+    margin-left: 10px;
     width: 100px;
 }
+
+.classInform > p {
+    float: left;
+    margin-top: 4px;
+    margin-bottom: 4px;
+}
+
+
 
 #classNum {
     margin-left: 50px;

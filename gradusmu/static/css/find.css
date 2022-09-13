@@ -5,6 +5,10 @@
     font-family: "Noto Sans KR", sans-serif;
   }
 
+html {
+    min-width: 1300px;
+}
+
 h2 {
     margin-left: 10vw;
     display: none;
@@ -20,7 +24,7 @@ h2 {
 }
 .wrapper {
     display: flex;
-    width: 127rem;
+    width: 100%;
     flex-direction: row;
     margin: auto;
     justify-content: center;
@@ -97,9 +101,6 @@ select {
     margin-right: 50px;
 }
 
-.classDepart {
-    margin-left: -50px;
-}
 
 .classMajor {
     margin-right : 100px;
