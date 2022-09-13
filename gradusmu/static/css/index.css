@@ -43,7 +43,7 @@ html, body{
 
 .profileBody{
     background-color: #d9d9d989;
-    width: 80%;
+    width: 75%;
     height: auto;
     margin-top: 15px;
     padding: 70px 100px;
@@ -51,17 +51,19 @@ html, body{
 }
 
 .profileNotName{
-    width: 100%;
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
 }
 
 .profileNotNameWrap{
     display: flex;
-
+    flex-direction: row;
+    width: 90%;
 }
+
 .profileName{
+    width: 100%;
+    text-align: center;
     font-size: 1.4rem;
     display: flex;
     flex-direction: row;
@@ -78,9 +80,11 @@ html, body{
 }
 
 .profileImg{
+    width: 200px;
     margin-top: 10px;
     display: flex;
     flex-direction: column;
+    justify-content: flex-start;
 }
 
 .profileImg img{
@@ -100,10 +104,11 @@ html, body{
 }
 
 .profileContentWrap{
-    margin: 10px 0 0 30px;
+    margin: 10px 0 0 10px;
 }
 
 .profileContentWrap button{
+    margin-top: 10px;
     background-color: white;
     border: 1px solid black;
     border-radius: 5px;
@@ -118,19 +123,29 @@ html, body{
 }
 
 .profileGraph{
-    padding: 0px 15px;
+    width: 25%;
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: center;
+}
+
+.profileGraphWrap{
+    width: 250px;
+    height: 250px;
     position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .center{  
-    position:absolute;
+    position: absolute;
     width: 100px; 
     height: 100px;
     border-radius: 50%;
-    top: 90px;
+    top: 70px;
+    left: 75px;
     display: flex;
     text-align: center;
     align-items: center;
@@ -141,8 +156,8 @@ html, body{
 
 .detailScoreBtn{
     background-color: #9038BA;
-    width: 80px;
-    height: 30px;
+    width: 70px;
+    height: 28px;
     font-size: 1rem;
     color: white;
     border: 0;
@@ -153,6 +168,8 @@ html, body{
 
 .selecBasicInformation{
     margin-top: 40px;
+    display: flex;
+    flex-direction: row;
 }
 
 .selecBasicInformation select{
@@ -164,43 +181,88 @@ html, body{
     margin-right: 30px;
 }
 
+@media(max-width: 845px){
+    .profileBody{
+        width: 80%;
+    }
+    .profileBody{
+        padding: 30px 35px;
+    }
+    .profileNotNameWrap{
+        flex-direction: column;
+    }
+}
+
+@media(max-width: 500px){
+    .profileNotName{
+        flex-direction: column;
+    }
+    .profileGraph{
+        margin-left: 45px;
+        margin-top: 20px;
+    }
+    .profileName{
+        font-size: 1.1rem;
+    }
+}
+
+@media(max-width: 375px){
+    .selecBasicInformation{
+        flex-direction: column;
+    }
+    .selecBasicInformation select{
+        margin-bottom: 10px;
+    }
+}
+
+@media(max-width: 400px){
+    .profileBody{
+        width: 70%;
+    }    
+}
 #select3{
     width: 140px;
 }
 
 .subjectTable{
     margin-top: 15px;
-    font-size: 1.2rem;
     width: 100%;
-    display: flex;
+    display: block;
 }
 
-.subjectTable table{
-    text-align: center;
-    display: flex;
-    flex-direction: column;
-    border-collapse: collapse;
-    width: 100%;
-}
-
-.subjectTable thead{    
-    display: flex;
-    justify-content: space-between;
-    background-color: #5B4FE9;
-    color: white;
-    width: inherit;
-    font-size: 1rem;
-    margin: 0;
-}
-
-.subjectTable tbody, tr{
-    text-align: center;
-    margin-left: 0;
-}
 
 .subjectTable td{
-    padding: 5px 60px;
+    font-size: 1rem;
+    padding: 10px 10px 15px 10px;
 }
+
+.subjectTable thead{  
+    background-color: #5B4FE9;
+    color: white;
+    width: 100%;
+    min-width: 200px;
+    display: inline-block;
+    width: 100%;
+    overflow: auto;
+}
+
+.subjectTable tbody{
+    width: 100%;
+    color: black;
+    border: 0.5px solid black;
+    min-width: 200px;
+    display: inline-block;
+    width: 100%;
+    overflow: auto;
+    padding: 0;
+}
+
+@media(max-width: 400px){
+    .subjectTable td, .deleteSubjectBtn, ..addSubjectBtn button{
+        font-size: 0.6rem;
+    }
+}
+
 
 .tbodyTr{
     background-color: white;
@@ -246,32 +308,6 @@ html, body{
     cursor: pointer;
 }
 
-@media(max-width: 1380px){
-    .subjectTable td{
-        padding: 5px 40px;
-    }
-}
-
-@media(max-width: 1230px){
-    .subjectTable td{
-        padding: 5px 30px;
-    }
-}
-
-@media(max-width: 1080px){
-    .subjectTable td{
-        padding: 5px 20px;
-    }
-}
-
-@media(max-width: 930px){
-    .subjectTable td{
-        padding: 5px 10px;
-    }
-    .subjectTable{
-        font-size: 1rem;
-    }
-}
 
 /* subjectGraphDetail.html */
 .subjectType{
