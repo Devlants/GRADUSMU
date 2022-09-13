@@ -20,7 +20,6 @@
         <div class="wrapper">
             <form id ="login_form" method = 'post' action = "{% url 'register' %}">
                 {% csrf_token %}
-                <div class="box1">
                     <div class="name"> 이름
                         <input id="name" name="name"  type="text" placeholder="이름을 입력해 주세요.">
                         <div id="nameError" class="error"></div>
@@ -30,13 +29,10 @@
                         <input id="email" name="email" type="text" placeholder="이메일을 입력해 주세요.">
                         <div id="emailError" class="error"></div>
                     </div>
-                </div>
-
-                <div class="line"></div>
                 
                 
                     <div class="classInform">
-                        <div class="grade"> <span>학년</span>
+                        <div class="grade"> 학년
                             <select id="grade" name="grade">
                                 <option selected disabled>선택</option>
                                 <option value = "1">1학년</option>
@@ -46,7 +42,7 @@
                             </select>
                         </div>
 
-                        <div class="classNum"> <span>학번</span>
+                        <div class="classNum"> 학번
                             <input id="classNum" name="student_num" type="text" placeholder="예) 20학번 - 20">
                         </div>
 
