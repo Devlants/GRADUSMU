@@ -15,6 +15,11 @@
 
 <body>
     {% include "header.html" %}
+    {% if error == True %}
+        <script type = "text/javascript">
+            alert("회원정보가 일치하지 않습니다.")
+        </script>
+    {% endif %}
     <main class="container">
         <form class="user" method="post" action="{% url 'login' %}">
             {% csrf_token %}

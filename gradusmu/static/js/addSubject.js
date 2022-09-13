@@ -1,8 +1,18 @@
 let date = new Date();
 let grade_year = date.getFullYear().toString().substring(2);
-var grade = [[grade_year, 2], [grade_year, 1], [grade_year - 1, 2], [grade_year - 1, 1], [grade_year - 2, 2], [grade_year - 2, 1], [grade_year - 3, 2], [grade_year - 3, 1]];
-
+var grade = [];
+for (i = grade_year; i>=18;i--){
+    grade.push([i,2]);
+    grade.push([i,1]);
+}
 $(document).ready(function () {
+    grade.forEach(function (item) {
+        let option_third = document.createElement('option');
+        $(option_third).val(item[0] + '년도 ' + item[1] + '학기');
+        $(option_third).text(item[0] + '년도 ' + item[1] + '학기');
+        $('#third-drop').append(option_third);
+    });
+    $("#third-drop option:eq(0)").prop("selected", true);
     set_page();
 });
 
@@ -62,19 +72,13 @@ function set_dropbox() {
             select_child.append(option_child);
         });
         $("#select-child option:eq(0)").prop("selected", true);
-        $('#third-drop').attr("disabled", true);
     });
 
     $('#select-child').change(function () {
-        $('#third-drop').attr("disabled", false);
-        $('#third-drop option').remove()
-        grade.forEach(function (item) {
-            let option_third = document.createElement('option');
-            $(option_third).val(item[0] + '년도 ' + item[1] + '학기');
-            $(option_third).text(item[0] + '년도 ' + item[1] + '학기');
-            select_thrid.append(option_third);
-        });
-        $("#third-drop option:eq(0)").prop("selected", true);
+        var dept = select_child.val();
+        var year = $("#third-drop").val();
+        console.log(user_id,dept,year);
+        print_mainarea(user_id, dept, year);
     });
 
     $('#third-drop').change(function () {
