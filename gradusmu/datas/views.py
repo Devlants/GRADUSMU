@@ -484,7 +484,10 @@ def many_major(request):
     currentDateTime = datetime.datetime.now()
     date = currentDateTime.date()
     year = date.strftime("%Y")
-    datas = subjects.objects.filter(dept = request['dept'])
+    if request['dept']=="전심" or request['dept']=="전선":
+        datas = subjects.objects.filter(dept = user.dept, dept_type = request['dept'])
+    else:
+        datas = subjects.objects.filter(dept = request['dept'])
     context = {}
     i=0
     for data in datas.filter(id__in = signed):
