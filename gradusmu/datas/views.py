@@ -420,12 +420,15 @@ def checkESS(request):
                 key4 = True
             elif key == '알고리즘과게임콘텐츠':
                 key5 = True
+            elif key == '교양과인성':
+                key6 = True
     context = {
         'Think': key1,
         'English': key2,
         'Math': key3,
         'Computing': key4,
-        'Algorithm': key5
+        'Algorithm': key5,
+        'Refinement': key6
     }
     return JsonResponse(context)
 #균교 확인
