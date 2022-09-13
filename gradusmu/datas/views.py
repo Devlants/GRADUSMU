@@ -485,7 +485,7 @@ def many_major(request):
     date = currentDateTime.date()
     year = date.strftime("%Y")
     if request['dept']=="전심" or request['dept']=="전선":
-        datas = subjects.objects.filter(dept = user.dept, dept_type = request['dept'])
+        datas = subjects.objects.filter(dept = user.dept, type = "1"+request['dept'])
     else:
         datas = subjects.objects.filter(dept = request['dept'])
     context = {}
