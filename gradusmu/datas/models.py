@@ -23,7 +23,7 @@ class GraduationCiteria(models.Model):
     essMajor = models.IntegerField(null=True)  # 주전공
     subMajor = models.IntegerField(null=True)  # 부전공
     # 총 이수
-    total = models.IntegerField(null=False)
+    total = models.IntegerField(null=False,default=0)
 
 class subjects(models.Model):
     serialNumber = models.CharField(max_length=100, null=False)  # 학수번호

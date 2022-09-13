@@ -18,7 +18,7 @@ class User(AbstractUser):
     #부전공/다전공
     second_universe = models.CharField(max_length = 50, null = False,default = "")
     second_dept = models.CharField(max_length = 50,null=False)
-    image = models.ImageField(upload_to="",default = "/static/img/person.png")
+    image = models.ImageField(upload_to="",default = "/person.png")
     sign_up = models.ManyToManyField("datas.subjects")
 
     def total_points(self):
