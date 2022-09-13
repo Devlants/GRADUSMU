@@ -407,7 +407,7 @@ def checkESS(request):
     user = User.objects.get(id=int(request['user_id']))
     signed = list(user.sign_up.values_list('id', flat=True))
     datas = EssentialLiberalArts.getEss()
-    key1 = key2 = key3 = key4 = key5 = False
+    key1 = key2 = key3 = key4 = key5 = key6 = False
     for key in list(datas.keys()):
         for data in datas[key].filter(id__in=signed):
             if key == '사고와표현':
@@ -420,12 +420,15 @@ def checkESS(request):
                 key4 = True
             elif key == '알고리즘과게임콘텐츠':
                 key5 = True
+            elif key == '교양과인성':
+                key6 = True
     context = {
         'Think': key1,
         'English': key2,
         'Math': key3,
         'Computing': key4,
-        'Algorithm': key5
+        'Algorithm': key5,
+        'Refinement': key6
     }
     return JsonResponse(context)
 #균교 확인

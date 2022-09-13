@@ -128,7 +128,9 @@ function updatePwd() {
     success: function(result){
       console.log(result.is_changed);
       if(result.is_changed == true){
-        alert("비밀번호와 회원정보가 변경되었습니다.");
+        alert("비밀번호가 변경되었습니다. 다시 로그인해 주세요.");
+        var url = '/accounts/login/'
+        location.replace(url);
         return;
       } else {
         alert("실패");

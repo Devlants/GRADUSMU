@@ -6,16 +6,26 @@
         <a href="{% url 'home' %}"><img id="mainImg" src="{% static 'img/gradusmu.png' %}" /></a>
     </div>
 </div>
+
+    
 {% if user.is_authenticated %}
     <div class="logoutBtn">
         <button type="button" class="loginBtn"  onclick = "location.href = '{%url 'logout' %}'">LOGOUT</button>
     </div>
+{% else %}
+    <div class="box"></div>
 {% endif %}
+    
 <div class="line"></div>
 
 <style>
   #devlant_img {
         float: left;
+    }
+
+    .box {
+        width : 100%;
+        height: 15px;
     }
 
     .myheader {

@@ -129,7 +129,6 @@ html, body{
     position:absolute;
     width: 100px; 
     height: 100px;
-    background :#fff;
     border-radius: 50%;
     top: 90px;
     display: flex;
@@ -137,6 +136,7 @@ html, body{
     align-items: center;
     justify-content: center;
     font-weight: 800;
+    z-index: -1;
 }
 
 .detailScoreBtn{

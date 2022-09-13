@@ -40,9 +40,6 @@
                         <div id="emailError" class="error"></div>
                     </div>
                 </div>
-
-                <div class="line"></div>
-                
                 
                 <div class="classInform">
                     <div class="grade"> 학년
@@ -79,6 +76,7 @@
                 </div>
 
                 <div class="line"></div>
+                
 
                 <div class="password"> * 비밀번호 <br>
                     <div class="pwdModifying">
@@ -100,33 +98,35 @@
                     </div>
                 </div>
 
-                <div class="line"></div>
-                
-                <div class="select" id="dept_type"> 전공분류
-                    <input type="radio" id="select" name="dept_type" value="전공심화" checked="checked"><label for="select">전공심화</label>
-                    <input type="radio" id="select2" name="dept_type" value="복수전공"><label for="select2">복수전공</label>
-                    <input type="radio" id="select3" name="dept_type" value="부전공"><label for="select3">부전공</label>
+                <div class="line" id="line"></div>
+
+                <div class="box2">
+                    <div class="select" id="dept_type"> 전공분류
+                        <input type="radio" id="select" name="dept_type" value="전공심화" checked="checked"><label for="select">전공심화</label>
+                        <input type="radio" id="select2" name="dept_type" value="복수전공"><label for="select2">복수전공</label>
+                        <input type="radio" id="select3" name="dept_type" value="부전공"><label for="select3">부전공</label>
+                    </div>
+
+                    <div class="plusMajor" id="plusMajor">
+                        <div class="classDepart">
+                            <select id="plus_classDepart" name="second_universe" onchange="categoryChange_plus(this)">
+                                <option selected disabled> 대학 선택 </option>
+                                <option value = "인문사회과학대학">인문사회과학대학</option>
+                                <option value = "사범대학">사범대학</option>
+                                <option value = "경영경제대학">경영경제대학</option>
+                                <option value = "융합공과대학">융합공과대학</option>
+                                <option value = "문화예술대학">문화예술대학</option>
+                            </select>
+                        </div>
+
+                        <div class="classMajor">
+                            <select id="plus_classMajor" name="second_dept">
+                                <option selected disabled> 학부/ 학과 선택</option>
+                            </select>
+                        </div>
+                        <input type = "submit" id ="submit" style = "display:none;">
+                    </div>
                 </div>
-
-                <div class="plusMajor" id="plusMajor">
-                    <div class="classDepart">
-                        <select id="plus_classDepart" name="second_universe" onchange="categoryChange_plus(this)">
-                            <option selected disabled> 대학 선택 </option>
-                            <option value = "인문사회과학대학">인문사회과학대학</option>
-                            <option value = "사범대학">사범대학</option>
-                            <option value = "경영경제대학">경영경제대학</option>
-                            <option value = "융합공과대학">융합공과대학</option>
-                            <option value = "문화예술대학">문화예술대학</option>
-                        </select>
-                    </div>
-
-                    <div class="classMajor">
-                        <select id="plus_classMajor" name="second_dept">
-                            <option selected disabled> 학부/ 학과 선택</option>
-                        </select>
-                    </div>
-                    <input type = "submit" id ="submit" style = "display:none;">
-                </div>  
                     
             </form>
 

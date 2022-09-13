@@ -98,6 +98,10 @@ main>#center_area>#main_area .row .col {
     font-size: 0.8rem;
 }
 
+.mainarea_btn:hover {
+    cursor: pointer;
+}
+
 footer {
     height: 15vh;
     display: flex;

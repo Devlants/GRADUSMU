@@ -20,7 +20,7 @@ h2 {
 }
 .wrapper {
     display: flex;
-    width: 100%;
+    width: 127rem;
     flex-direction: row;
     margin: auto;
     justify-content: center;
@@ -53,11 +53,7 @@ input {
     background-color: rgb(255, 255, 255);
 }
     
-.classInform > div {
-    float: left;
-    margin-top : 10px;
-    margin-bottom : 20px;
-}
+
 
 select {
     width:300px;
@@ -68,6 +64,12 @@ select {
     -moz-appearance: none;
     appearance : none;
     font-size: 18px;
+}
+
+.classInform > div {
+    float: left;
+    margin-top : 10px;
+    margin-bottom : 20px;
 }
 
 #grade {
@@ -252,3 +254,7 @@ p {
 .password {
     margin-bottom: 10px;
 }
+
+input:disabled {
+    background-color: rgba(0, 0, 0, 0.1);
+  }

@@ -59,6 +59,10 @@ main > form > .login_btn_wrap > #login_btn{
     font-family: 'Heebo', sans-serif;
 }
 
+main > form > .login_btn_wrap > #login_btn:hover{
+    cursor: pointer;
+}
+
 footer{
     height: 25vh;
     width: 100%;
