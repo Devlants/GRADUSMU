@@ -29,13 +29,13 @@ class User(AbstractUser):
     
     def choice_major_points(self):
         if self.dept_type == "전공심화":
-            return sum(self.sign_up.filter(Q(type = "1전선")).values_list('point',flat = True))
+            return sum(self.sign_up.filter(Q(dept = self.dept, type = "1전선")).values_list('point',flat = True))
         else :
             return sum(self.sign_up.filter(Q(dept = self.dept, type = "1전심")|Q(dept = self.dept, type = "1전선")).values_list('point',flat = True))
     
     def deep_major_points(self):
         if self.dept_type == "전공심화":
-            return sum(self.sign_up.filter(Q(type = "1전심")).values_list('point',flat = True))
+            return sum(self.sign_up.filter(Q(dept = self.dept,type = "1전심")).values_list('point',flat = True))
         else :
             return sum(self.sign_up.filter(Q(dept = self.second_dept, type = "1전심")|Q(dept = self.second_dept, type = "1전선")).values_list('point',flat = True))
     
