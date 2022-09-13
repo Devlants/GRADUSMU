@@ -57,6 +57,8 @@ class EssentialLiberalArts(models.Model):
             name="컴퓨팅사고와데이터의이해").values_list('sort', flat=True)
         forCount['알고리즘과게임콘텐츠'] = EssentialLiberalArts.objects.filter(
             name="알고리즘과게임콘텐츠").values_list('sort', flat=True)
+        forCount['교양과인성'] = EssentialLiberalArts.objects.filter(
+            name="교양과인성").values_list('sort', flat=True)
 
         ess = {}
         ess["사고와표현"] = subjects.objects.filter(name__in=forCount["사고와표현"])
@@ -67,6 +69,8 @@ class EssentialLiberalArts(models.Model):
             name__in=forCount["컴퓨팅사고와데이터의이해"])
         ess["알고리즘과게임콘텐츠"] = subjects.objects.filter(
             name__in=forCount["알고리즘과게임콘텐츠"])
+        ess["교양과인성"] = subjects.objects.filter(
+            name__in=forCount["교양과인성"])
 
         return (ess)
 
