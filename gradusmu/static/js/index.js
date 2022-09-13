@@ -29,7 +29,7 @@ function putSubjectTable(data){
     $('#subjectTableTbody').html('');
     var length = Object.keys(data).length;
     if(length == 0){
-        $('#subjectTableTbody').append('<div style="display: flex; justify-content: center; padding: 40px 0; border: 1px solid black; border-top: none; background-color: white; width: initial; text-align:center;">수강하신 과목이 존재하지 않습니다.</div>');
+        $('#subjectTableTbody').append('<div style="display: flex; justify-content: center; padding: 40px 0; border: 1px solid black; border-top: none; background-color: white; width: initial; text-align:center; color: black;">수강하신 과목이 존재하지 않습니다.</div>');
     }
     if(length > 0){
         $('#subjectTableTbody').html('<tr class="tbodyTr"> <td>' + data[0]['name'] + '</td><td>' + data[0]['serial_num'] + '</td><td>' + data[0]['prof'] + '</td><td>' + data[0]['point'] + '</td><td><button type="button" class="deleteSubjectBtn" id="' + data[0]['id'] + '" onclick="deleteSubject(' + data[0]['id'] + ')")>삭제하기</button></td><td><button type="button" class="detailSubjectBtn" id="' + data[0]['id'] + '">상세정보</button></td>');
@@ -101,6 +101,10 @@ $(document).ready(function(){
         getSubject();
     })
     setPieChart();
+    set_dropbox();
+    $('.selecBasicInformation').change(function(){
+        set_dropbox();
+    })
 })
 
 function setPieChart(){
@@ -119,4 +123,13 @@ function setPieChart(){
           ]
         }
     });
+}
+
+function set_dropbox() {
+    var select_parent = $('#select1');
+    if (select_parent.val() == '교양'){
+        $('#select2').html('<option value="교필">교필</option><option value="교선">교선</option><option value="균교">균교</option>');
+    }else{
+        $('#select2').html('<option value="전심">전심</option><option value="전선">전선</option>');
+    }
 }

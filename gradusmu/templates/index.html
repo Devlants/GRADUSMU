@@ -56,46 +56,45 @@
                         </div>
                     </div>
                     <div class="profileGraph">
-                        <canvas id="doughnut-chart" width="300" height="250"></canvas>
+                        <div class="profileGraphWrap">
+                            <canvas id="doughnut-chart" width="250" height="200"></canvas>
                             <div class="center">취득학점<br>{{total}}</div>
-                        <button type="button" class="detailScoreBtn" onclick = "location.href = '{% url 'score_detail' %}'">학점상세</button>
+                            <button type="button" class="detailScoreBtn" onclick = "location.href = '{% url 'score_detail' %}'">학점상세</button>
+                        </div>
                     </div>
                 </div>
             </div>
             <div class="selecBasicInformation">
                 <select id="select1">
-                    <option>전공</option>
-                    <option>교양</option>
+                    <option value="전공">전공</option>
+                    <option value="교양">교양</option>
                 </select>
                 <select id="select2">
                     <option value="전심">전심</option>
                     <option value="전선">전선</option>
-                    <option value="교필">교필</option>
-                    <option value="교선">교선</option>
-                    <option value="균교">균교</option>
                 </select>
                 <select id="select3">
-                    <option value="22년도 1학기">22년도 1학기</option>
                     <option value="22년도 2학기">22년도 2학기</option>
-                    <option value="21년도 1학기">21년도 1학기</option>
+                    <option value="22년도 1학기">22년도 1학기</option>
                     <option value="21년도 2학기">21년도 2학기</option>
-                    <option value="20년도 1학기">20년도 1학기</option>
+                    <option value="21년도 1학기">21년도 1학기</option>
                     <option value="20년도 2학기">20년도 2학기</option>
-                    <option value="19년도 1학기">19년도 1학기</option>
+                    <option value="20년도 1학기">20년도 1학기</option>
                     <option value="19년도 2학기">19년도 2학기</option>
-                    <option value="18년도 1학기">18년도 1학기</option>
+                    <option value="19년도 1학기">19년도 1학기</option>
                     <option value="18년도 2학기">18년도 2학기</option>
+                    <option value="18년도 1학기">18년도 1학기</option>
                 </select>
             </div>
             <div class="subjectTable">
-                <table id="subjectTable">
+                <table id="subjectTable" style = "table-layout: auto; width: 100%; table-layout: fixed;">
                     <thead>
-                        <td>과목명</td>
-                        <td>학수번호(분반)</td>
-                        <td>담당교수</td>
-                        <td>취득학점</td>
-                        <td>삭제</td>
-                        <td>상세정보</td>
+                        <td scope="col">과목명</td>
+                        <td scope="col">학수번호(분반)</td>
+                        <td scope="col">담당교수</td>
+                        <td scope="col">취득학점</td>
+                        <td scope="col">삭제</td>
+                        <td scope="col">상세정보</td>
                     </thead>
                     <tbody id="subjectTableTbody">
                     </tbody>

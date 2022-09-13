@@ -93,10 +93,86 @@ function getSubject(data){
     }
 }
 
+//전공 가져오기
+function getMajor(){
+    if(graphTitle == "전공심화"){
+        $.ajax({
+            type: 'POST',
+            url: '/datas/many_major/',
+            data: JSON.stringify({
+                "user_id" : user_id,
+                "dept" : "전심"
+            }),
+            success: function(data){
+                putSubjectTable(data);
+            }, 
+            error: function(){
+                alert('못 가져오는뎈?');
+            }
+    
+        })
+    }
+    if(graphTitle == "전공선택"){
+        $.ajax({
+            type: 'POST',
+            url: '/datas/many_major/',
+            data: JSON.stringify({
+                "user_id" : user_id,
+                "dept" : "전선"
+            }),
+            success: function(data){
+                putSubjectTable(data);
+            }, 
+            error: function(){
+                alert('못 가져오는뎈?');
+            }
+    
+        })
+    }
+    if(graphTitle == "주전공" || graphTitle == "전공1"){
+        $.ajax({
+            type: 'POST',
+            url: '/datas/many_major/',
+            data: JSON.stringify({
+                "user_id" : user_id,
+                "dept" : user_main_dept
+            }),
+            success: function(data){
+                putSubjectTable(data);
+            }, 
+            error: function(){
+                alert('못 가져오는뎈?');
+            }
+    
+        })
+    }
+    if(graphTitle == "부전공" || graphTitle == "전공2"){
+        $.ajax({
+            type: 'POST',
+            url: '/datas/many_major/',
+            data: JSON.stringify({
+                "user_id" : user_id,
+                "dept" : user_second_dept
+            }),
+            success: function(data){
+                putSubjectTable(data);
+            }, 
+            error: function(){
+                alert('못 가져오는뎈?');
+            }
+    
+        })
+    }
+}
 
 $(document).ready(function(){
-    getSelect(graphTitle);
+    if(graphTitle.includes('전공')){
+        getMajor();
+    }else{
+        getSelect(graphTitle);
+    }
     $('.subjectSelect').change(function(){
         getSubject(graphTitle);
     })
 })
+
