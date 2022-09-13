@@ -72,7 +72,17 @@ def signed_search_subject(request):
                     "sort" : key
                 }
                 i+=1
-
+    elif dept_type == "전선" or dept_type == "전심":
+        datas = subjects.objects.filter(type = dept_type,dept = user.dept, year = year, semester = int(semester)).filter(id__in = signed)
+        context={}
+        for i in range(len(datas)):
+            context[i] = {
+                "id" : datas[i].id,
+                "name" : datas[i].name,
+                "serial_num" : datas[i].serialNumber+"-"+str(datas[i].distribution),
+                "prof" : datas[i].prof,
+                "point" : datas[i].point,
+            }
     else:
         datas = subjects.objects.filter(type = dept_type,year = year, semester = int(semester)).filter(id__in = signed)
         context={}
@@ -148,6 +158,17 @@ def unsigned_search_subject(request):
                     "sort" : key
                 }
                 i+=1
+    elif dept_type == "전선" or dept_type == "전심":
+        datas = subjects.objects.filter(type = dept_type,dept = user.dept, year = year, semester = int(semester)).exclude(id__in = signed)
+        context={}
+        for i in range(len(datas)):
+            context[i] = {
+                "id" : datas[i].id,
+                "name" : datas[i].name,
+                "serial_num" : datas[i].serialNumber+"-"+str(datas[i].distribution),
+                "prof" : datas[i].prof,
+                "point" : datas[i].point,
+            }
     else :
         datas = subjects.objects.filter(type = dept_type,year = year, semester = int(semester)).exclude(id__in = signed)
         context={}
