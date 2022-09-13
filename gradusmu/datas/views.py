@@ -407,7 +407,7 @@ def checkESS(request):
     user = User.objects.get(id=int(request['user_id']))
     signed = list(user.sign_up.values_list('id', flat=True))
     datas = EssentialLiberalArts.getEss()
-    key1 = key2 = key3 = key4 = key5 = False
+    key1 = key2 = key3 = key4 = key5 = key6 = False
     for key in list(datas.keys()):
         for data in datas[key].filter(id__in=signed):
             if key == '사고와표현':
