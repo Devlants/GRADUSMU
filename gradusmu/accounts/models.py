@@ -25,7 +25,8 @@ class User(AbstractUser):
         return sum(self.sign_up.values_list('point',flat = True))
 
     def major_points(self):
-        return sum(self.sign_up.filter(Q(type = "1전심")|Q(type = "1전선")).values_list('point',flat = True))
+        return self.choice_major_points()+self.deep_major_points()
+        # return sum(self.sign_up.filter(Q(dept = self.dept,type = "1전심")|Q(dept = self.dept,type = "1전선")).values_list('point',flat = True))
     
     def choice_major_points(self):
         if self.dept_type == "전공심화":

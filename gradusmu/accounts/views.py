@@ -18,10 +18,10 @@ def login(request):
             if user.password == request.POST["password"]:
                 auth.login(request, user)
                 return redirect("home")
-
-        return render(request, "login.html")
+        
+        return render(request, "login.html",{"error" : True})
     else:
-        return render(request, "login.html")
+        return render(request, "login.html",{"error" : False})
 # 회원가입
 
 
