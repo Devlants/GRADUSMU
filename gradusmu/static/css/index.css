@@ -220,58 +220,42 @@ html, body{
         width: 70%;
     }    
 }
+
 #select3{
     width: 140px;
 }
 
+
+/* 테이블 */
 .subjectTable{
-    margin-top: 15px;
     width: 100%;
-    display: block;
+    margin-top: 25px;
+    height: auto;
 }
 
-
-.subjectTable td{
-    font-size: 1rem;
-    padding: 10px 10px 15px 10px;
+#subjectTable{
+    border-collapse: collapse; 
+    border-spacing: 0;
 }
 
-.subjectTable thead{  
-    background-color: #5B4FE9;
+#subjectTable th{
+    background-color:#5B4FE9;
     color: white;
-    width: 100%;
-    min-width: 200px;
-    display: inline-block;
-    width: 100%;
-    overflow: auto;
+    padding: 4px 0px;
+
 }
-
-.subjectTable tbody{
-    width: 100%;
-    color: black;
-    border: 0.5px solid black;
-    min-width: 200px;
-    display: inline-block;
-    width: 100%;
-    overflow: auto;
-    padding: 0;
-}
-
-@media(max-width: 400px){
-    .subjectTable td, .deleteSubjectBtn, ..addSubjectBtn button{
-        font-size: 0.6rem;
-    }
-}
-
-
-.tbodyTr{
+#subjectTableTbody tr{
+    text-align: center;
     background-color: white;
-    border: 1px solid black;
+}
+
+#subjectTableTbody td{
+    padding: 4px 0px;
+    border: 0.5px solid black;
 }
 
 .deleteSubjectBtn{
-    width: 70px;
-    height: 25px;
+    padding: 2px 7px 0px 7px;
     background-color: #B93D16;
     border: 0;
     border-radius: 10px;
@@ -281,8 +265,7 @@ html, body{
 }
 
 .detailSubjectBtn{
-    width: 70px;
-    height: 25px;
+    padding: 2px 7px 0px 7px;
     background-color: #000000;
     border: 0;
     border-radius: 10px;
@@ -299,13 +282,21 @@ html, body{
 .addSubjectBtn button{
     background-color: #B472E8;
     border: 0;
-    width: 120px;
-    height: 40px;
     font-size: 1.4rem;
     color: white;
     font-weight: bold;
     border-radius: 30px;
     cursor: pointer;
+    padding: 5px 15px;
+}
+
+@media(max-width: 400px){
+    .subjectTable td, .deleteSubjectBtn, .detailSubjectBtn{
+        font-size: 0.6rem;
+    }
+    .subjectTable th{
+        font-size: 0.6rem;
+    }
 }
 
 
@@ -325,4 +316,11 @@ html, body{
 #uploadForm{
     visibility: hidden;
     height: 1px;
+}
+
+.subjectSelect select{
+    width: 150px;
+    height: 30px;
+    font-size: 1rem;
+    font-weight: 600;
 }

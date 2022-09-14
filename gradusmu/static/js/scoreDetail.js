@@ -72,6 +72,9 @@ function checkBasicCategory(data){
     if(data['Algorithm'] == true){ 
         $("input:checkbox[value='Algorithm']").prop("checked",true);  
     }
+    if(data['Refinement'] == true){ 
+        $("input:checkbox[value='Refinement']").prop("checked",true);  
+    }
 }
 
 //내가 들은 핵심교양 확인하기
