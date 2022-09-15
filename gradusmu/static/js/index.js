@@ -29,7 +29,7 @@ function putSubjectTable(data){
     $('#subjectTableTbody').html('');
     var length = Object.keys(data).length;
     if(length == 0){
-        $('#subjectTableTbody').append('<div style="display: flex; justify-content: center; padding: 40px 0; border: 1px solid black; border-top: none; background-color: white; width: initial; text-align:center; color: black;">수강하신 과목이 존재하지 않습니다.</div>');
+        $('#subjectTableTbody').append('<tr><td colspan="6" style="background-color: white; border: 0.5px solid black; border-top: none; margin-top: 0;">수강하신 과목이 존재하지 않습니다.</td></tr>');
     }
     if(length > 0){
         $('#subjectTableTbody').html('<tr class="tbodyTr"> <td>' + data[0]['name'] + '</td><td>' + data[0]['serial_num'] + '</td><td>' + data[0]['prof'] + '</td><td>' + data[0]['point'] + '</td><td><button type="button" class="deleteSubjectBtn" id="' + data[0]['id'] + '" onclick="deleteSubject(' + data[0]['id'] + ')")>삭제하기</button></td><td><button type="button" class="detailSubjectBtn" id="' + data[0]['id'] + '">상세정보</button></td>');
@@ -38,6 +38,38 @@ function putSubjectTable(data){
         }
     }
 }
+
+function set_dropbox() {
+    var select_child = $('#select2');
+
+    $('#select1').change(function () {
+        if (this.value == '전공') {
+            var option_child_arr = ['전심', '전선'];
+        }
+        else {
+            var option_child_arr = ['균교', '교필', '교선'];
+        }
+
+        $('#select2 option').remove()
+        option_child_arr.forEach(function (i) {
+            var option_child = document.createElement('option');
+            $(option_child).val(i);
+            $(option_child).text(i);
+            select_child.append(option_child);
+        });
+        $("#select2 option:eq(0)").prop("selected", true);
+        $('#select2').trigger('change');
+    });
+
+    $('#select2').change(function () {
+        getSubject();
+    });
+
+    $('#select3').change(function () {
+        getSubject();
+    })
+}
+
 
 function getSubject(){
     var dept_type = $('#select2').val();
@@ -84,9 +116,9 @@ function deleteSubject(num){
             "user_id" : user_id,
             "subject_id": num
         }),
-        success: function(data){
+        success: function(){
             alert('삭제되었습니다.');
-            putSubjectTable(data);
+            location.reload();
         }, 
         error: function(){
             alert('못 가져오는뎈?');
@@ -102,9 +134,6 @@ $(document).ready(function(){
     })
     setPieChart();
     set_dropbox();
-    $('.selecBasicInformation').change(function(){
-        set_dropbox();
-    })
 })
 
 function setPieChart(){
@@ -123,13 +152,4 @@ function setPieChart(){
           ]
         }
     });
-}
-
-function set_dropbox() {
-    var select_parent = $('#select1');
-    if (select_parent.val() == '교양'){
-        $('#select2').html('<option value="교필">교필</option><option value="교선">교선</option><option value="균교">균교</option>');
-    }else{
-        $('#select2').html('<option value="전심">전심</option><option value="전선">전선</option>');
-    }
 }

@@ -72,6 +72,7 @@ function set_dropbox() {
             select_child.append(option_child);
         });
         $("#select-child option:eq(0)").prop("selected", true);
+        $('#select-child').trigger('change');
     });
 
     $('#select-child').change(function () {

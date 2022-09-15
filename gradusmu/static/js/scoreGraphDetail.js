@@ -10,7 +10,7 @@ function putSubjectTable(data){
         }
     }
     if(length == 0){
-        $('#subjectTable').append('<div style="display: flex; justify-content: center; padding: 40px 0; border: 1px solid black; border-top: none; background-color: white; width: initial; text-align:center;">수강하신 과목이 존재하지 않습니다.</div>');
+        $('#subjectTableTbody').append('<tr><td colspan="6" style="background-color: white; border: 0.5px solid black; border-top: none; margin-top: 0;">수강하신 과목이 존재하지 않습니다.</td></tr>');
     }
     if(length > 0){
         $('#subjectTableTbody').html('<tr class="tbodyTr"> <td>' + data[0]['name'] + '</td><td>' + data[0]['serial_num'] + '</td><td>' + data[0]['prof'] + '</td><td>' + data[0]['point'] + '</td><td>' + data[0]['signed'] + '</td><td><button type="button" class="detailSubjectBtn" id="' + data[0]['id'] + '">상세정보</button></td>');
@@ -34,7 +34,7 @@ function getSelect(data){
     }
 
     if(data == '기초교양'){
-        $('.subjectSelect').html('<select id="selectWhat"><option value="사고와표현">사고와표현</option><option value="EnglishFoundations">영어</option><option value="기초수학">수학</option><option value="컴퓨팅사고와데이터의이해">컴퓨팅사고</option><option value="알고리즘과게임콘텐츠">알고리즘</option></select>')
+        $('.subjectSelect').html('<select id="selectWhat"><option value="사고와표현">사고와표현</option><option value="EnglishFoundations">영어</option><option value="기초수학">수학</option><option value="컴퓨팅사고와데이터의이해">컴퓨팅사고</option><option value="알고리즘과게임콘텐츠">알고리즘</option><option value="교양과인성">교양과인성</option></select>')
         getSubject('기초교양');
     }
 }

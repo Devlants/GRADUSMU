@@ -124,34 +124,40 @@
             <!-- 교선 데이터 : {{user.choice_culture_points}}/{{user.total_culture_choice}}-->
             <div class="basicCultureScoreWrap">
                 <h3 style="font-weight: 300; cursor: pointer;" onclick="location.href='{% url 'scoreGraphDetail' '기초교양' %}'">*기초 교양</h3>
-                <div class="selectBasicType" style="display: flex; flex-direction: row; align-items: center;">
-                    <label><input type="checkbox" name="subject" value="Think" disabled> 사고와 표현</label>
-                    <div style="background-color: silver; padding: 5px; border-radius: 10px;">
-                        <label><input type="checkbox" name="subject" value="English" disabled> 영어</label>
-                        <label><input type="checkbox" name="subject" value="Math" disabled> 수학</label>
+                <div class="selectBasicType">
+                    <div class="selectBasicTypeWrap">
+                        <div id="firstWrap">
+                            <label style="margin-right: 15px;"><input type="checkbox" name="subject" value="Think" disabled> 사고와 표현</label>    
+                            <label><input type="checkbox" name="subject" value="Refinement" disabled> 교양과 인성</label>
+                        </div>
+                        <div id="secondWrap">
+                            <div id="secondWrapFirst" style="background-color: silver; padding: 5px; border-radius: 10px;">
+                                <label><input type="checkbox" name="subject" value="Computing" disabled> 컴퓨팅사고</label>
+                                <label><input type="checkbox" name="subject" value="Algorithm" disabled> 알고리즘</label>
+                            </div>
+                            <div id="secondWrapSecond" style="background-color: silver; padding: 5px; border-radius: 10px;">
+                                <label><input type="checkbox" name="subject" value="English" disabled> 영어</label>
+                                <label id="inputMath" ><input type="checkbox" name="subject" value="Math" disabled> 수학</label>
+                            </div>
+                        </div>
                     </div>
-                    <div style="background-color: silver; padding: 5px; border-radius: 10px; margin-left: 20px;">
-                        <label><input type="checkbox" name="subject" value="Computing" disabled> 컴퓨팅사고</label>
-                        <label><input type="checkbox" name="subject" value="Algorithm" disabled> 알고리즘</label>
-                    </div>
-                    <label style="margin-left: 15px;"><input type="checkbox" name="subject" value="" disabled> 교양과 인성</label>
                 </div>
             </div>
             <div class="balanceCultureScoreWrap">
                 <h3 style="font-weight: 300; cursor: pointer;" onclick="location.href='{% url 'scoreGraphDetail' '핵심교양' %}'">*핵심 교양</h3>
-                <div class="selectBalanceType" style="display: flex; flex-direction: row; align-items: center;">
-                    <div style="background-color: silver; padding: 5px; border-radius: 10px;">
+                <div class="selectBalanceType">
+                    <div id="select1Wrap">
                         <label><input type="checkbox" name="subject" value="Creative" disabled> 창의적문제해결</label>
                         <label><input type="checkbox" name="subject" value="Convergence" disabled> 융복합</label>
                     </div>
-                    <div style="background-color: silver; padding: 5px; border-radius: 10px; margin-left: 20px;">
+                    <div id="select2Wrap">
                         <label><input type="checkbox" name="subject" value="Diversity" disabled> 다양성존중</label>
                         <label><input type="checkbox" name="subject" value="Ethics" disabled> 윤리실천</label>
                     </div>
                 </div>
             </div>
             <div class="essentialCultureScoreWrap">
-                <div style="display: flex; flex-direction: row; align-items: center;">
+                <div id="essentialWrap">
                     <h3 style="font-weight: 300; cursor: pointer;" onclick="location.href='{% url 'scoreGraphDetail' '균형교양' %}'">*균형 교양</h3>
                     <div class="selectEssentialType">
                         <label id="인문"><input type="checkbox" name="subject" value="인문" disabled> 인문</label>
