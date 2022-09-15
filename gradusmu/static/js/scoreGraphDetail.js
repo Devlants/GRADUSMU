@@ -53,6 +53,7 @@ function getSubject(data){
             }),
             success: function(data){
                 putSubjectTable(data);
+                setBtn(dept_type);
             }, 
             error: function(){
                 alert('못 가져오는뎈?');
@@ -69,6 +70,7 @@ function getSubject(data){
             }),
             success: function(data){
                 putSubjectTable(data);
+                setBtn(dept_type);
             }, 
             error: function(){
                 alert('못 가져오는뎈?');
@@ -85,6 +87,7 @@ function getSubject(data){
             }),
             success: function(data){
                 putSubjectTable(data);
+                setBtn(dept_type);
             }, 
             error: function(){
                 alert('못 가져오는뎈?');
@@ -105,6 +108,7 @@ function getMajor(){
             }),
             success: function(data){
                 putSubjectTable(data);
+                setBtn(data.dept);
             }, 
             error: function(){
                 alert('못 가져오는뎈?');
@@ -122,6 +126,7 @@ function getMajor(){
             }),
             success: function(data){
                 putSubjectTable(data);
+                setBtn(data.dept);
             }, 
             error: function(){
                 alert('못 가져오는뎈?');
@@ -139,6 +144,7 @@ function getMajor(){
             }),
             success: function(data){
                 putSubjectTable(data);
+                setBtn(data.dept);
             }, 
             error: function(){
                 alert('못 가져오는뎈?');
@@ -156,6 +162,7 @@ function getMajor(){
             }),
             success: function(data){
                 putSubjectTable(data);
+                setBtn(data.dept);
             }, 
             error: function(){
                 alert('못 가져오는뎈?');
@@ -175,4 +182,20 @@ $(document).ready(function(){
         getSubject(graphTitle);
     })
 })
+
+
+// modal setting 하는 btn 
+function setBtn($dept_tye) {
+
+    $('.detailSubjectBtn').click(function () {
+        var $subject_id = $(this).attr('id');
+        setModal(user_id,$dept_tye,$subject_id);
+        console.log($subject_id);
+        showModal($('.modal-wrap'));
+    });
+
+    $('.close-btn').click(function () {
+        noneModal($('.modal-wrap'));
+    });
+}
 
