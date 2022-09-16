@@ -1,0 +1,325 @@
+html, body{
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.mainBody{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    margin: 0 auto;
+}
+
+.profileBody{
+    width: 100%;
+    height: 100%;
+}
+
+.profileContentBody{
+    width: 100%;
+}
+
+.logoutBtn{
+    width: 90%;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.logoutBtn button{
+    border-radius: 10px;
+    border: 0;
+    background-color: #5B4FE9;
+    color: white;
+    font-size: 1rem;
+    font-weight: bolder;
+    width: 90px;
+    height: 28px;
+    cursor: pointer;
+}
+
+.profileBody{
+    background-color: #d9d9d989;
+    width: 75%;
+    height: auto;
+    margin-top: 15px;
+    padding: 70px 100px;
+    border-radius: 10px;
+}
+
+.profileNotName{
+    display: flex;
+    flex-direction: row;
+}
+
+.profileNotNameWrap{
+    display: flex;
+    flex-direction: row;
+    width: 90%;
+}
+
+.profileName{
+    width: 100%;
+    text-align: center;
+    font-size: 1.4rem;
+    display: flex;
+    flex-direction: row;
+    font-weight: bolder;
+}
+
+.profileDepartmentWrap{
+    display: flex;
+    flex-direction: row;
+}
+
+#profileDepartment{
+    color: #801CAF;
+}
+
+.profileImg{
+    width: 200px;
+    margin-top: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+
+.profileImg img{
+    border-radius: 70px;
+    width: 150px;
+    height: 150px;
+}
+
+.profileImg button{
+    background-color: white;
+    border: 0;
+    font-size: 0.9rem;
+    font-weight: 500;
+    width: 150px;
+    margin-top: 10px;
+    cursor: pointer;
+}
+
+.profileContentWrap{
+    margin: 10px 0 0 10px;
+}
+
+.profileContentWrap button{
+    margin-top: 10px;
+    background-color: white;
+    border: 1px solid black;
+    border-radius: 5px;
+    padding: 3px 6px;
+    font-size: 0.9rem;
+    cursor: pointer;
+}
+
+.profileContent{
+    margin-top: 7px;
+    line-height: 25px;
+}
+
+.profileGraph{
+    width: 25%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.profileGraphWrap{
+    width: 250px;
+    height: 250px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.center{  
+    position: absolute;
+    width: 100px; 
+    height: 100px;
+    border-radius: 50%;
+    top: 70px;
+    left: 75px;
+    display: flex;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    font-weight: 800;
+    z-index: -1;
+}
+
+.detailScoreBtn{
+    background-color: #9038BA;
+    font-size: 1rem;
+    color: white;
+    border: 0;
+    padding: 5px 10px;
+    border-radius: 10px;
+    margin-top: 10px;
+    cursor: pointer;
+}
+
+.selecBasicInformation{
+    margin-top: 40px;
+    display: flex;
+    flex-direction: row;
+}
+
+.selecBasicInformation select{
+    width: 70px;
+    height: 25px;
+    border: 2px solid black;
+    text-align: center;
+    font-size: 1rem;
+    margin-right: 30px;
+}
+
+@media(max-width: 845px){
+    .profileBody{
+        width: 80%;
+    }
+    .profileBody{
+        padding: 30px 35px;
+    }
+    .profileNotNameWrap{
+        flex-direction: column;
+    }
+}
+
+@media(max-width: 500px){
+    .profileNotName{
+        flex-direction: column;
+    }
+    .profileGraph{
+        margin-left: 45px;
+        margin-top: 20px;
+    }
+    .profileName{
+        font-size: 1.1rem;
+    }
+}
+
+@media(max-width: 375px){
+    .selecBasicInformation{
+        flex-direction: column;
+    }
+    .selecBasicInformation select{
+        margin-bottom: 10px;
+    }
+}
+
+@media(max-width: 400px){
+    .profileBody{
+        width: 70%;
+    }    
+}
+
+#select3{
+    width: 140px;
+}
+
+
+/* 테이블 */
+.subjectTable{
+    width: 100%;
+    margin-top: 25px;
+    height: auto;
+}
+
+#subjectTable{
+    border-collapse: collapse; 
+    border-spacing: 0;
+}
+
+#subjectTable th{
+    background-color:#5B4FE9;
+    color: white;
+    padding: 4px 0px;
+
+}
+#subjectTableTbody tr{
+    text-align: center;
+    background-color: white;
+}
+
+#subjectTableTbody td{
+    padding: 4px 0px;
+    border: 0.5px solid black;
+}
+
+.deleteSubjectBtn{
+    padding: 2px 7px 0px 7px;
+    background-color: #B93D16;
+    border: 0;
+    border-radius: 10px;
+    color: white;
+    font-size: 0.9rem;
+    cursor: pointer;
+}
+
+.detailSubjectBtn{
+    padding: 2px 7px 0px 7px;
+    background-color: #000000;
+    border: 0;
+    border-radius: 10px;
+    color: white;
+    font-size: 0.9rem;
+    cursor: pointer;
+}
+
+.addSubjectBtn{
+    margin-top: 15px;
+    padding-bottom: 30px;
+}
+
+.addSubjectBtn button{
+    background-color: #B472E8;
+    border: 0;
+    font-size: 1.4rem;
+    color: white;
+    font-weight: bold;
+    border-radius: 30px;
+    cursor: pointer;
+    padding: 5px 15px;
+}
+
+@media(max-width: 400px){
+    .subjectTable td, .deleteSubjectBtn, .detailSubjectBtn{
+        font-size: 0.6rem;
+    }
+    .subjectTable th{
+        font-size: 0.6rem;
+    }
+}
+
+
+/* subjectGraphDetail.html */
+.subjectType{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    font-size: 1.6rem;
+}
+
+#profileImgBtn{
+    height: 1px;
+    visibility: hidden;
+}
+
+#uploadForm{
+    visibility: hidden;
+    height: 1px;
+}
+
+.subjectSelect select{
+    width: 150px;
+    height: 30px;
+    font-size: 1rem;
+    font-weight: 600;
+}

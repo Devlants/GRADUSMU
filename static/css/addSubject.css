@@ -1,0 +1,144 @@
+body {
+    font-family: 'Heebo', sans-serif;
+    font-weight: bold;
+    font-size: 16px;
+    margin: 0;
+}
+
+.container {
+    padding: 2rem;
+}
+
+main {
+    margin: 0 3rem 0 3rem;
+    background-color: #D9D9D9;
+    border-radius: 10px;
+}
+
+main #addSubject_user_name {
+    font-size: 1.5em;
+    padding: 0;
+}
+
+main>#select_div {
+    padding: 0;
+}
+
+main>#select_div>.drop_box {
+    margin-right: 4rem;
+    width: 5rem;
+    height: 2rem;
+    margin-bottom: 1rem;
+}
+
+main>#center_area {
+    border: 1px solid black;
+    height: 50vh;
+    background-color: white;
+    position: relative;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    overflow: auto;
+    white-space: nowrap;
+}
+
+main>#center_area>#title_bar {
+    display: flex;
+    justify-content: space-between;
+    background-color: #5B4FE9;
+    color: white;
+    width: inherit;
+    font-size: 1rem;
+    margin: 0;
+}
+
+main>#center_area>#title_bar>.col {
+    display: flex;
+    justify-content: center;
+    flex: 1;
+}
+
+main>#center_area>#main_area {
+    width: inherit;
+    height: inherit;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+}
+
+main>#center_area>#main_area>.row {
+    width: inherit;
+    margin: 0;
+    border-bottom: 1px solid black;
+    font-weight: 500;
+    font-size: 1rem;
+    display: flex;
+}
+
+main>#center_area>#main_area .row .col {
+    flex: 1;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    border-right: 1px solid black;
+    white-space: normal;
+    display: flex;
+    /* max-width: calc(100%/6); */
+}
+
+.mainarea_btn {
+    width: fit-content;
+    height: min-content;
+    border-radius: 20px;
+    color: white;
+    border: none;
+    font-size: 0.8rem;
+}
+
+.mainarea_btn:hover {
+    cursor: pointer;
+}
+
+footer {
+    height: 15vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+footer>#return_btn {
+    background-color: #B472E8;
+    color: white;
+    border-radius: 20px;
+    border: none;
+    font-weight: bold;
+    font-size: 1.3em;
+    padding: 0px 20px 0px 20px;
+}
+
+@media(max-width: 760px) {
+    
+    main #addSubject_user_name {
+        font-size: 1em;
+       
+    }
+    main>#select_div {
+        display: flex;
+        flex-direction: column;
+    }
+
+    main>#center_area{
+        overflow: scroll;
+    }
+
+    main>#center_area>#title_bar {
+       width: 100vw;
+    }
+
+    main>#center_area>#main_area {
+        width: 100vw;
+    }
+}

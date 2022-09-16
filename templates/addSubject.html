@@ -1,0 +1,60 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="#">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@700&display=swap" rel="stylesheet">
+    <!-- jquery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    <link rel="stylesheet" href="{% static 'css/addSubject.css' %}">
+    <title>Gradusmu</title>
+
+</head>
+
+<body>
+    {% include "header.html" %}
+    {% include "subjectDetail.html" %}
+    <main class="container">
+        <div id="addSubject_user_name" class="container">
+            {{user.name}}({{user.dept}})
+        </div>
+
+        <div id="select_div" class="container">
+            <select id='select-parent' class="drop_box" required name='parent_category'>
+                <option value="전공" selected="'selected">전공</option>
+                <option value="교양">교양</option>
+            </select>
+            <select id='select-child' class="drop_box" required name='child_category'>
+                <option value="전심" selected="'selected">전심</option>
+                <option value="전선">전선</option>
+            </select>
+            <select id='third-drop' class="drop_box" required name='third-drop'>
+            </select>
+        </div>
+        <div id="center_area" class="container">
+            <div id="title_bar" class="row">
+                <span class="col">과목명</span>
+                <span class="col">학수번호</span>
+                <span class="col">담당교수</span>
+                <span class="col">취득학점</span>
+                <span class="col">상세정보</span>
+                <span class="col">과목추가</span>
+            </div>
+            <div id="main_area" class="container"></div>
+        </div>
+    </main>
+    <footer>
+        <button id="return_btn" onclick="location.href = '{% url 'home' %}'">돌아가기</button>
+    </footer>
+    <script type="text/javascript">var user_id = "{{user.id}}"</script>
+    <script src="{% static 'js/addSubject.js' %}"></script>
+    <!-- jquery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</body>
+</html>

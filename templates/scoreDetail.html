@@ -1,0 +1,189 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gradusmu</title>
+    <link rel="stylesheet" href="{% static 'css/scoreDetail.css' %}">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://code.jquery.com/jquery-latest.js"></script>
+    <script type="text/javascript" src="{% static 'js/scoreDetail.js' %}"></script>
+    <script type = "text/javascript">
+        var user_id = "{{user.id}}";
+        var user_total_point = '{{user.total_points}}';
+        var user_total_major_point = '{{user.total_major}}';
+        var user_total_choiceMajor_point = '{{user.total_major_choice}}';
+        var user_total_deepMajor_point = '{{user.total_major_deep}}';
+        var user_major_point = '{{user.major_points}}';
+        var user_choice_major_point = '{{user.choice_major_points}}';
+        var user_deep_major_point = '{{user.deep_major_points}}';
+        var user_culture_point = '{{user.culture_points}}';
+    </script>
+</head>
+
+<body>
+    {% include "header.html" %}
+    {% include "subjectDetail.html" %}
+    <div class="scoreDetailBody">
+        <div class="scoreDetailContent">
+            <div class="userName">
+                <div id="user_name">{{user.name}}</div>
+                <div class="userDepartmentWrap">(<div id="userDepartment">{{user.dept}}</div>)</div>
+            </div>
+            <div class="totalScoreWrap">
+                <h3>총 학점</h3>
+                <div class="totalScoreGraphWrap">
+                    <div class="totalScoreGraph"></div>
+                </div>
+                <h3 id="totalScoreFraction">{{user.total_points}}/130</h3>
+            </div>
+
+            <!--심화전공일 때-->
+            {% if user.dept_type == "전공심화" %}
+            <div class="majorScoreWrap">
+                <h3>전공</h3>
+                <div class="majorScoreGraphWrap">
+                    <div class="majorScoreGraph"></div>
+                </div>
+                <h3 id="majorScoreFraction">{{user.major_points}}/{{user.total_major}}</h3>
+            </div>
+
+            <div class="selectMajorScoreWrap">
+                <h3 style="font-weight: 300;">*전공선택</h3>
+                <div class="majorSelectScoreGraphWrap" onclick="location.href='{% url 'scoreGraphDetail' '전공선택' %}'">
+                    <div class="majorSelectScoreGraph"></div>
+                </div>
+                <h3 id="majorScoreFraction">{{user.choice_major_points}}/{{user.total_major_choice}}</h3>
+            </div>
+
+            <div class="deepMajorScoreWrap">
+                <h3 style="font-weight: 300;">*전공심화</h3>
+                <div class="deepMajorScoreGraphWrap" onclick="location.href='{% url 'scoreGraphDetail' '전공심화' %}'">
+                    <div class="deepMajorScoreGraph"></div>
+                </div>
+                <h3 id="deepMajorScoreFraction">{{user.deep_major_points}}/{{user.total_major_deep}}</h3>
+            </div>
+            {% elif user.dept_type == "복수전공" %}
+            <div class="majorScoreWrap">
+                <h3>전공</h3>
+                <div class="majorScoreGraphWrap">
+                    <div class="majorScoreGraph"></div>
+                </div>
+                <h3 id="majorScoreFraction">{{user.major_points}}/{{user.total_major}}</h3>
+            </div>
+
+            <div class="selectMajorScoreWrap">
+                <h3 style="font-weight: 300;">*전공1</h3>
+                <div class="majorSelectScoreGraphWrap" onclick="location.href='{% url 'scoreGraphDetail' '전공1' %}'">
+                    <div class="majorSelectScoreGraph"></div>
+                </div>
+                <h3 id="majorScoreFraction">{{user.choice_major_points}}/{{user.total_major_choice}}</h3>
+            </div>
+
+            <div class="deepMajorScoreWrap">
+                <h3 style="font-weight: 300;">*전공2</h3>
+                <div class="deepMajorScoreGraphWrap" onclick="location.href='{% url 'scoreGraphDetail' '전공2' %}'">
+                    <div class="deepMajorScoreGraph"></div>
+                </div>
+                <h3 id="deepMajorScoreFraction">{{user.deep_major_points}}/{{user.total_major_deep}}</h3>
+            </div>
+            {% elif user.dept_type == "부전공" %}
+            <div class="majorScoreWrap">
+                <h3>전공</h3>
+                <div class="majorScoreGraphWrap">
+                    <div class="majorScoreGraph"></div>
+                </div>
+                <h3 id="majorScoreFraction">{{user.major_points}}/{{user.total_major}}</h3>
+            </div>
+
+            <div class="selectMajorScoreWrap">
+                <h3 style="font-weight: 300;">*주전공</h3>
+                <div class="majorSelectScoreGraphWrap" onclick="location.href='{% url 'scoreGraphDetail' '주전공' %}'">
+                    <div class="majorSelectScoreGraph"></div>
+                </div>
+                <h3 id="majorScoreFraction">{{user.choice_major_points}}/{{user.total_major_choice}}</h3>
+            </div>
+
+            <div class="deepMajorScoreWrap">
+                <h3 style="font-weight: 300;">*부전공</h3>
+                <div class="deepMajorScoreGraphWrap" onclick="location.href='{% url 'scoreGraphDetail' '부전공' %}'">
+                    <div class="deepMajorScoreGraph"></div>
+                </div>
+                <h3 id="deepMajorScoreFraction">{{user.deep_major_points}}/{{user.total_major_deep}}</h3>
+            </div>
+            {% endif %}
+            <div class="cultureScoreWrap">
+                <h3>교양</h3>
+                <div class="cultureScoreGraphWrap">
+                    <div class="cultureScoreGraph"></div>
+                </div>
+                <h3 id="cultureScoreFraction">{{user.culture_points}}/{{user.total_culture}}</h3>
+            </div>
+            <!-- 교선 데이터 : {{user.choice_culture_points}}/{{user.total_culture_choice}}-->
+            <div class="basicCultureScoreWrap">
+                <h3 style="font-weight: 300; cursor: pointer;" onclick="location.href='{% url 'scoreGraphDetail' '기초교양' %}'">*기초 교양</h3>
+                <div class="selectBasicType">
+                    <div class="selectBasicTypeWrap">
+                        <div id="firstWrap">
+                            <label style="margin-right: 15px;"><input type="checkbox" name="subject" value="Think" disabled> 사고와 표현</label>    
+                            <label><input type="checkbox" name="subject" value="Refinement" disabled> 교양과 인성</label>
+                        </div>
+                        <div id="secondWrap">
+                            <div id="secondWrapFirst" style="background-color: silver; padding: 5px; border-radius: 10px;">
+                                <label><input type="checkbox" name="subject" value="Computing" disabled> 컴퓨팅사고</label>
+                                <label><input type="checkbox" name="subject" value="Algorithm" disabled> 알고리즘</label>
+                            </div>
+                            <div id="secondWrapSecond" style="background-color: silver; padding: 5px; border-radius: 10px;">
+                                <label><input type="checkbox" name="subject" value="English" disabled> 영어</label>
+                                <label id="inputMath" ><input type="checkbox" name="subject" value="Math" disabled> 수학</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="balanceCultureScoreWrap">
+                <h3 style="font-weight: 300; cursor: pointer;" onclick="location.href='{% url 'scoreGraphDetail' '핵심교양' %}'">*핵심 교양</h3>
+                <div class="selectBalanceType">
+                    <div id="select1Wrap">
+                        <label><input type="checkbox" name="subject" value="Creative" disabled> 창의적문제해결</label>
+                        <label><input type="checkbox" name="subject" value="Convergence" disabled> 융복합</label>
+                    </div>
+                    <div id="select2Wrap">
+                        <label><input type="checkbox" name="subject" value="Diversity" disabled> 다양성존중</label>
+                        <label><input type="checkbox" name="subject" value="Ethics" disabled> 윤리실천</label>
+                    </div>
+                </div>
+            </div>
+            <div class="essentialCultureScoreWrap">
+                <div id="essentialWrap">
+                    <h3 style="font-weight: 300; cursor: pointer;" onclick="location.href='{% url 'scoreGraphDetail' '균형교양' %}'">*균형 교양</h3>
+                    <div class="selectEssentialType">
+                        <label id="인문"><input type="checkbox" name="subject" value="인문" disabled> 인문</label>
+                        <label id="사회"><input type="checkbox" name="subject" value="사회" disabled> 사회</label>
+                        <label id="자연"><input type="checkbox" name="subject" value="자연" disabled> 자연</label>
+                        <label id="공학"><input type="checkbox" name="subject" value="공학" disabled> 공학</label>
+                        <label id="예술"><input type="checkbox" name="subject" value="예술" disabled> 예술</label>
+                    </div>
+                </div>
+            </div>      
+        </div>
+        <div class="informText">
+            <p>* 자신이 수강한 전공과목을 더 자세히 보고 싶으시다면 그래프를 클릭해주세요.<br>(교양은 글자를 클릭해주세요)</p>
+        </div>
+    </div>
+    <!-- bootstrap -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.5/dist/umd/popper.min.js"
+        integrity="sha384-Xe+8cL9oJa6tN/veChSP7q+mnSPaj5Bcu9mPX5F5xIGE0DVittaqT5lorf0EI7Vk"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.min.js"
+        integrity="sha384-ODmDIVzN+pFdexxHEHFBQH3/9/vQ9uori45z4JjnFsRydbmQbmL5t1tQ0culUzyK"
+        crossorigin="anonymous"></script>
+    <!-- jquery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</body>
+</html> 

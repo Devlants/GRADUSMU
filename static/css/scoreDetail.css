@@ -1,0 +1,469 @@
+html, body{
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.scoreDetailBody{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    margin: 0 auto;
+}
+
+.scoreDetailBody{
+    width: 100%;
+    height: 100%;
+}
+
+/*
+#mainImg{
+    width: 400px;
+    height: 50px;
+    margin-top: 30px;
+}
+*/
+
+.scoreDetailContent{
+    background-color: #d9d9d989;
+    width: 87%;
+    height: auto;
+    margin-top: 15px;
+    padding: 50px 30px;
+    border-radius: 10px;
+}
+
+.logoutBtn{
+    width: 90%;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.logoutBtn button{
+    border-radius: 10px;
+    border: 0;
+    background-color: #5B4FE9;
+    color: white;
+    font-size: 1rem;
+    font-weight: bolder;
+    width: 90px;
+    height: 28px;
+    cursor: pointer;
+}
+
+.userName{
+    font-size: 1.8rem;
+    display: flex;
+    flex-direction: row;
+    font-weight: bolder;
+}
+
+.userDepartmentWrap{
+    display: flex;
+    flex-direction: row;
+}
+
+#userDepartment{
+    color: #801CAF;
+}
+
+.totalScoreWrap, .majorScoreWrap, .selectMajorScoreWrap, .deepMajorScoreWrap, .cultureScoreWrap, .bsmScoreWrap, .designScoreWrap, .majorBsmScoreWrap{
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    height: 65px;
+}
+
+.basicCultureScoreWrap{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: flex-start;
+    width: 100%;
+    height: 90px;
+    margin-top: 15px;
+}
+
+#secondWrapSecond{
+    margin-left: 10px;
+}
+
+.balanceCultureScoreWrap{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    width: 100%;
+    height: 70px;
+}
+
+.essentialCultureScoreWrap{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 65px;
+    margin-top: 10px;
+}
+
+.totalScoreWrap{
+    margin-top: 30px;
+}
+
+.totalScoreWrap h3, .majorScoreWrap h3, .selectMajorScoreWrap h3, .deepMajorScoreWrap h3, .cultureScoreWrap h3, .basicCultureScoreWrap h3, .balanceCultureScoreWrap h3, .essentialCultureScoreWrap h3, .bsmScoreWrap h3, .designScoreWrap h3, .majorBsmScoreWrap h3{
+    font-size: 1.4rem;
+    margin: auto 0;
+    text-align: left;
+    width: 10%;
+}
+
+.basicCultureScoreWrap h3{
+    font-size: 1.4rem;
+    padding-top: 0;
+    margin-top: 0;
+    text-align: left;
+    width: 10%;
+}
+
+.totalScoreGraphWrap, .majorScoreGraphWrap, .majorSelectScoreGraphWrap, .deepMajorScoreGraphWrap, .cultureScoreGraphWrap, .basicCultureScoreGraphWrap, .balanceCultureScoreGraphWrap, .bsmScoreGraphWrap, .designScoreGraphWrap, .majorBsmScoreGraphWrap{
+    margin-left: 100px;
+    display: flex;
+    align-items: center;
+    width: 79%;
+    height: 35px;
+    margin: auto 0 auto 20px;
+    background-color: #D9D9D9;
+    font-weight: 600;
+    font-size: 0.8rem;
+    border-radius: 20px;
+}
+
+.essentialCultureScoreGraphWrap{
+    margin-left: 170px;
+    display: flex;
+    align-items: center;
+    width: 79%;
+    height: 35px;
+    margin: auto 0 auto 20px;
+    background-color: #D9D9D9;
+    font-weight: 600;
+    font-size: 0.8rem;
+    border-radius: 20px;
+}
+
+.totalScoreGraphWrap, .majorScoreGraphWrap, .majorSelectScoreGraphWrap, .deepMajorScoreGraphWrap, .bsmScoreGraphWrap, .cultureScoreGraphWrap, .basicCultureScoreGraphWrap, .designScoreGraphWrap, .majorBsmScoreGraphWrap{
+    cursor: pointer;
+} 
+
+.basicCultureScoreWrap input {
+    font-size: 1rem;
+}
+
+.totalScoreGraph, .majorScoreGraph, .majorSelectScoreGraph, .deepMajorScoreGraph, .cultureScoreGraph, .basicCultureScoreGraph, .balanceCultureScoreGraph, .essentialCultureScoreGraph, .bsmScoreGraph, .designScoreGraph, .majorBsmScoreGraph{
+    border-radius: 20px;
+    height: 35px;
+    padding: 0;
+    text-align: center;
+}
+
+#totalScoreFraction, #majorScoreFraction, #deepMajorScoreFraction, #cultureScoreFraction, #basicCultureScoreFraction, #balanceCultureScoreFraction, #essentialCultureScoreFraction, #bsmScoreFraction, #designScoreFraction, #majorBsmScoreFraction{
+    width: 11%;
+    font-size: 1.2rem;
+    margin: auto 0 auto 30px;
+}
+
+@media(max-width: 1066px){
+    .scoreDetailContent{
+        background-color: #d9d9d989;
+        width: 87%;
+        height: auto;
+        margin-top: 15px;
+        padding: 40px 20px;
+        border-radius: 10px;
+    }
+    .totalScoreWrap h3, .majorScoreWrap h3, .selectMajorScoreWrap h3, .deepMajorScoreWrap h3, .cultureScoreWrap h3, .basicCultureScoreWrap h3, .basicCultureScoreWrap h3, .balanceCultureScoreWrap h3, .essentialCultureScoreWrap h3, .bsmScoreWrap h3, .designScoreWrap h3, .majorBsmScoreWrap h3{
+        font-size: 1.2rem;
+        width: 15%;
+    }
+    .totalScoreGraphWrap, .majorScoreGraphWrap, .majorSelectScoreGraphWrap, .deepMajorScoreGraphWrap, .cultureScoreGraphWrap, .basicCultureScoreGraphWrap, .balanceCultureScoreGraphWrap, .bsmScoreGraphWrap, .designScoreGraphWrap, .majorBsmScoreGraphWrap{
+        margin-left: 50px;
+        width: 65%;
+    }
+    .essentialCultureScoreGraphWrap{
+        margin-left: 500px;
+        width: 65%;
+    }
+    #totalScoreFraction, #majorScoreFraction, #deepMajorScoreFraction, #cultureScoreFraction, #basicCultureScoreFraction, #balanceCultureScoreFraction, #essentialCultureScoreFraction, #bsmScoreFraction, #designScoreFraction, #majorBsmScoreFraction{
+        width: 20%;
+        font-size: 1.2rem;
+        margin: auto 0 auto 30px;
+    }
+}
+
+.totalScoreGraph{
+    background-color: #FF0000;
+}
+
+.majorScoreGraph{
+    background-color: #15F97E;
+}
+
+.majorSelectScoreGraph{
+    background-color: #2BCE1C;
+}
+
+.deepMajorScoreGraph{
+    background-color: #2BCE1C;
+}
+
+.cultureScoreGraph{
+    background-color: #C60DF4;
+}
+
+.basicCultureScoreGraph{
+    background-color: #801CAF;
+}
+
+.balanceCultureScoreGraph{
+    background-color: #5C2874;
+}
+
+.essentialCultureScoreGraph{
+    background-color: #9667AC;
+}
+
+.selectBasicType{
+    margin-left: 30px;
+    font-size: 1.2rem;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.selectBasicTypeWrap{
+    display: flex;
+    flex-direction: column;
+}
+
+.selectBasicType label{
+    margin-right: 20px;
+}
+
+#essentialWrap{
+    display: flex;
+    flex-direction: row;
+}
+.selectEssentialType{
+    margin-left: 30px;
+    font-size: 1.2rem;
+    height: 30px;
+}
+
+.selectEssentialType label{
+    margin-right: 20px;
+}
+
+.selectBalanceType{
+    margin-left: 30px;
+    font-size: 1.2rem;
+    height: 30px;
+}
+
+.selectBalanceType label{
+    margin-right: 20px;
+}
+
+.bsmScoreGraph{
+    width: 72%;  
+    background-color: #FAFF00;
+}
+
+.designScoreGraph{
+    width: 72%;  
+    background-color: #2A19EB;
+}
+
+.majorBsmScoreGraph{
+    width: 72%;  
+    background-color: #49D5F3;
+}
+
+#engineeringCertification{
+    font-size: 1.4rem;
+    color: #FF0000;
+    margin-bottom: 0;
+}
+
+.informText{
+    display: flex;
+    justify-content: flex-end;
+    width: 90%;
+    padding-bottom: 20px;
+    font-size: 1.1rem;
+    font-weight: 500;
+    color: red;
+    line-height: 25px;
+    text-align: end;
+}
+
+.showCultureTable{
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+}
+
+.selectCultureType{
+    width: 12%;
+}
+
+.selectCultureTable{
+    width: 83%;
+}
+
+.subjectTable{
+    font-size: 1.2rem;
+    width: 100%;
+    display: flex;
+}
+
+.subjectTable table{
+    text-align: center;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    border-collapse: collapse;
+}
+
+.subjectTable thead{
+    background-color: #5B4FE9;
+    color: white;
+    text-align: center;
+    height: 40px;
+}
+
+.subjectTable td{
+    padding: 7px 50px;
+}
+
+.tbodyTr{
+    width: 100%;
+    background-color: white;
+    border: 1px solid black;
+}
+
+#selectCultureType{
+    width: 100px;
+    height: 30px;
+    font-size: 1.2rem;
+}
+
+.detailSubjectBtn{
+    width: 70px;
+    height: 25px;
+    background-color: #000000;
+    border: 0;
+    border-radius: 10px;
+    color: white;
+    font-size: 0.9rem;
+    cursor: pointer;
+}
+
+.selectBalanceType{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+#select1Wrap{
+    background-color: silver; 
+    padding: 5px; 
+    border-radius: 10px;
+}
+
+#select2Wrap{
+    background-color: silver; 
+    padding: 5px; 
+    border-radius: 10px;
+    margin-left: 20px;
+}
+
+@media(max-width: 1370px){
+    .totalScoreWrap, .majorScoreWrap, .deepMajorScoreWrap, .cultureScoreWrap, .balanceCultureScoreWrap, .essentialCultureScoreWrap, .bsmScoreWrap, .designScoreWrap, .majorBsmScoreWrap{
+        height: 70px;
+    }
+}
+
+#firstWrap{
+    padding-left: 5px;
+}
+
+#secondWrap{
+    display: flex; 
+    flex-direction: row; 
+    margin-top: 10px;
+}
+
+@media(max-width: 780px){
+    .balanceCultureScoreWrap{
+        margin-top: 30px;
+    }
+    #secondWrap{
+        flex-direction: column;
+    }
+    #secondWrapSecond{
+        margin-left: 0px;
+        margin-top: 10px;
+    }
+    .selectBalanceType{
+        flex-direction: column;
+    }
+    #inputMath{
+        padding-left: 50px;
+    }
+    #select1Wrap{
+        margin-left: 0px;
+    }
+    #select2Wrap{
+        margin-left: 0px;
+        margin-top: 10px;
+    }
+    .essentialCultureScoreWrap{
+        margin-top: 50px;
+    }
+}
+
+@media(max-width: 545px){
+    .userName{
+        font-size: 1.2rem;
+    }
+    .totalScoreWrap h3, .majorScoreWrap h3, .selectMajorScoreWrap h3, .deepMajorScoreWrap h3, .cultureScoreWrap h3, .basicCultureScoreWrap h3, .basicCultureScoreWrap h3, .balanceCultureScoreWrap h3, .essentialCultureScoreWrap h3, .bsmScoreWrap h3, .designScoreWrap h3, .majorBsmScoreWrap h3{
+        font-size: 1rem;
+        width: 25%;
+    }
+    .totalScoreGraphWrap, .majorScoreGraphWrap, .majorSelectScoreGraphWrap, .deepMajorScoreGraphWrap, .cultureScoreGraphWrap, .basicCultureScoreGraphWrap, .balanceCultureScoreGraphWrap, .bsmScoreGraphWrap, .designScoreGraphWrap, .majorBsmScoreGraphWrap{
+        margin-left: 0px;
+        width: 65%;
+    }
+    .essentialCultureScoreGraphWrap{
+        margin-left: 0px;
+        width: 65%;
+    }
+    #totalScoreFraction, #majorScoreFraction, #deepMajorScoreFraction, #cultureScoreFraction, #basicCultureScoreFraction, #balanceCultureScoreFraction, #essentialCultureScoreFraction, #bsmScoreFraction, #designScoreFraction, #majorBsmScoreFraction{
+        width: 10%;
+        font-size: 1rem;
+        margin: auto 0 auto 30px;
+    }
+    .selectBasicType{
+        margin-left: 0px;
+    }
+    .selectBalanceType{
+        margin-left: 0px;
+    }
+    .selectEssentialType{
+        margin-left: 0px;
+    }
+    #firstWrap label, #secondWrapFirst label, #secondWrapSecond label, #select1Wrap label, #select2Wrap label, .selectEssentialType label{
+        font-size: 1rem;
+    }
+}

@@ -1,0 +1,115 @@
+html, body {
+    font-family: 'Heebo', sans-serif;
+    font-weight: bold;
+    font-size: 16px;
+    height:100%;
+}
+
+main {
+    width: 100%;
+    height: 50vh;
+    margin-top:5%;
+}
+
+main > form{
+    width: inherit;
+    height: inherit;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: inherit;
+    font-family: 'Heebo', sans-serif;
+    align-items: center;
+}
+
+main > form > .input-group {
+    display: flex;
+    text-align: center;
+    flex: 1;
+    justify-content: center;
+    width: 80%;
+}
+
+main > form > .input-group >.input-group-text{
+    flex:1;
+    font-size: 5rem;
+}
+
+main > form > .input-group > .login_input{
+    flex: 4;
+    height: 6rem;
+    font-size: 2rem;
+}
+
+main > form > .login_btn_wrap{
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+main > form > .login_btn_wrap > #login_btn{
+    height: 120px;
+    width: 600px;
+    background-color: #5B4FE9;
+    border: none;
+    border-radius: 25px;
+    font-size: 5rem;
+    color: white;
+    font-family: 'Heebo', sans-serif;
+}
+
+main > form > .login_btn_wrap > #login_btn:hover{
+    cursor: pointer;
+}
+
+footer{
+    height: 25vh;
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+footer > div > a{
+    text-decoration: none;
+    color: black;
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+@media screen and (max-width:700px) {
+    header > a > #login_logo_img{
+        width: 400px;
+    }
+
+    main > form > .input-group >.input-group-text{
+        font-size: 2rem;
+    }
+
+    main > form > .input-group > .login_input{
+        flex: 3;
+        height: 2rem;
+        font-size: 1rem;
+    }
+
+    main > form > .input-group {
+        width: 80%;
+    }
+
+    main > form > .login_btn_wrap > #login_btn{
+        height: 50px;
+        width: 200px;
+        font-size: 2rem;
+    }
+
+    footer{
+        flex-direction: column;
+        height: 10vh;
+    }
+
+    footer > div > a{
+        font-size: 1rem;
+    }
+
+}

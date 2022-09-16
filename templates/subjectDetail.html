@@ -1,0 +1,63 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="shortcut icon" href="#">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;700&display=swap" rel="stylesheet">
+
+    <script src="https://kit.fontawesome.com/549125b7f5.js" crossorigin="anonymous"></script>
+
+    <!-- jquery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    <link rel="stylesheet" href="{% static 'css/subjectDetail.css' %}">
+    
+    <title>Gradusmu</title>
+
+</head>
+
+<body>
+    <div class="modal-wrap">
+        <div class="modal" id="modaltarget">
+            <div class="modal-header">
+                <div class="modal-title"></div>
+                <button class="close-btn"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <span id='class_number' class="col"></span>
+                    <span id='subject_type' class="col"></span>
+                </div>
+                <div class="row">
+                    <span id='professor' class="col"></span>
+                    <span id='grades' class="col"></span>
+                </div>
+                <div class="row">
+                    <span id='establishment' class="col"></span>
+                    <span id='lecture_room' class="col"></span>
+                </div>
+                <div class="row">
+                    <span id='lecture_time' class="col"></span>
+                </div>
+                <div class="row">
+                    <span id='department' class="col"></span>
+                </div>
+                <div class="row">
+                    <span id='acceptance' class="col"></span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script type = "text/javascript">var user_id = "{{user.id}}"</script>
+    <script src="{% static 'js/subjectDetail.js' %}"></script>
+</body>
+
+</html>
