@@ -1,1 +1,1 @@
-web: gunicorn gradusmu.wsgi --log-file -
+web: gunicorn gradu-smu.wsgi --log-file -
