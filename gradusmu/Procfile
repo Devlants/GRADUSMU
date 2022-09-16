@@ -1,0 +1,1 @@
+web: gunicorn gradusmu.wsgi --log-file -
