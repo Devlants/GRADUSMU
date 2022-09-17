@@ -77,11 +77,11 @@ WSGI_APPLICATION = 'config.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',  # engine: mysql
-        'NAME': 'grau_smu',  # DB Name
-        'USER': 'root',  # DB User
-        'PASSWORD': '0161',  # Password
+        'NAME': 'vhuz4us8adxij47p',  # DB Name
+        'USER': 'p0xq23otw8l6f1em',  # DB User
+        'PASSWORD': 'y2cnagxd4ry3b2fo',  # Password
         'PORT': '3306',  # 데이터베이스 포트
-        'HOST': 'localhost',
+        'HOST': 'cwe1u6tjijexv3r6.cbetxkdyhwsb.us-east-1.rds.amazonaws.com',
 
         'OPTIONS': {
             'init_command': "SET sql_mode='STRICT_TRANS_TABLES'"
